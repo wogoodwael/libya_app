@@ -181,7 +181,7 @@ class ComplaintsScreen extends StatelessWidget {
               )
            
             ],
-          ),
+          ), 
             const SizedBox(height: 15,),
           Column(
             children: [
@@ -205,6 +205,7 @@ class ComplaintsScreen extends StatelessWidget {
               )
             ],
           )
+        
         ],
       ),
     );

@@ -194,5 +194,6 @@ class ShoppingCard extends StatelessWidget {
                 ),
               ],
             )));
+  
   }
 }

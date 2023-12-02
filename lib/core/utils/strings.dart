@@ -21,6 +21,9 @@ const String changePass = '/change_pass.dart';
 const String cardOrders = '/card_order.dart';
 const String confirmOrders = '/confirm_order.dart';
 const String lastPageOrders = '/last_page.dart';
+const String ordersAdmin = '/orders.dart';
+const String orderDetails = '/order_details.dart';
+const String billDetails = '/bill_details.dart';
 
 //? Main connection
 const hostConnect = 'https://www.koshtna.com/API_koshtna';

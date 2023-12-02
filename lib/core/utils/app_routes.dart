@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:libya_bakery/core/utils/strings.dart';
+import 'package:libya_bakery/presentation/screens/admin/bill_details.dart';
+import 'package:libya_bakery/presentation/screens/admin/order_details.dart';
+import 'package:libya_bakery/presentation/screens/admin/orders.dart';
 import 'package:libya_bakery/presentation/screens/auth/login/admin_login.dart';
 import 'package:libya_bakery/presentation/screens/auth/login/sign_in_body.dart';
 import 'package:libya_bakery/presentation/screens/auth/otp/otp.dart';
@@ -74,6 +77,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => ConfirmOrders());
       case lastPageOrders:
         return MaterialPageRoute(builder: (_) => LastPage());
+      case ordersAdmin:
+        return MaterialPageRoute(builder: (_) => OrderScreen());
+      case orderDetails:
+        return MaterialPageRoute(builder: (_) => OrderDetails());
+      case billDetails:
+        return MaterialPageRoute(builder: (_) => BillDetails());
     }
     return null;
   }

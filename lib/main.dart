@@ -6,7 +6,11 @@ import 'package:libya_bakery/core/utils/app_routes.dart';
 import 'package:libya_bakery/data/services/api.dart';
 import 'package:libya_bakery/data/services/categories_services.dart';
 import 'package:libya_bakery/data/services/sub_categories.dart';
+import 'package:libya_bakery/presentation/screens/admin/bill_details.dart';
+import 'package:libya_bakery/presentation/screens/admin/bills.dart';
 import 'package:libya_bakery/presentation/screens/admin/clients.dart';
+import 'package:libya_bakery/presentation/screens/admin/order_details.dart';
+import 'package:libya_bakery/presentation/screens/admin/orders.dart';
 
 import 'package:libya_bakery/presentation/screens/splash.dart';
 
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => ClientScreen(),
+        '/': (context) => BillsScreen(),
         // 'OnBoarding': (context) => const OnBoardingScreen(),
       },
       initialRoute: '/',

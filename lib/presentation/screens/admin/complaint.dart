@@ -72,6 +72,7 @@ class ComplaintPage extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
+       
         Column(
           children: [
             Container(
@@ -121,7 +122,7 @@ class ComplaintPage extends StatelessWidget {
                       )
                     ],
                   ),
-                  Divider(color: yellow, endIndent: 10, indent: 10),
+                  Divider(color: yellow, endIndent: 10, indent: 10,thickness: 2,),
                   Container(
                     alignment: Alignment.topRight,
                     child: const Column(
@@ -202,6 +203,7 @@ class ComplaintPage extends StatelessWidget {
 
           ],
         ),
+     
      SizedBox(height: 10,),
         Column(
           children: [
