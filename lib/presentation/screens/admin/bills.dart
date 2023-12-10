@@ -83,7 +83,7 @@ class BillsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-             SizedBox(height: 20,),
+             const SizedBox(height: 20,),
             Column(
                 children: [
                   Container(
