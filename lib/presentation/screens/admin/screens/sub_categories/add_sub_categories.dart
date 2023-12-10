@@ -3,10 +3,12 @@ import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
+import 'package:libya_bakery/presentation/widgets/info_row.dart';
+import 'package:libya_bakery/presentation/widgets/text_field.dart';
 
-class AddCategoriesScreen extends StatelessWidget {
-   AddCategoriesScreen({super.key});
-   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+class AddSubCategories extends StatelessWidget {
+  AddSubCategories({super.key});
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class AddCategoriesScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: .06 * MediaQuery.sizeOf(context).height,
+                        height: .1 * MediaQuery.sizeOf(context).height,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,7 +91,7 @@ class AddCategoriesScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Center(
@@ -106,10 +108,15 @@ class AddCategoriesScreen extends StatelessWidget {
                         SizedBox(
                           width: 90,
                         ),
-                        Icon(
-                          Icons.arrow_forward,
-                          size: 40,
-                          color: green,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_forward,
+                            size: 40,
+                            color: green,
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -125,143 +132,115 @@ class AddCategoriesScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20, bottom: 10),
+                      child: InfoRow(
+                        fontfamily: 'ArabicUIDisplayBold',
+                        text: "اسم الصنف",
+                        fontsize: 17,
+                      ),
+                    ),
+                    CustomTextField(
+                      secure: false,
+                      height: 35,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(right: 20, bottom: 10, top: 5),
+                      child: InfoRow(
+                        fontfamily: 'ArabicUIDisplayBold',
+                        text: "التفاصيل ",
+                        fontsize: 17,
+                      ),
+                    ),
+                    CustomTextField(
+                      secure: false,
+                      height: 35,
+                    ),
+
+                    //
+
+                    const SizedBox(
+                      height: 10,
+                    ),
                     const Padding(
-                      padding: EdgeInsets.only(left: 210),
-                      child: Text(
-                        "إسم الصنف",
-                        style: TextStyle(
-                            fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: darkGreen),
+                      padding: EdgeInsets.only(right: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "عدد المنتاجات",
+                            style: TextStyle(
+                                fontFamily: 'ArabicUIDisplayBold',
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: darkGreen),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-
-                    //
-                    SizedBox(
-                      height: 10,
-                    ),
                     Stack(
                       children: [
-                        Container(
-                          width: .8 * MediaQuery.sizeOf(context).width,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: offwhite,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 3,
-                                  spreadRadius: 0.0,
-                                  color: Colors.grey,
-                                ),
-                              ]),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 220),
-                      child: Text(
-                        "التفاصيل",
-                        style: TextStyle(
-                            fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: darkGreen),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          width: .8 * MediaQuery.sizeOf(context).width,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: offwhite,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 3,
-                                  spreadRadius: 0.0,
-                                  color: Colors.grey,
-                                ),
-                              ]),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 190),
-                      child: Text(
-                        "عدد المنتاجات",
-                        style: TextStyle(
-                            fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: darkGreen),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(left: 170),
-                          width: .3 * MediaQuery.sizeOf(context).width,
-                          height: 50,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "4",
-                                style: TextStyle(
-                                    fontFamily: 'ArabicUIDisplayBold',
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: darkGreen),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(right: 30),
+                              width: .3 * MediaQuery.sizeOf(context).width,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: [
+                                    const BoxShadow(
+                                      blurRadius: 3,
+                                      spreadRadius: 0.0,
+                                      color: Colors.grey,
+                                    ),
+                                  ]),
+                              child: const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    "4",
+                                    style: TextStyle(
+                                        fontFamily: 'ArabicUIDisplayBold',
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                        color: darkGreen),
+                                  ),
+                                  Icon(Icons.keyboard_arrow_down)
+                                ],
                               ),
-                              Icon(Icons.keyboard_arrow_down)
-                            ],
-                          ),
-                          decoration: BoxDecoration(
-                              color: offwhite,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 3,
-                                  spreadRadius: 0.0,
-                                  color: Colors.grey,
-                                ),
-                              ]),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 150),
-                      child: Text(
-                        "تعديل/إضافة صورة",
-                        style: TextStyle(
-                            fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: darkGreen),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "إضافة صورة",
+                            style: TextStyle(
+                                fontFamily: 'ArabicUIDisplayBold',
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: darkGreen),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Stack(
@@ -270,13 +249,13 @@ class AddCategoriesScreen extends StatelessWidget {
                           width: .8 * MediaQuery.sizeOf(context).width,
                           height: 120,
                           decoration: BoxDecoration(
-                              image: DecorationImage(
+                              image: const DecorationImage(
                                   image: ExactAssetImage(
                                       "assets/images/editphoto.png")),
                               color: darkGreen,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
-                                BoxShadow(
+                                const BoxShadow(
                                   blurRadius: 3,
                                   spreadRadius: 0.0,
                                   color: Colors.grey,
@@ -285,12 +264,9 @@ class AddCategoriesScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 40,
-                    ),
 
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     Column(
                       children: [
@@ -298,15 +274,18 @@ class AddCategoriesScreen extends StatelessWidget {
                           width: .8 * MediaQuery.sizeOf(context).width,
                           height: 45,
                           decoration: const BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(color: Colors.grey, blurRadius: 5)
+                              ],
                               color: Color(0xffbFED700),
                               borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(20),
                                   bottomLeft: Radius.circular(20))),
                           child: const Center(
                             child: Text(
-                              "إضافة",
+                              "اضافة",
                               style: TextStyle(
-                                fontFamily: "ArabicUIDisplayBold",
+                                fontFamily: "ArabicUIDisplay",
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: darkGreen,
@@ -325,6 +304,5 @@ class AddCategoriesScreen extends StatelessWidget {
             )
           ],
         ));
- 
   }
 }
