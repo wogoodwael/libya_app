@@ -62,7 +62,6 @@ class BillsScreen extends StatelessWidget {
                           //* go to menu page
                           GestureDetector(
                               onTap: () {
-                                var scaffoldKey;
                                 scaffoldKey.currentState!.openEndDrawer();
                               },
                               child: Padding(

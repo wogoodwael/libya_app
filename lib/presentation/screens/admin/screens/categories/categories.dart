@@ -3,7 +3,6 @@ import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/categories/add_category.dart';
-import 'package:libya_bakery/presentation/screens/card/categories_card.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 
 class Categories extends StatelessWidget {
@@ -148,57 +147,6 @@ class Categories extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                CategoriesCard(),
-                Divider(
-                  color: green,
-                  indent: 60,
-                  endIndent: 60,
-                  height: 60,
-                  thickness: 3,
-                ),
-                CategoriesCard(),
-                Divider(
-                  color: green,
-                  indent: 60,
-                  endIndent: 60,
-                  height: 60,
-                  thickness: 3,
-                ),
-                CategoriesCard(),
-                Divider(
-                  color: green,
-                  indent: 60,
-                  endIndent: 60,
-                  height: 60,
-                  thickness: 3,
-                ),
-                CategoriesCard(),
-                Divider(
-                  color: green,
-                  indent: 60,
-                  endIndent: 60,
-                  height: 60,
-                  thickness: 3,
-                ),
-                CategoriesCard(),
-                Divider(
-                  color: green,
-                  indent: 60,
-                  endIndent: 60,
-                  height: 60,
-                  thickness: 3,
-                ),
-                CategoriesCard(),
-                Divider(
-                  color: green,
-                  indent: 60,
-                  endIndent: 60,
-                  height: 60,
-                  thickness: 3,
                 ),
               ],
             ),

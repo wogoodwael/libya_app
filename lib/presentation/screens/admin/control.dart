@@ -141,6 +141,10 @@ class ControlScreen extends StatelessWidget {
                           child: Container(
                             width: 140,
                             height: 160,
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                color: darkGreen),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -159,10 +163,6 @@ class ControlScreen extends StatelessWidget {
                                 )
                               ],
                             ),
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                color: darkGreen),
                           ),
                         ),
                       ],
@@ -221,6 +221,10 @@ class ControlScreen extends StatelessWidget {
                           child: Container(
                             width: 140,
                             height: 160,
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                color: darkGreen),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -239,10 +243,6 @@ class ControlScreen extends StatelessWidget {
                                 )
                               ],
                             ),
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                color: darkGreen),
                           ),
                         ),
                       ],
@@ -263,6 +263,9 @@ class ControlScreen extends StatelessWidget {
                       child: Container(
                         width: 140,
                         height: 160,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: darkGreen),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -281,9 +284,6 @@ class ControlScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            color: darkGreen),
                       ),
                     ),
                   ],

@@ -42,8 +42,7 @@ class ComplaintPage extends StatelessWidget {
                         SizedBox(
                           width: .01 * MediaQuery.sizeOf(context).width,
                         ),
-                        Person(),
-
+                        const Person(),
                         SizedBox(
                           width: .12 * MediaQuery.sizeOf(context).width,
                         ),
@@ -61,7 +60,6 @@ class ComplaintPage extends StatelessWidget {
                         //* go to menu page
                         GestureDetector(
                             onTap: () {
-                              var scaffoldKey;
                               scaffoldKey.currentState!.openEndDrawer();
                             },
                             child: Padding(
@@ -86,11 +84,11 @@ class ComplaintPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            ComplainsContainer(),
-            SizedBox(
+            const ComplainsContainer(),
+            const SizedBox(
               height: 10,
             ),
-            ComplainsContainer(),
+            const ComplainsContainer(),
           ]),
         ]));
   }

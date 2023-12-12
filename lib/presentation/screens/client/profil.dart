@@ -45,16 +45,6 @@ class ProfileScreen extends StatelessWidget {
                             width: .01 * MediaQuery.sizeOf(context).width,
                           ),
                           const Person(),
-                          GestureDetector(
-                            onTap: () {
-                            Navigator.pushNamed(context, cardOrders);
-                          },
-                            child: const Icon(
-                              Icons.shopping_cart_rounded,
-                              size: 40,
-                              color: yellow,
-                            ),
-                          ),
                           SizedBox(
                             width: .04 * MediaQuery.sizeOf(context).width,
                           ),
@@ -95,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                               weight: 200,
                             ),
                             onPressed: () {
-                              Navigator.pushReplacementNamed(context, home);
+                              Navigator.pop(context);
                             },
                           ),
                         ],
@@ -148,11 +138,6 @@ class ProfileScreen extends StatelessWidget {
                   child: const ProfileRow(
                       img: "assets/images/edit.png", txt: 'معلومات شخصية'),
                 ),
-                SizedBox(
-                  height: .02 * MediaQuery.sizeOf(context).height,
-                ),
-                const ProfileRow(
-                    img: "assets/images/edit.png", txt: 'معلومات عن المتجر'),
                 SizedBox(
                   height: .02 * MediaQuery.sizeOf(context).height,
                 ),

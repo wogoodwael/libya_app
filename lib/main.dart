@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:libya_bakery/business_logic/categoriesCubit/categories_cubit.dart';
 import 'package:libya_bakery/business_logic/sub_categories/sub_categories_cubit.dart';
 import 'package:libya_bakery/core/utils/app_routes.dart';
-
 import 'package:libya_bakery/data/services/api.dart';
 import 'package:libya_bakery/data/services/categories_services.dart';
 import 'package:libya_bakery/data/services/sub_categories.dart';
-
 import 'package:libya_bakery/presentation/screens/admin/control.dart';
 
 
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
   AppRouter appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => ControlScreen(),

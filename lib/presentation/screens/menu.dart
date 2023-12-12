@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/strings.dart';
+import 'package:libya_bakery/presentation/screens/admin/complaints.dart';
+import 'package:libya_bakery/presentation/screens/admin/control.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/bills/bills.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/clients/clients.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/sub_categories.dart';
 import 'package:libya_bakery/presentation/widgets/menu_row.dart';
+
+import 'admin/complaint.dart';
+import 'admin/screens/branch_admin.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -55,7 +65,7 @@ class MenuScreen extends StatelessWidget {
             ),
             MenuRow(
               ontap: () {
-                Navigator.pushReplacementNamed(context, home);
+                Get.off(() => ControlScreen());
               },
               text: 'الصفحة الرئيسية',
             ),
@@ -64,33 +74,45 @@ class MenuScreen extends StatelessWidget {
             ),
             MenuRow(
               ontap: () {
-                Navigator.pushReplacementNamed(context, previousOrder);
-              },
-              text: 'طلباتك',
+                Get.off(() => ClientScreen());
+                },
+              text: 'العملاء',
             ),
             const SizedBox(
               height: 20,
             ),
             MenuRow(
               ontap: () {
-                Navigator.pushReplacementNamed(context, favoriteScreen);
+                Get.off(() => BillsScreen());
               },
-              text: 'منتجاتك المفضلة ',
+              text: 'الفواتير',
             ),
             const SizedBox(
               height: 20,
             ),
             MenuRow(
               ontap: () {
-                Navigator.pushNamed(context, problems);
+                Get.off(() => BranchAdmin());
               },
-              text: '  الشكاوي والمقترحات ',
+              text: 'المنتجات',
             ),
             const SizedBox(
               height: 20,
             ),
-            const MenuRow(
-              text: 'من نحن ؟ ',
+            MenuRow(
+              ontap: () {
+                Get.off(() => OrderScreen());
+              },
+              text: 'الطلبات',
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            MenuRow(
+              ontap: () {
+                Get.off(() => ComplaintPage());
+              },
+              text: 'الشكاوي',
             ),
             SizedBox(
               height: .35 * MediaQuery.sizeOf(context).height,
