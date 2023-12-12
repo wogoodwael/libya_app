@@ -6,23 +6,24 @@ import 'package:http/http.dart' as http;
 import 'package:libya_bakery/core/helper/snack.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
-import 'package:libya_bakery/presentation/screens/admin/control.dart';
+import 'package:libya_bakery/presentation/screens/client/change_pass.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 import 'package:libya_bakery/presentation/widgets/custom_next.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
 import '../../../../api_connection/api_connection.dart';
 import '../../../../data/services/api.dart';
 
-class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+class OtpForChangePasswordScreen extends StatefulWidget {
+  const OtpForChangePasswordScreen({super.key});
 
   @override
-  State<OtpScreen> createState() => _OtpScreenState();
+  State<OtpForChangePasswordScreen> createState() => _OtpForChangePasswordScreenState();
 }
 
-class _OtpScreenState extends State<OtpScreen> {
+class _OtpForChangePasswordScreenState extends State<OtpForChangePasswordScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final _otpPinFieldController = GlobalKey<OtpPinFieldState>();
+  String email = Get.arguments["email"];
 
   verifyCode(String pin) async{
     try{
@@ -35,9 +36,12 @@ class _OtpScreenState extends State<OtpScreen> {
       if(res.statusCode == 200){
         var resBodyOfVerifyCode = jsonDecode(res.body);
         if (resBodyOfVerifyCode['status'] == "success") {
-          Get.off(() => ControlScreen());
+          print(email);
+          Get.off(() => ChangePassword(),arguments: {
+            "email_final" : email
+          });
         } else {
-          showErrorSnack(context, "Error, Code Not Correct");
+          showErrorSnack(context, "الرمز غير صحيح");
           if (kDebugMode) {
             print('Unexpected status code: ${res.statusCode}');
             print('Response body: ${res.body}');
@@ -56,13 +60,13 @@ class _OtpScreenState extends State<OtpScreen> {
       var res = await http.post(
           Uri.parse(API.changeVerifyCode),
           body: {
-            'email': MyServices.sharedPreferences.getString('email').toString(),
+            'email': email,
           }
       );
       if (res.statusCode == 200) {
         var resBodyOfChangeCode = jsonDecode(res.body);
         if (resBodyOfChangeCode['status'] == "success") {
-          showErrorSnack(context, "New Code has been sent to your email");
+          showErrorSnack(context, "تم ارسال رمز جديد الي بريدك");
         } else {
           Get.snackbar('Error', 'Network Error.');
           if (kDebugMode) {
@@ -81,6 +85,7 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     print(MyServices.sharedPreferences.getString('email').toString());
+
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
@@ -115,22 +120,22 @@ class _OtpScreenState extends State<OtpScreen> {
                 children: [
                   const Center(
                       child: Text(
-                    "لقد ارسلنا رمز تاكيد علي حسابك الالكتروني ",
-                    style: TextStyle(
-                        color: darkGreen,
-                        fontSize: 20,
-                        fontFamily: 'ArabicUIDisplayBold',
-                        fontWeight: FontWeight.bold),
-                  )),
+                        "لقد ارسلنا رمز تاكيد علي حسابك الالكتروني ",
+                        style: TextStyle(
+                            color: darkGreen,
+                            fontSize: 20,
+                            fontFamily: 'ArabicUIDisplayBold',
+                            fontWeight: FontWeight.bold),
+                      )),
                   const Center(
                       child: Text(
-                    "ادخل الرمز لكي يتم اكمال تسجيل حسابك  ",
-                    style: TextStyle(
-                        color: darkGreen,
-                        fontSize: 20,
-                        fontFamily: 'ArabicUIDisplayBold',
-                        fontWeight: FontWeight.bold),
-                  )),
+                        "ادخل الرمز لكي يتم اكمال تسجيل حسابك  ",
+                        style: TextStyle(
+                            color: darkGreen,
+                            fontSize: 20,
+                            fontFamily: 'ArabicUIDisplayBold',
+                            fontWeight: FontWeight.bold),
+                      )),
                   const SizedBox(height: 30),
                   OtpPinField(
                       key: _otpPinFieldController,
@@ -201,7 +206,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       cursorWidth: 3,
                       mainAxisAlignment: MainAxisAlignment.center,
                       otpPinFieldDecoration:
-                          OtpPinFieldDecoration.defaultPinBoxDecoration),
+                      OtpPinFieldDecoration.defaultPinBoxDecoration),
                   const SizedBox(
                     height: 20,
                   ),

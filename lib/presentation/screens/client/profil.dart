@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
 import 'package:libya_bakery/core/utils/strings.dart';
+import 'package:libya_bakery/presentation/screens/branch.dart';
+import 'package:libya_bakery/presentation/screens/client/forget_pass.dart';
 import 'package:libya_bakery/presentation/screens/client/widgets/profile_row.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 
@@ -67,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 5),
-                                child: Container(
+                                child: SizedBox(
                                   width: 30,
                                   height: 25,
                                   child: Image.asset(
@@ -141,56 +144,66 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: .02 * MediaQuery.sizeOf(context).height,
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                        padding: EdgeInsets.only(
-                          left: 40,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => ForgetPassword());
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.only(
+                            left: 40,
+                          ),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: green,
+                          )),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: Text(
+                          " تغير كلمة السر ",
+                          style: TextStyle(
+                              fontFamily: 'ArabicUIDisplayBold',
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              color: darkGreen),
                         ),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: green,
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: Text(
-                        " تغير كلمة السر ",
-                        style: TextStyle(
-                            fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 21,
-                            fontWeight: FontWeight.bold,
-                            color: darkGreen),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: .04 * MediaQuery.sizeOf(context).height,
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                        padding: EdgeInsets.only(
-                          left: 40,
+                GestureDetector(
+                  onTap: (){
+                    Get.to(() => BranchScreen());
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.only(
+                            left: 40,
+                          ),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: green,
+                          )),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: Text(
+                          " تغير الفرع  ",
+                          style: TextStyle(
+                              fontFamily: 'ArabicUIDisplayBold',
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              color: darkGreen),
                         ),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: green,
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: Text(
-                        " تغير الفرع  ",
-                        style: TextStyle(
-                            fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 21,
-                            fontWeight: FontWeight.bold,
-                            color: darkGreen),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: .04 * MediaQuery.sizeOf(context).height,

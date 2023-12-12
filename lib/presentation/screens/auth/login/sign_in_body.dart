@@ -17,12 +17,6 @@ class SignInBody extends StatefulWidget {
 }
 
 class _SignInBodyState extends State<SignInBody> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   initialService();
-  // }
-
   bool password = true;
   bool remeberMe = false;
   TextEditingController email = TextEditingController();
@@ -70,7 +64,7 @@ class _SignInBodyState extends State<SignInBody> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         const SizedBox(
-          height: 20,
+          height: 100,
         ),
         const Padding(
           padding: EdgeInsets.only(right: 15),
@@ -215,34 +209,6 @@ class _SignInBodyState extends State<SignInBody> {
           indent: 10,
           thickness: 3,
         ),
-        const SizedBox(
-          height: 20,
-        ),
-        const Center(
-          child: Text(
-            "  هل انت مسؤل في المخابز ؟؟",
-            style: TextStyle(
-                fontFamily: 'ArabicUIDisplayBold',
-                color: darkGreen,
-                fontWeight: FontWeight.w700,
-                fontSize: 20),
-          ),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        //* Go to admin login
-        Center(
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, adminLogin);
-            },
-            child: CustomNext(
-              width: .75 * MediaQuery.sizeOf(context).width,
-              text: 'تسجيل دخول ',
-            ),
-          ),
-        )
       ],
     );
   }

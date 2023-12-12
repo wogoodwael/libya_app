@@ -50,16 +50,6 @@ class ForgetPassword extends StatelessWidget {
                           width: .01 * MediaQuery.sizeOf(context).width,
                         ),
                         const Person(),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, cardOrders);
-                          },
-                          child: Icon(
-                            Icons.shopping_cart_rounded,
-                            size: 40,
-                            color: yellow,
-                          ),
-                        ),
                         SizedBox(
                           width: .04 * MediaQuery.sizeOf(context).width,
                         ),
@@ -82,7 +72,7 @@ class ForgetPassword extends StatelessWidget {
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 5),
-                              child: Container(
+                              child: SizedBox(
                                 width: 30,
                                 height: 25,
                                 child: Image.asset(
@@ -100,7 +90,7 @@ class ForgetPassword extends StatelessWidget {
                             weight: 200,
                           ),
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, home);
+                            Navigator.pop(context);
                           },
                         ),
                       ],

@@ -1,9 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 
 import '../../core/utils/strings.dart';
+import '../../data/services/api.dart';
+import 'auth/login/sign_in.dart';
+import 'on_boarding.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,8 +20,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    MyServices.sharedPreferences.getBool('firstTime') == true
+        ?
     Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pushNamed(context, onBoarding);
+      Get.offAll(() => const OnBoardingScreen());
+      MyServices.sharedPreferences.setBool('firstTime', false);
+    })
+        :
+    Future.delayed(const Duration(seconds: 5), () {
+      Get.offAll(() => const SignInScreen());
     });
   }
 

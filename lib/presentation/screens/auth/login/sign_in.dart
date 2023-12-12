@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/presentation/widgets/tab_section.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +20,13 @@ class SignUpScreen extends StatelessWidget {
           ),
           SafeArea(
               child: SingleChildScrollView(
-            child: Column(
-              children: [
-                tabSection(context),
-
-                // Positioned(top: 20, child: tabSection(context)),
-              ],
-            ),
-          )),
+                child: Column(
+                  children: [
+                    tabSection(context),
+                    // Positioned(top: 20, child: tabSection(context)),
+                  ],
+                ),
+              )),
         ]),
       ),
     ]);

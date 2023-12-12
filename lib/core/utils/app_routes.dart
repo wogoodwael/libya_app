@@ -12,10 +12,8 @@ import 'package:libya_bakery/presentation/screens/client/forget_pass.dart';
 import 'package:libya_bakery/presentation/screens/client/personal_info.dart';
 import 'package:libya_bakery/presentation/screens/client/profil.dart';
 import 'package:libya_bakery/presentation/screens/settings/problems.dart';
-import 'package:libya_bakery/presentation/screens/auth/login/market_admin_login.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 import 'package:libya_bakery/presentation/screens/on_boarding.dart';
-import 'package:libya_bakery/presentation/screens/auth/signup/sign_up.dart';
 import 'package:libya_bakery/presentation/screens/splash.dart';
 
 class AppRouter {
@@ -25,21 +23,16 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case onBoarding:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
-      case signUp:
-        return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case login:
         return MaterialPageRoute(builder: (_) => const SignInBody());
-
-      case marketLogin:
-        return MaterialPageRoute(builder: (_) => const MarketLoginScreen());
       case adminLogin:
         return MaterialPageRoute(builder: (_) => const AdminLoginScreen());
       case branch:
-        return MaterialPageRoute(builder: (_) => BranchScreen());
+        return MaterialPageRoute(builder: (_) => const BranchScreen());
       case menu:
         return MaterialPageRoute(builder: (_) => const MenuScreen());
       case otp:
-        return MaterialPageRoute(builder: (_) => OtpScreen());
+        return MaterialPageRoute(builder: (_) => const OtpScreen());
       case problems:
         return MaterialPageRoute(builder: (_) => const ProblemScreen());
       case profile:

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/logo.dart';
-
 import 'package:libya_bakery/presentation/screens/auth/login/sign_in_body.dart';
-
-import 'package:libya_bakery/presentation/screens/auth/signup/widgets/sign_up_body.dart';
 
 Widget tabSection(BuildContext context) {
   return const DefaultTabController(
-    length: 2,
+    length: 1,
     child: Column(
       children: <Widget>[
    Logo(),
@@ -38,24 +34,12 @@ Widget tabSection(BuildContext context) {
               ),
             ),
             tabs: [
-              Tab(
-                text: "حساب جديد ",
-              ),
               Tab(text: "تسجيل دخول"),
             ]),
         SizedBox(
           //Add this to give height
           height: 800,
-
-          child: TabBarView(children: [
-            //*body of tab1
-
-            SignUpBody(),
-
-            //*body of tab 2
-
-            SignInBody()
-          ]),
+          child: SignInBody(),
         ),
       ],
     ),

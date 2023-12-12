@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/strings.dart';
+import 'package:libya_bakery/presentation/screens/auth/login/sign_in.dart';
+import 'package:libya_bakery/presentation/screens/auth/login/sign_in_body.dart';
+
+import '../widgets/tab_section.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -70,7 +75,7 @@ class OnBoardingScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, signUp);
+              Get.to(() => SignInScreen());
             },
             child: Container(
               margin: EdgeInsets.symmetric(

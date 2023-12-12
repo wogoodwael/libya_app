@@ -53,16 +53,6 @@ class PersonalInfoScreen extends StatelessWidget {
                             width: .01 * MediaQuery.sizeOf(context).width,
                           ),
                           const Person(),
-                          GestureDetector(
-                            onTap: () {
-                            Navigator.pushNamed(context, cardOrders);
-                          },
-                            child: const Icon(
-                              Icons.shopping_cart_rounded,
-                              size: 40,
-                              color: yellow,
-                            ),
-                          ),
                           SizedBox(
                             width: .04 * MediaQuery.sizeOf(context).width,
                           ),
