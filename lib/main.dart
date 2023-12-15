@@ -1,12 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:libya_bakery/business_logic/categoriesCubit/categories_cubit.dart';
-import 'package:libya_bakery/business_logic/sub_categories/sub_categories_cubit.dart';
 import 'package:libya_bakery/data/services/api.dart';
-import 'package:libya_bakery/data/services/categories_services.dart';
-import 'package:libya_bakery/data/services/sub_categories.dart';
 import 'package:libya_bakery/presentation/screens/admin/control.dart';
 import 'package:libya_bakery/presentation/screens/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,17 +17,7 @@ void main() async {
   if (!MyServices.sharedPreferences.containsKey('firstTime')) {
     MyServices.sharedPreferences.setBool('firstTime', true);
   }
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(
-        create: (context) => CategoriesCubit(CategoryServices()),
-      ),
-      BlocProvider(
-        create: (context) => SubCategoriesCubit(SubCategorieServices()),
-      ),
-    ],
-    child: const MyApp(),
-  ));
+  runApp(const MyApp(),);
 }
 
 // ignore: must_be_immutable

@@ -8,6 +8,7 @@ import 'package:libya_bakery/presentation/screens/admin/screens/bills/bills.dart
 import 'package:libya_bakery/presentation/screens/admin/screens/branch_admin.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/clients/clients.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/sub_categories.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 
 class ControlScreen extends StatelessWidget {
@@ -18,7 +19,7 @@ class ControlScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
-        endDrawer: const Drawer(
+        endDrawer: Drawer(
           width: 250,
           child: MenuScreen(),
         ),
@@ -63,10 +64,8 @@ class ControlScreen extends StatelessWidget {
                           SizedBox(
                             width: .15 * MediaQuery.sizeOf(context).width,
                           ),
-                          //* go to menu page
                           GestureDetector(
                               onTap: () {
-                                var scaffoldKey;
                                 scaffoldKey.currentState!.openEndDrawer();
                               },
                               child: Padding(
@@ -216,7 +215,8 @@ class ControlScreen extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => BranchAdmin()));
+                                    builder: (_) => SubCategories())
+                            );
                           },
                           child: Container(
                             width: 140,

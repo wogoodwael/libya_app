@@ -62,7 +62,7 @@ class _OtpScreenState extends State<OtpScreen> {
       if (res.statusCode == 200) {
         var resBodyOfChangeCode = jsonDecode(res.body);
         if (resBodyOfChangeCode['status'] == "success") {
-          showErrorSnack(context, "New Code has been sent to your email");
+          showSuccessSnack(context, "تم ارسال رمز جديد الي بريدك");
         } else {
           Get.snackbar('Error', 'Network Error.');
           if (kDebugMode) {
@@ -84,7 +84,7 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
-        endDrawer: const Drawer(
+        endDrawer: Drawer(
           width: 250,
           child: MenuScreen(),
         ),

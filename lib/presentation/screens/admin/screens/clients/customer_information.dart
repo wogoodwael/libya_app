@@ -15,7 +15,7 @@ class CustomerInformationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      endDrawer: const Drawer(
+      endDrawer: Drawer(
         width: 250,
         child: MenuScreen(),
       ),

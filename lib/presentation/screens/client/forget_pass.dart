@@ -1,12 +1,18 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
-import 'package:libya_bakery/core/utils/person.dart';
-import 'package:libya_bakery/core/utils/strings.dart';
+import 'package:libya_bakery/presentation/screens/client/change_pass.dart';
 import 'package:libya_bakery/presentation/screens/client/widgets/custom_pass_container.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 import 'package:libya_bakery/presentation/widgets/custom_next.dart';
 import 'package:libya_bakery/presentation/widgets/info_row.dart';
+import 'package:http/http.dart' as http;
+import '../../../api_connection/api_connection.dart';
+import '../../../core/helper/snack.dart';
+import '../auth/otp/otp_for_changepassword.dart';
 
 // ignore: must_be_immutable
 class ForgetPassword extends StatelessWidget {
@@ -16,9 +22,66 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    changeVerifyCode() async{
+      try{
+        var res = await http.post(
+            Uri.parse(API.changeVerifyCode),
+            body: {
+              'email':email.text.trim()
+            }
+        );
+        if (res.statusCode == 200) {
+          var resBodyOfValidateEmail = jsonDecode(res.body);
+          if (resBodyOfValidateEmail['status'] == "success") {
+            showErrorSnack(context, "تم ارسال رمز التاكيد الي بريدك");
+          } else {
+          }
+        }  else{
+          if (kDebugMode) {
+            print('Unexpected status code: ${res.statusCode}');
+            print('Response body: ${res.body}');
+          }
+        }
+      }catch(e){
+        if (kDebugMode) {
+          print(e);
+        }
+      }
+    }
+    validateUserEmail() async{
+      try{
+        var res = await http.post(
+            Uri.parse(API.validateEmail),
+            body: {
+              'email':email.text.trim()
+            }
+        );
+        if (res.statusCode == 200) {
+          var resBodyOfValidateEmail = jsonDecode(res.body);
+          if (resBodyOfValidateEmail['status'] == "success") {
+            changeVerifyCode();
+            print(email.text);
+            Get.off(() => OtpForChangePasswordScreen(),arguments: {
+              "email" : email.text
+            });
+          } else {
+            showErrorSnack(context, "لم يتم العثور علي البريد الالكتروني");
+          }
+        }  else{
+          if (kDebugMode) {
+            print('Unexpected status code: ${res.statusCode}');
+            print('Response body: ${res.body}');
+          }
+        }
+      }catch(e){
+        if (kDebugMode) {
+          print(e);
+        }
+      }
+    }
     return Scaffold(
       key: scaffoldKey,
-      endDrawer: const Drawer(
+      endDrawer: Drawer(
         width: 250,
         child: MenuScreen(),
       ),
@@ -29,80 +92,8 @@ class ForgetPassword extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Container(
-                width: MediaQuery.sizeOf(context).width,
-                height: .25 * MediaQuery.sizeOf(context).height,
-                decoration: const BoxDecoration(
-                    color: darkGreen,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40))),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: .08 * MediaQuery.sizeOf(context).height,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          width: .01 * MediaQuery.sizeOf(context).width,
-                        ),
-                        const Person(),
-                        SizedBox(
-                          width: .04 * MediaQuery.sizeOf(context).width,
-                        ),
-                        const Text(
-                          " حسابك",
-                          style: TextStyle(
-                              fontFamily: 'ArabicUIDisplayBold',
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: yellow),
-                        ),
-                        SizedBox(
-                          width: .02 * MediaQuery.sizeOf(context).width,
-                        ),
-
-                        //* go to menu page
-                        GestureDetector(
-                            onTap: () {
-                              scaffoldKey.currentState!.openEndDrawer();
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 5),
-                              child: SizedBox(
-                                width: 30,
-                                height: 25,
-                                child: Image.asset(
-                                  "assets/images/icon_menu.png",
-                                  color: yellow,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.arrow_forward,
-                            color: yellow,
-                            size: 30,
-                            weight: 200,
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: .04 * MediaQuery.sizeOf(context).height,
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(
-                height: .05 * MediaQuery.sizeOf(context).height,
+                height: .1 * MediaQuery.sizeOf(context).height,
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 20, bottom: 5),
@@ -153,7 +144,7 @@ class ForgetPassword extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, changePass);
+                    validateUserEmail();
                   },
                   child: CustomNext(text: 'التالي'))
             ],

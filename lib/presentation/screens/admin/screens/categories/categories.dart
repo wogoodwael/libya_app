@@ -13,7 +13,7 @@ class Categories extends StatelessWidget {
     return Scaffold(
       backgroundColor: offwhite,
       key: scaffoldKey,
-      endDrawer: const Drawer(
+      endDrawer: Drawer(
         width: 250,
         child: MenuScreen(),
       ),
@@ -43,8 +43,7 @@ class Categories extends StatelessWidget {
                           SizedBox(
                             width: .01 * MediaQuery.sizeOf(context).width,
                           ),
-                          Person(),
-
+                          const Person(),
                           SizedBox(
                             width: .12 * MediaQuery.sizeOf(context).width,
                           ),
@@ -66,7 +65,7 @@ class Categories extends StatelessWidget {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 15),
-                                child: Container(
+                                child: SizedBox(
                                   width: 30,
                                   height: 25,
                                   child: Image.asset(
@@ -80,7 +79,7 @@ class Categories extends StatelessWidget {
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.arrow_forward,
                               size: 40,
                               color: yellow,
@@ -94,7 +93,7 @@ class Categories extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Padding(
@@ -111,7 +110,7 @@ class Categories extends StatelessWidget {
                         child: Container(
                           width: .3 * MediaQuery.sizeOf(context).width,
                           height: .04 * MediaQuery.sizeOf(context).height,
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Icon(

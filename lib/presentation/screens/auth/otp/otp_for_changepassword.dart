@@ -66,7 +66,7 @@ class _OtpForChangePasswordScreenState extends State<OtpForChangePasswordScreen>
       if (res.statusCode == 200) {
         var resBodyOfChangeCode = jsonDecode(res.body);
         if (resBodyOfChangeCode['status'] == "success") {
-          showErrorSnack(context, "تم ارسال رمز جديد الي بريدك");
+          showSuccessSnack(context, "تم ارسال رمز جديد الي بريدك");
         } else {
           Get.snackbar('Error', 'Network Error.');
           if (kDebugMode) {
@@ -84,12 +84,10 @@ class _OtpForChangePasswordScreenState extends State<OtpForChangePasswordScreen>
 
   @override
   Widget build(BuildContext context) {
-    print(MyServices.sharedPreferences.getString('email').toString());
-
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
-        endDrawer: const Drawer(
+        endDrawer: Drawer(
           width: 250,
           child: MenuScreen(),
         ),

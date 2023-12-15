@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:libya_bakery/controller/branch_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
@@ -9,16 +10,50 @@ import 'package:libya_bakery/presentation/screens/client/forget_pass.dart';
 import 'package:libya_bakery/presentation/screens/client/widgets/profile_row.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 
+import '../../../data/services/api.dart';
+import '../auth/login/sign_in.dart';
+
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  signOutUser() async {
+    Get.dialog(AlertDialog(
+      backgroundColor: Colors.white,
+      title: const Text(
+        'تسجيل خروج',
+        textDirection: TextDirection.rtl,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+      content: const Text('هل أنت متأكد أنك تريد تسجيل الخروج؟',style: TextStyle(fontFamily: 'ArabicUIDisplayBold',),),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text(
+              'لا',
+              style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
+            )),
+        TextButton(
+            onPressed: () {
+              MyServices.sharedPreferences.clear();
+              Get.offAll(() => const SignInScreen());
+            },
+            child: const Text(
+              'نعم',
+              style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
+            ))
+      ],
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
-        endDrawer: const Drawer(
+        endDrawer: Drawer(
           width: 250,
           child: MenuScreen(),
         ),
@@ -219,7 +254,7 @@ class ProfileScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, signUp);
+                      signOutUser();
                     }),
               ],
             ),

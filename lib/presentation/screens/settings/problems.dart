@@ -22,7 +22,7 @@ class _ProblemScreenState extends State<ProblemScreen> {
     return Scaffold(
       backgroundColor: offwhite,
       key: scaffoldKey,
-      endDrawer: const Drawer(
+      endDrawer: Drawer(
         width: 250,
         child: MenuScreen(),
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/strings.dart';
+import 'package:libya_bakery/presentation/screens/client/profil.dart';
 
 class Person extends StatelessWidget {
   const Person({super.key});
@@ -9,9 +11,9 @@ class Person extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, profile);
+        Get.to(() => ProfileScreen());
       },
-      child: Container(
+      child: SizedBox(
         width: 40,
         height: 40,
         child: Image.asset(

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:libya_bakery/controller/categories/view_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/categories/categories.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/edit_sub_categories.dart';
 
+import '../../../../../api_connection/api_connection.dart';
+
 class CategoriesContainer extends StatelessWidget {
-  const CategoriesContainer({super.key});
+  final CategoriesViewController controller;
+  final int index;
+  const CategoriesContainer({super.key, required this.controller, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +58,11 @@ class CategoriesContainer extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 10),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
                             child: Text(
-                              "خبزة شامية",
-                              style: TextStyle(
+                              controller.data[index].categoriesName!,
+                              style: const TextStyle(
                                   fontFamily: 'ArabicUIDisplayBold',
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
@@ -69,12 +74,12 @@ class CategoriesContainer extends StatelessWidget {
                       const SizedBox(
                         height: 15,
                       ),
-                      const Text(
+                      Text(
                         textAlign: TextAlign.end,
-                        'تشكيلة من افضل انواع الخبز السوري و اللبناني يتم \nتحضيره يوميا لضمان افضل جودة للخبز الطازج',
-                        style: TextStyle(
+                        controller.data[index].categoriesDescription!,
+                        style: const TextStyle(
                             fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 10,
+                            fontSize: 11,
                             fontWeight: FontWeight.bold,
                             color: offwhite),
                       ),
@@ -101,7 +106,10 @@ class CategoriesContainer extends StatelessWidget {
                         child: Container(
                           width: .5 * MediaQuery.sizeOf(context).width,
                           height: 30,
-                          child: Center(
+                          decoration: BoxDecoration(
+                              color: yellow,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: const Center(
                             child: Text(
                               'عرض',
                               style: TextStyle(
@@ -111,9 +119,6 @@ class CategoriesContainer extends StatelessWidget {
                                   color: darkGreen),
                             ),
                           ),
-                          decoration: BoxDecoration(
-                              color: yellow,
-                              borderRadius: BorderRadius.circular(20)),
                         ),
                       )
                     ],
@@ -123,8 +128,8 @@ class CategoriesContainer extends StatelessWidget {
                   width: 140,
                   height: 160,
                   decoration: BoxDecoration(
-                      image: const DecorationImage(
-                          image: ExactAssetImage("assets/images/bread.png"),
+                      image: DecorationImage(
+                          image: NetworkImage("${API.categoriesImages}/${controller.data[index].categoriesImage}"),
                           fit: BoxFit.cover),
                       color: yellow,
                       borderRadius: BorderRadius.circular(10)),

@@ -1,13 +1,22 @@
 import 'dart:convert';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/strings.dart';
 import 'package:libya_bakery/data/services/api.dart';
+import 'package:libya_bakery/presentation/screens/admin/control.dart';
+import 'package:libya_bakery/presentation/screens/auth/otp/otp.dart';
+import 'package:libya_bakery/presentation/screens/branch.dart';
+import 'package:libya_bakery/presentation/screens/client/forget_pass.dart';
 import 'package:libya_bakery/presentation/widgets/custom_next.dart';
 import 'package:libya_bakery/presentation/widgets/info_row.dart';
 import 'package:libya_bakery/presentation/widgets/text_field.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../core/functions/check_internet.dart';
+import '../../../../core/helper/snack.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({super.key});
@@ -18,9 +27,40 @@ class SignInBody extends StatefulWidget {
 
 class _SignInBodyState extends State<SignInBody> {
   bool password = true;
-  bool remeberMe = false;
+  bool rememberMe = false;
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
+
+  var res;
+
+  intialData() async {
+    res = await checkInternet();
+    if (kDebugMode) {
+      print('Internet Connected: $res');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    intialData();
+    loadRememberMe().then((value) {
+      setState(() {
+        rememberMe = value;
+      });
+    });
+  }
+
+  Future<void> saveRememberMe(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('rememberMe', value);
+  }
+
+  Future<bool> loadRememberMe() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('rememberMe') ?? false;
+  }
+
   login() async {
     http.Response response = await http.post(Uri.parse(loginLink), body: {
       'user_email': email.text.trim(),
@@ -45,13 +85,13 @@ class _SignInBodyState extends State<SignInBody> {
         MyServices.sharedPreferences
             .setString('user_type', data['data']['user_type'].toString());
         if (data['data']['users_approve'] == 1) {
-          print('approved');
-          Navigator.pushNamed(context, branch);
+          saveRememberMe(rememberMe);
+          Get.to(() => ControlScreen());
         } else {
-          Navigator.pushNamed(context, otp);
+          Get.to(() => const OtpScreen());
         }
       } else {
-        print('error');
+        showErrorSnack(context, "البريد الالكتروني او كلمة السر غير صحيحة");
       }
     } else {
       print(response.statusCode);
@@ -81,7 +121,7 @@ class _SignInBodyState extends State<SignInBody> {
           height: 10,
         ),
         Padding(
-          padding: EdgeInsets.only(right: 20),
+          padding: const EdgeInsets.only(right: 20),
           child: InfoRow(
               fontsize: 15,
               fontfamily: 'ArabicUIDisplayBold',
@@ -96,7 +136,7 @@ class _SignInBodyState extends State<SignInBody> {
           height: 10,
         ),
         Padding(
-          padding: EdgeInsets.only(right: 20),
+          padding: const EdgeInsets.only(right: 20),
           child: InfoRow(
               fontsize: 15,
               fontfamily: 'ArabicUIDisplayBold',
@@ -134,7 +174,7 @@ class _SignInBodyState extends State<SignInBody> {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, forgetPass);
+            Get.to(() => ForgetPassword());
           },
           child: Padding(
             padding: const EdgeInsets.only(right: 20, top: 10),
@@ -147,7 +187,6 @@ class _SignInBodyState extends State<SignInBody> {
                   decoration: BoxDecoration(
                       color: darkGreen,
                       borderRadius: BorderRadius.circular(20)),
-                  //! go to forget password page
                   child: const Center(
                       child: Text(
                     "نسيت كلمة السر ؟",
@@ -158,8 +197,6 @@ class _SignInBodyState extends State<SignInBody> {
                 SizedBox(
                   width: .3 * MediaQuery.sizeOf(context).width,
                 ),
-                //Todo: Shared pref
-
                 const Text(
                   'تذكرني',
                   style: TextStyle(
@@ -173,13 +210,13 @@ class _SignInBodyState extends State<SignInBody> {
                       }
                       return null;
                     }),
-                    side: const BorderSide(color: Colors.white, width: 2),
+                    side: const BorderSide(color: Colors.black, width: 2),
                     activeColor: Colors.white,
                     checkColor: Colors.blue,
-                    value: remeberMe,
+                    value: rememberMe,
                     onChanged: (val) {
                       setState(() {
-                        remeberMe = val!;
+                        rememberMe = val!;
                       });
                     }),
               ],

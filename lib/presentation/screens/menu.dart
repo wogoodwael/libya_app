@@ -10,11 +10,45 @@ import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.da
 import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/sub_categories.dart';
 import 'package:libya_bakery/presentation/widgets/menu_row.dart';
 
+import '../../controller/branch_controller.dart';
+import '../../data/services/api.dart';
 import 'admin/complaint.dart';
 import 'admin/screens/branch_admin.dart';
+import 'auth/login/sign_in.dart';
 
 class MenuScreen extends StatelessWidget {
-  const MenuScreen({super.key});
+  MenuScreen({super.key});
+
+  signOutUser() async {
+    Get.dialog(AlertDialog(
+      backgroundColor: Colors.white,
+      title: const Text(
+        'تسجيل خروج',
+        textDirection: TextDirection.rtl,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+      content: const Text('هل أنت متأكد أنك تريد تسجيل الخروج؟',style: TextStyle(fontFamily: 'ArabicUIDisplayBold',),),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text(
+              'لا',
+              style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
+            )),
+        TextButton(
+            onPressed: () {
+              MyServices.sharedPreferences.clear();
+              Get.offAll(() => const SignInScreen());
+            },
+            child: const Text(
+              'نعم',
+              style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
+            ))
+      ],
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +126,7 @@ class MenuScreen extends StatelessWidget {
             ),
             MenuRow(
               ontap: () {
-                Get.off(() => BranchAdmin());
+                Get.off(() => SubCategories());
               },
               text: 'المنتجات',
             ),
@@ -130,7 +164,7 @@ class MenuScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, signUp);
+                    signOutUser();
                   }),
             )
           ],

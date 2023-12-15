@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:libya_bakery/controller/categories/add_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
@@ -12,10 +14,11 @@ class AddSubCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CategoriesAddController controller = Get.put(CategoriesAddController());
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
-        endDrawer: const Drawer(
+        endDrawer: Drawer(
           width: 250,
           child: MenuScreen(),
         ),
@@ -44,7 +47,7 @@ class AddSubCategories extends StatelessWidget {
                           SizedBox(
                             width: .01 * MediaQuery.sizeOf(context).width,
                           ),
-                          Person(),
+                          const Person(),
 
                           SizedBox(
                             width: .12 * MediaQuery.sizeOf(context).width,
@@ -94,7 +97,7 @@ class AddSubCategories extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Center(
+                        const Center(
                           child: Text(
                             textAlign: TextAlign.center,
                             "إضافة صنف",
@@ -105,20 +108,20 @@ class AddSubCategories extends StatelessWidget {
                                 color: darkGreen),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 90,
                         ),
                         GestureDetector(
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_forward,
                             size: 40,
                             color: green,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                       ],
@@ -141,6 +144,7 @@ class AddSubCategories extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
+                      controller: controller.name,
                       secure: false,
                       height: 35,
                     ),
@@ -154,72 +158,9 @@ class AddSubCategories extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
+                      controller: controller.description,
                       secure: false,
                       height: 35,
-                    ),
-
-                    //
-
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            "عدد المنتاجات",
-                            style: TextStyle(
-                                fontFamily: 'ArabicUIDisplayBold',
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: darkGreen),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Stack(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(right: 30),
-                              width: .3 * MediaQuery.sizeOf(context).width,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: [
-                                    const BoxShadow(
-                                      blurRadius: 3,
-                                      spreadRadius: 0.0,
-                                      color: Colors.grey,
-                                    ),
-                                  ]),
-                              child: const Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    "4",
-                                    style: TextStyle(
-                                        fontFamily: 'ArabicUIDisplayBold',
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        color: darkGreen),
-                                  ),
-                                  Icon(Icons.keyboard_arrow_down)
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
                     ),
                     const SizedBox(
                       height: 10,
@@ -245,50 +186,59 @@ class AddSubCategories extends StatelessWidget {
                     ),
                     Stack(
                       children: [
-                        Container(
-                          width: .8 * MediaQuery.sizeOf(context).width,
-                          height: 120,
-                          decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                  image: ExactAssetImage(
-                                      "assets/images/editphoto.png")),
-                              color: darkGreen,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                const BoxShadow(
-                                  blurRadius: 3,
-                                  spreadRadius: 0.0,
-                                  color: Colors.grey,
-                                ),
-                              ]),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: Container(
+                            width: .8 * MediaQuery.sizeOf(context).width,
+                            height: 120,
+                            decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                    image: ExactAssetImage(
+                                        "assets/images/editphoto.png")),
+                                color: darkGreen,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 3,
+                                    spreadRadius: 0.0,
+                                    color: Colors.grey,
+                                  ),
+                                ]),
+                          ),
                         ),
                       ],
                     ),
-
                     const SizedBox(
                       height: 30,
                     ),
                     Column(
                       children: [
-                        Container(
-                          width: .8 * MediaQuery.sizeOf(context).width,
-                          height: 45,
-                          decoration: const BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(color: Colors.grey, blurRadius: 5)
-                              ],
-                              color: Color(0xffbFED700),
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(20),
-                                  bottomLeft: Radius.circular(20))),
-                          child: const Center(
-                            child: Text(
-                              "اضافة",
-                              style: TextStyle(
-                                fontFamily: "ArabicUIDisplay",
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: darkGreen,
+                        InkWell(
+                          onTap: (){
+                            controller.addData();
+                          },
+                          child: Container(
+                            width: .8 * MediaQuery.sizeOf(context).width,
+                            height: 45,
+                            decoration: const BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(color: Colors.grey, blurRadius: 5)
+                                ],
+                                color: Color(0xffbFED700),
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20))),
+                            child: const Center(
+                              child: Text(
+                                "اضافة",
+                                style: TextStyle(
+                                  fontFamily: "ArabicUIDisplay",
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: darkGreen,
+                                ),
                               ),
                             ),
                           ),

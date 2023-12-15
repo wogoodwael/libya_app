@@ -22,7 +22,7 @@ class PersonalInfoScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
-        endDrawer: const Drawer(
+        endDrawer: Drawer(
           width: 250,
           child: MenuScreen(),
         ),

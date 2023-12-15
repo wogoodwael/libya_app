@@ -30,7 +30,7 @@ class AppRouter {
       case branch:
         return MaterialPageRoute(builder: (_) => const BranchScreen());
       case menu:
-        return MaterialPageRoute(builder: (_) => const MenuScreen());
+        return MaterialPageRoute(builder: (_) => MenuScreen());
       case otp:
         return MaterialPageRoute(builder: (_) => const OtpScreen());
       case problems:
