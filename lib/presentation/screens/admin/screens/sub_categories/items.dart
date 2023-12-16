@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:libya_bakery/controller/categories/view_controller.dart';
+import 'package:libya_bakery/controller/items/view_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
 import 'package:libya_bakery/handling_data/handlng_data_view.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/categories/add_category.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/categories/categories_container.dart';
-
+import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/add_product.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 
-class Categories extends StatelessWidget {
-  Categories({super.key});
+import 'items_container.dart';
+
+class Items extends StatelessWidget {
+  Items({super.key});
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    Get.put(CategoriesViewController());
+    Get.put(ItemsViewController());
     return Scaffold(
       backgroundColor: offwhite,
       key: scaffoldKey,
@@ -23,15 +23,12 @@ class Categories extends StatelessWidget {
         width: 250,
         child: MenuScreen(),
       ),
-      body: GetBuilder<CategoriesViewController>(
+      body: GetBuilder<ItemsViewController>(
         builder: (controller) {
           return HandlingDataView(
               statusRequest: controller.statusRequest,
-              widget: WillPopScope(
-                onWillPop: (){
-                  return controller.myBack();
-                },
-                child: Stack(children: [
+              widget: Stack(
+                children: [
                   const BackGroundImage(),
                   SingleChildScrollView(
                     child: Column(
@@ -57,7 +54,6 @@ class Categories extends StatelessWidget {
                                     width: .01 * MediaQuery.sizeOf(context).width,
                                   ),
                                   const Person(),
-
                                   SizedBox(
                                     width: .12 * MediaQuery.sizeOf(context).width,
                                   ),
@@ -119,7 +115,7 @@ class Categories extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (_) => AddCategory()));
+                                          builder: (_) => AddProductScreen()));
                                 },
                                 child: Container(
                                   width: .3 * MediaQuery.sizeOf(context).width,
@@ -136,7 +132,7 @@ class Categories extends StatelessWidget {
                                         color: yellow,
                                       ),
                                       Text(
-                                        "إضافة صنف",
+                                        "إضافة منتج",
                                         style: TextStyle(
                                             fontFamily: 'ArabicUIDisplay',
                                             fontSize: 12,
@@ -148,15 +144,15 @@ class Categories extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                width: .3 * MediaQuery.sizeOf(context).width,
+                                width: .2 * MediaQuery.sizeOf(context).width,
                               ),
                               const Text(
-                                "الاصناف",
+                                "المنتجات",
                                 style: TextStyle(
                                     fontFamily: 'ArabicUIDisplay',
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
-                                    color: darkGreen),
+                                    color: green),
                               ),
                             ],
                           ),
@@ -167,7 +163,7 @@ class Categories extends StatelessWidget {
                         ...List.generate(
                             controller.data.length,
                                 (index) =>
-                                    CategoriesContainer(
+                                    ItemsContainer(
                                       controller: controller,
                                       index: index,
                                     )
@@ -175,7 +171,7 @@ class Categories extends StatelessWidget {
                       ],
                     ),
                   ),
-                ]),
+                ],
               )
           );
         }

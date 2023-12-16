@@ -7,9 +7,10 @@ class CustomTextField extends StatelessWidget {
       this.perfix,
       required this.secure,
       this.height,
-      this.controller});
+      this.controller,  this.maxLength});
   Widget? perfix;
   final bool secure;
+  final int? maxLength;
   double? height;
   TextEditingController? controller;
 
@@ -23,6 +24,7 @@ class CustomTextField extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(5)),
       child: TextFormField(
+        maxLength: maxLength,
         controller: controller,
         obscureText: secure,
         textAlign: TextAlign.end,

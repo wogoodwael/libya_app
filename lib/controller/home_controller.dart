@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/sub_categories.dart';import '../core/functions/handling_data.dart';
+import '../core/functions/handling_data.dart';
 import '../data/datasource/remote/home_data.dart';
 import '../data/services/api.dart';
 import '../handling_data/statusrequest.dart';
@@ -8,7 +8,6 @@ import '../models/items_model.dart';
 
 abstract class HomeController extends SearchMixController{
   getData();
-  goToItems(List categories, int selectedCat, int categoryid, categoriesModel);
 }
 
 class HomeControllerImp extends HomeController{
@@ -49,21 +48,6 @@ class HomeControllerImp extends HomeController{
     search = TextEditingController();
   }
 
-  @override
-  goToItems(categories, selectedCat, categoryid, categoriesModel) {
-    Get.to(() => SubCategories(), arguments: {
-      'categories': categories,
-      'selectedCat': selectedCat,
-      'categoryid' : categoryid,
-      'categoriesModel' : categoriesModel,
-    });
-  }
-
-  goToProducts(itemsModel){
-    Get.to(() => SubCategories(), arguments: {
-      'itemsModel' : itemsModel
-    });
-  }
 
 }
 

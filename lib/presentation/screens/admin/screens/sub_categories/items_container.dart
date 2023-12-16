@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:libya_bakery/controller/categories/view_controller.dart';
+import 'package:libya_bakery/controller/items/view_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/items.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/edit_sub_categories.dart';
 
 import '../../../../../api_connection/api_connection.dart';
 
-class CategoriesContainer extends StatelessWidget {
-  final CategoriesViewController controller;
+class ItemsContainer extends StatelessWidget {
+  final ItemsViewController controller;
   final int index;
-  const CategoriesContainer({super.key, required this.controller, required this.index});
+  const ItemsContainer({super.key, required this.controller, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CategoriesContainer extends StatelessWidget {
         children: [
           Container(
             width: .97 * MediaQuery.sizeOf(context).width,
-            height: 200,
+            height: 250,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(10),
@@ -30,7 +31,7 @@ class CategoriesContainer extends StatelessWidget {
               children: [
                 Container(
                   width: .57 * MediaQuery.sizeOf(context).width,
-                  height: 160,
+                  height: 200,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: darkGreen,
@@ -43,46 +44,50 @@ class CategoriesContainer extends StatelessWidget {
                       Row(
                         children: [
                           const SizedBox(
-                            width: 20,
+                            width: 10,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.defaultDialog(
-                                title: "تحذير",
-                                middleText: "هل انت متاكد انك تريد الحذف",
-                                onCancel: (){},
-                                onConfirm: (){
-                                  controller.deleteCategory(
-                                      controller.data[index].categoriesId!,
-                                      controller.data[index].categoriesImage!
+                          Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.defaultDialog(
+                                      title: "تحذير",
+                                      middleText: "هل انت متاكد انك تريد الحذف",
+                                      onCancel: (){},
+                                      onConfirm: (){
+                                        controller.deleteItem(
+                                            controller.data[index].itemsId!,
+                                            controller.data[index].itemsImage!
+                                        );
+                                        Get.back();
+                                      }
                                   );
-                                  Get.back();
-                                }
-                              );
-                            },
-                            child: Image.asset(
-                              "assets/images/delete.png",
-                              scale: 20,
-                              color: Colors.red,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              controller.goToEditPage(controller.data[index]);
-                            },
-                            child: Image.asset(
-                              "assets/images/edit.png",
-                              color: Colors.white,
-                            ),
+                                },
+                                child: Image.asset(
+                                  "assets/images/delete.png",
+                                  scale: 20,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  controller.goToEditPage(controller.data[index]);
+                                },
+                                child: Image.asset(
+                                  "assets/images/edit.png",
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.only(right: 10),
                             child: Text(
-                              controller.data[index].categoriesName!,
+                              controller.data[index].itemsName!,
                               style: const TextStyle(
                                   fontFamily: 'ArabicUIDisplayBold',
                                   fontSize: 17,
@@ -93,28 +98,16 @@ class CategoriesContainer extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 50,
                       ),
                       Text(
                         textAlign: TextAlign.end,
-                        controller.data[index].categoriesDescription!,
+                        controller.data[index].itemsDate!,
                         style: const TextStyle(
-                            fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                            color: offwhite),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                        textAlign: TextAlign.start,
-                        'عدد المنتجات : 4',
-                        style: TextStyle(
                             fontFamily: 'ArabicUIDisplayBold',
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: yellow),
+                            color: offwhite),
                       ),
                       const SizedBox(
                         height: 10,
@@ -147,10 +140,10 @@ class CategoriesContainer extends StatelessWidget {
                 ),
                 Container(
                   width: 140,
-                  height: 160,
+                  height: 200,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage("${API.categoriesImages}/${controller.data[index].categoriesImage}"),
+                          image: NetworkImage("${API.itemsImages}/${controller.data[index].itemsImage}"),
                           fit: BoxFit.cover),
                       color: yellow,
                       borderRadius: BorderRadius.circular(10)),

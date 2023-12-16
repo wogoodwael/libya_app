@@ -1,28 +1,27 @@
 import 'package:get/get.dart';
-import 'package:libya_bakery/core/utils/strings.dart';
-import 'package:libya_bakery/data/datasource/remote/categories_data.dart';
+import 'package:libya_bakery/data/datasource/remote/items_data.dart';
 import 'package:libya_bakery/presentation/screens/admin/control.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/categories/edit_categories.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/edit_sub_categories.dart';
 import '../../core/functions/handling_data.dart';
 import '../../handling_data/statusrequest.dart';
-import '../../models/categories_model.dart';
+import '../../models/items_model.dart';
 
-class CategoriesViewController extends GetxController{
-  CategoriesData categoriesData = CategoriesData(Get.find());
+class ItemsViewController extends GetxController{
+  ItemsData itemsData = ItemsData(Get.find());
 
-  List<CategoriesModel> data = [];
+  List<ItemsModel> data = [];
   late StatusRequest statusRequest;
 
   getData() async{
     data.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await categoriesData.viewData();
+    var response = await itemsData.viewData();
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if(response['status'] == 'success'){
         List dataList = response['data'];
-        data.addAll(dataList.map((e) => CategoriesModel.fromJson(e)));
+        data.addAll(dataList.map((e) => ItemsModel.fromJson(e)));
       }
     } else {
       statusRequest = StatusRequest.serverfailure;
@@ -30,21 +29,21 @@ class CategoriesViewController extends GetxController{
     update();
   }
 
-  deleteCategory(int id, String imageName){
-    categoriesData.deleteData({
+  deleteItem(int id, String imageName){
+    itemsData.deleteData({
       'id': id.toString(),
       "imageName" : imageName
     });
-    data.removeWhere((element) => element.categoriesId == id);
+    data.removeWhere((element) => element.itemsId == id);
     update();
   }
 
-  goToEditPage(CategoriesModel categoriesModel){
-    Get.to(() => EditCategories(), arguments: {
-      'categoriesModel' : categoriesModel
+  goToEditPage(ItemsModel itemsModel){
+    Get.to(() => EditSubCategoriesScreen(), arguments: {
+      'itemsModel' : itemsModel
     });
   }
-  
+
   @override
   void onInit() {
     super.onInit();

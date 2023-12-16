@@ -26,6 +26,8 @@ class InfoRow extends StatelessWidget {
           padding: const EdgeInsets.only(right: 10, top: 5, bottom: 5),
           child: Text(
             text,
+            overflow: TextOverflow.ellipsis,
+            textDirection: TextDirection.rtl,
             style: TextStyle(
                 fontFamily: fontfamily,
                 color: darkGreen,

@@ -7,7 +7,7 @@ import 'package:libya_bakery/presentation/screens/admin/control.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/bills/bills.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/clients/clients.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/sub_categories.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/categories/categories.dart';
 import 'package:libya_bakery/presentation/widgets/menu_row.dart';
 
 import '../../controller/branch_controller.dart';
@@ -126,7 +126,7 @@ class MenuScreen extends StatelessWidget {
             ),
             MenuRow(
               ontap: () {
-                Get.off(() => SubCategories());
+                Get.off(() => Categories());
               },
               text: 'المنتجات',
             ),

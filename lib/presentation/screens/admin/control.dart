@@ -8,7 +8,7 @@ import 'package:libya_bakery/presentation/screens/admin/screens/bills/bills.dart
 import 'package:libya_bakery/presentation/screens/admin/screens/branch_admin.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/clients/clients.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/sub_categories.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/categories/categories.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 
 class ControlScreen extends StatelessWidget {
@@ -215,7 +215,7 @@ class ControlScreen extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => SubCategories())
+                                    builder: (_) => Categories())
                             );
                           },
                           child: Container(
