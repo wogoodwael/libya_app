@@ -73,4 +73,12 @@ class API {
   static const itemsEdit = '$hostConnect/admin/items/edit.php';//done
   static const itemsDelete = '$hostConnect/admin/items/delete.php';//done
   static const itemsView = '$hostConnect/admin/items/view.php';//done
+
+  //=========User=======//
+  static const userView = '$hostConnect/admin/users/view.php';//done
+  static const userChangeType = '$hostConnect/admin/users/changeType.php';//done
+
+  //=========Complains=======//
+  // static const sendComplain = '$hostConnect/complains/sendcomplain.php';//done
+  static const viewAdminComplains = '$hostConnect/admin/complains/view.php';//done
 }
