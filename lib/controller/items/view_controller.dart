@@ -39,7 +39,7 @@ class ItemsViewController extends GetxController{
   }
 
   goToEditPage(ItemsModel itemsModel){
-    Get.to(() => EditSubCategoriesScreen(), arguments: {
+    Get.to(() => const EditSubCategoriesScreen(), arguments: {
       'itemsModel' : itemsModel
     });
   }

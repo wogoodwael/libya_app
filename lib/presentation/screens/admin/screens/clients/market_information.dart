@@ -28,6 +28,7 @@ class MarketInformationBody extends StatelessWidget {
         ),
         //todo: upload to server
         CustomTextField(
+          isNumber: false,
           height: 35,
           secure: false,
           // controller: '',
@@ -49,6 +50,7 @@ class MarketInformationBody extends StatelessWidget {
         ),
         //todo: upload to server
         CustomTextField(
+          isNumber: false,
           height: 35,
           secure: false,
           // controller: '',
@@ -70,6 +72,7 @@ class MarketInformationBody extends StatelessWidget {
         ),
         //todo: upload to server
         CustomTextField(
+          isNumber: false,
           height: 35,
           secure: false,
           // controller: '',
@@ -91,6 +94,7 @@ class MarketInformationBody extends StatelessWidget {
         ),
         //todo: upload to server
         CustomTextField(
+          isNumber: true,
           height: 35,
           secure: false,
           // controller: '',

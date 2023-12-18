@@ -101,8 +101,7 @@ class ItemsContainer extends StatelessWidget {
                         height: 50,
                       ),
                       Text(
-                        textAlign: TextAlign.end,
-                        controller.data[index].itemsDate!,
+                        controller.data[index].categoriesName!,
                         style: const TextStyle(
                             fontFamily: 'ArabicUIDisplayBold',
                             fontSize: 15,
@@ -110,31 +109,16 @@ class ItemsContainer extends StatelessWidget {
                             color: offwhite),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 15,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => Items()));
-                        },
-                        child: Container(
-                          width: .5 * MediaQuery.sizeOf(context).width,
-                          height: 30,
-                          decoration: BoxDecoration(
-                              color: yellow,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: const Center(
-                            child: Text(
-                              'عرض',
-                              style: TextStyle(
-                                  fontFamily: 'ArabicUIDisplayBold',
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  color: darkGreen),
-                            ),
-                          ),
-                        ),
-                      )
+                      Text(
+                        controller.data[index].itemsDate!,
+                        style: const TextStyle(
+                            fontFamily: 'ArabicUIDisplayBold',
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: offwhite),
+                      ),
                     ],
                   ),
                 ),

@@ -144,6 +144,7 @@ class PersonalInfoScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: CustomTextField(
+                    isNumber: false,
                     height: 35,
                     secure: false,
                     controller: firstName,
@@ -165,6 +166,7 @@ class PersonalInfoScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: CustomTextField(
+                    isNumber: false,
                     height: 35,
                     secure: false,
                     controller: lastName,
@@ -186,6 +188,7 @@ class PersonalInfoScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: CustomTextField(
+                    isNumber: false,
                     controller: email,
                     height: 35,
                     secure: false,

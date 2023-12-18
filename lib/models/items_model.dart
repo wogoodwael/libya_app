@@ -119,7 +119,7 @@ class ItemsModel {
     fornownerPrice5 = double.parse(json['fornowner_price5'].toString());
     itemsDiscount = json['items_discount'];
     shopownerDiscount = json['shopowner_discount'];
-    fornownerDicount = json['fornowner_discount'];
+    fornownerDicount = json['fornowner_discount'] ?? 0;
     itemsDate = json['items_date'];
     itemsCat = json['items_cat'];
     branchCode = json['branch_code'];

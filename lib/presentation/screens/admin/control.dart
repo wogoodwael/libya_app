@@ -9,6 +9,7 @@ import 'package:libya_bakery/presentation/screens/admin/screens/branch_admin.dar
 import 'package:libya_bakery/presentation/screens/admin/screens/clients/clients.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/categories/categories.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/items.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
 
 class ControlScreen extends StatelessWidget {
@@ -233,7 +234,7 @@ class ControlScreen extends StatelessWidget {
                                   height: 10,
                                 ),
                                 const Text(
-                                  "المنتجات",
+                                  "الاصناف",
                                   style: TextStyle(
                                     fontFamily: 'ArabicUIDisplayBold',
                                     fontSize: 20,
@@ -253,38 +254,74 @@ class ControlScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => ComplaintPage()));
-                      },
-                      child: Container(
-                        width: 140,
-                        height: 160,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            color: darkGreen),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/images/problems.png"),
-                            const SizedBox(
-                              height: 10,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => ComplaintPage()));
+                          },
+                          child: Container(
+                            width: 140,
+                            height: 160,
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                color: darkGreen),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/images/problems.png"),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  "الشكاوي",
+                                  style: TextStyle(
+                                    fontFamily: 'ArabicUIDisplayBold',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xffFFFFFF),
+                                  ),
+                                )
+                              ],
                             ),
-                            const Text(
-                              "الشكاوي",
-                              style: TextStyle(
-                                fontFamily: 'ArabicUIDisplayBold',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xffFFFFFF),
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => Items()));
+                          },
+                          child: Container(
+                            width: 140,
+                            height: 160,
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(20)),
+                                color: darkGreen),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/images/products.png"),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  "المنتجات",
+                                  style: TextStyle(
+                                    fontFamily: 'ArabicUIDisplayBold',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xffFFFFFF),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 )

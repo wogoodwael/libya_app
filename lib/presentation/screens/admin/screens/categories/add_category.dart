@@ -152,6 +152,7 @@ class AddCategory extends StatelessWidget {
                               ),
                             ),
                             CustomTextField(
+                              isNumber: false,
                               controller: controller.name,
                               secure: false,
                               height: 35,
@@ -166,6 +167,7 @@ class AddCategory extends StatelessWidget {
                               ),
                             ),
                             CustomTextField(
+                              isNumber: false,
                               maxLength: 25,
                               controller: controller.description,
                               secure: false,
@@ -190,6 +192,11 @@ class AddCategory extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            if(controller.file != null)
+                              Image.file(controller.file!, width: 100, height: 100,),
                             const SizedBox(
                               height: 10,
                             ),

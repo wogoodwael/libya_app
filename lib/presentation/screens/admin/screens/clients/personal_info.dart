@@ -28,6 +28,7 @@ class PersonalInfo extends StatelessWidget {
         ),
         //todo: upload to server
         CustomTextField(
+          isNumber: false,
           height: 35,
           secure: false,
           // controller: '',
@@ -49,6 +50,7 @@ class PersonalInfo extends StatelessWidget {
         ),
         //todo: upload to server
         CustomTextField(
+          isNumber: false,
           height: 35,
           secure: false,
           // controller: '',
@@ -71,6 +73,7 @@ class PersonalInfo extends StatelessWidget {
         ),
         //todo: upload to server
         CustomTextField(
+          isNumber: false,
           height: 35,
           secure: false,
           // controller: '',

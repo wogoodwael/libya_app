@@ -25,7 +25,7 @@ class ItemsData {
     if(file == null){
       response = await crud.postData(API.itemsEdit, data);
     } else {
-      response = await crud.addRequestWithImageOne(API.categoriesEdit, data, file);
+      response = await crud.addRequestWithImageOne(API.itemsEdit, data, file);
     }
     return response.fold((l) => l, (r) => r);
   }

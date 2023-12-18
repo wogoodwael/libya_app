@@ -1,16 +1,31 @@
 import 'dart:io';
+import 'package:drop_down_list/drop_down_list.dart';
+import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:libya_bakery/controller/items/view_controller.dart';
 import 'package:libya_bakery/core/functions/uploadfile.dart';
+import 'package:libya_bakery/data/datasource/remote/categories_data.dart';
 import '../../core/functions/handling_data.dart';
 import '../../data/datasource/remote/items_data.dart';
 import '../../handling_data/statusrequest.dart';
+import '../../models/categories_model.dart';
 import '../../presentation/screens/admin/screens/sub_categories/items.dart';
 
 class ItemsAddController extends GetxController{
   ItemsData itemsData = ItemsData(Get.find());
 
+  List<SelectedListItem> dropDownList = [];
+  List<SelectedListItem> branchDropDownList = [
+    SelectedListItem(name: "1",value: "1",),
+    SelectedListItem(name: "2",value: "2",),
+    SelectedListItem(name: "3",value: "3",),
+    SelectedListItem(name: "4",value: "4",),
+    SelectedListItem(name: "5",value: "5",),
+  ];
+
+  late TextEditingController dropDownName;
+  late TextEditingController dropDownId;
   late TextEditingController name;
   late TextEditingController description;
   late TextEditingController count;
@@ -33,9 +48,8 @@ class ItemsAddController extends GetxController{
   late TextEditingController shopOwnerDiscount;
   late TextEditingController fornOwnerDiscount;
   late TextEditingController branchCode;
-  String? isItemAvailible = 'نعم';
-  List<String> isItemAvailibleList = ['نعم','لا'];
-  int? catID;
+  late TextEditingController? catID;
+  late TextEditingController catName;
   File? file;
 
   StatusRequest? statusRequest = StatusRequest.none;
@@ -54,12 +68,89 @@ class ItemsAddController extends GetxController{
     update();
   }
 
+  showDropDown(context){
+    DropDownState(
+      DropDown(
+        bottomSheetTitle: const Text(
+          "اختر الفئة",
+          textDirection: TextDirection.rtl,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
+        ),
+        submitButtonChild: const Text(
+          'تم',
+          textDirection: TextDirection.rtl,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        data:  [SelectedListItem(name: "a",),SelectedListItem(name: "a",)],
+        selectedItems: (List<dynamic> selectedList) {
+          SelectedListItem selectedListItem = selectedList[0];
+          dropDownName.text = selectedListItem.name;
+          // showSnackBar(list.toString());
+        },
+        // enableMultipleSelection: true,
+      ),
+    ).showModal(context);
+  }
+
+  getCategories() async{
+    CategoriesData categoriesData = CategoriesData(Get.find());
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await categoriesData.viewData();
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if(response['status'] == 'success'){
+        List<CategoriesModel> data = [];
+        List dataList = response['data'];
+        data.addAll(dataList.map((e) => CategoriesModel.fromJson(e)));
+
+        for(int i=0;i<data.length;i++){
+          dropDownList.add(SelectedListItem(
+              name: data[i].categoriesName!,
+              value: data[i].categoriesId.toString()
+          )
+          );
+        }
+      }
+    } else {
+      statusRequest = StatusRequest.serverfailure;
+    }
+    update();
+  }
+
   addData() async{
     statusRequest = StatusRequest.loading;
     update();
     Map data = {
-      'cat_name': name.text,
-      'cat_description': description.text,
+      'name': name.text,
+      'desc': description.text,
+      'count': count.text,
+      'itemsprice': itemPrice.text,
+      'itemsprice2': itemPrice2.text,
+      'itemsprice3': itemPrice3.text,
+      'itemsprice4': itemPrice4.text,
+      'itemsprice5': itemPrice5.text,
+      'shopownerprice': shopOwnerPrice.text,
+      'shopownerprice2': shopOwnerPrice2.text,
+      'shopownerprice3': shopOwnerPrice3.text,
+      'shopownerprice4': shopOwnerPrice4.text,
+      'shopownerprice5': shopOwnerPrice5.text,
+      'fornownerprice': fornOwnerPrice.text,
+      'fornownerprice2': fornOwnerPrice2.text,
+      'fornownerprice3': fornOwnerPrice3.text,
+      'fornownerprice4': fornOwnerPrice4.text,
+      'fornownerprice5': fornOwnerPrice5.text,
+      'itemsdiscount': itemsDiscount.text,
+      'shopownerdiscount': shopOwnerDiscount.text,
+      'fornownerdicount': fornOwnerDiscount.text,
+      'catid': catID!.text,
+      'branchcode': branchCode.text,
     };
     var response = await itemsData.addData(data, file!);
     statusRequest = handlingData(response);
@@ -78,6 +169,9 @@ class ItemsAddController extends GetxController{
   @override
   void onInit() {
     super.onInit();
+    getCategories();
+    dropDownName = TextEditingController();
+    dropDownId = TextEditingController();
     name = TextEditingController();
     description = TextEditingController();
     count = TextEditingController();
@@ -100,5 +194,7 @@ class ItemsAddController extends GetxController{
     shopOwnerDiscount = TextEditingController();
     fornOwnerDiscount = TextEditingController();
     branchCode = TextEditingController();
+    catName = TextEditingController();
+    catID = TextEditingController();
   }
 }

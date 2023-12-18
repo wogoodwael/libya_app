@@ -6,13 +6,12 @@ import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
 import 'package:libya_bakery/handling_data/handlng_data_view.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
-
-import '../../../../../core/functions/uploadfile.dart';
+import 'package:libya_bakery/presentation/widgets/custom_drop_down_search.dart';
 import '../../../../widgets/info_row.dart';
 import '../../../../widgets/text_field.dart';
 
 class AddProductScreen extends StatefulWidget {
-  AddProductScreen({super.key});
+  const AddProductScreen({super.key});
 
   @override
   State<AddProductScreen> createState() => _AddProductScreenState();
@@ -160,6 +159,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: false,
                           controller: controller.name,
                           secure: false,
                           height: 35,
@@ -179,6 +179,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: false,
                           controller: controller.description,
                           secure: false,
                           height: 35,
@@ -198,6 +199,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.count,
                           secure: false,
                           height: 35,
@@ -217,6 +219,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.itemPrice,
                           secure: false,
                           height: 35,
@@ -236,6 +239,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.itemPrice2,
                           secure: false,
                           height: 35,
@@ -255,6 +259,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.itemPrice3,
                           secure: false,
                           height: 35,
@@ -274,6 +279,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.itemPrice4,
                           secure: false,
                           height: 35,
@@ -293,6 +299,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.itemPrice5,
                           secure: false,
                           height: 35,
@@ -312,6 +319,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.shopOwnerPrice,
                           secure: false,
                           height: 35,
@@ -331,6 +339,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.shopOwnerPrice2,
                           secure: false,
                           height: 35,
@@ -350,6 +359,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.shopOwnerPrice3,
                           secure: false,
                           height: 35,
@@ -369,6 +379,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.shopOwnerPrice4,
                           secure: false,
                           height: 35,
@@ -388,6 +399,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.shopOwnerPrice5,
                           secure: false,
                           height: 35,
@@ -407,6 +419,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.fornOwnerPrice,
                           secure: false,
                           height: 35,
@@ -426,6 +439,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.fornOwnerPrice2,
                           secure: false,
                           height: 35,
@@ -445,6 +459,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.fornOwnerPrice3,
                           secure: false,
                           height: 35,
@@ -464,6 +479,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.fornOwnerPrice4,
                           secure: false,
                           height: 35,
@@ -483,6 +499,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.fornOwnerPrice5,
                           secure: false,
                           height: 35,
@@ -502,6 +519,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.itemsDiscount,
                           secure: false,
                           height: 35,
@@ -521,6 +539,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.shopOwnerDiscount,
                           secure: false,
                           height: 35,
@@ -540,6 +559,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           height: 10,
                         ),
                         CustomTextField(
+                          isNumber: true,
                           controller: controller.fornOwnerDiscount,
                           secure: false,
                           height: 35,
@@ -588,12 +608,17 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           ],
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
+                        ),
+                        if(controller.file != null)
+                          Image.file(controller.file!, width: 100, height: 100,),
+                        const SizedBox(
+                          height: 10,
                         ),
                         const Padding(
                           padding: EdgeInsets.only(left: 180),
                           child: Text(
-                            "هل المنتج متوفر؟",
+                            "فئة المنتج",
                             style: TextStyle(
                                 fontFamily: 'ArabicUIDisplayBold',
                                 fontSize: 17,
@@ -604,59 +629,36 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 120),
-                          child: Container(
-                            width: 200,
-                            height: context.height * 0.08,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Colors.black),
-                            ),
-                            child: DropdownButton<String>(
-                              value: controller.isItemAvailible,
-                              isExpanded: true,
-                              items: controller.isItemAvailibleList
-                                  .map((idType) => DropdownMenuItem<String>(
-                                      value: idType,
-                                      child: Text(
-                                        idType,
-                                        style: const TextStyle(
-                                            fontSize: 18, color: Colors.black),
-                                      )))
-                                  .toList(),
-                              isDense: true,
-                              underline: Container(
-                                height: 0,
-                              ),
-                              iconEnabledColor: Colors.black,
-                              iconDisabledColor: Colors.black,
-                              padding: const EdgeInsets.all(12),
-                              onChanged: (idType) => setState(() {
-                                controller.isItemAvailible = idType!;
-                              }),
-                            ),
+                        CustomDropDownSearch(
+                          isMultiple: false,
+                          title: "اختار القائمة ",
+                          listData: controller.dropDownList,
+                          dropDownSelectedName: controller.catName,
+                          dropDownSelectedId: controller.catID,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 180),
+                          child: Text(
+                            "هذا المنتج في أي فرع؟",
+                            style: TextStyle(
+                                fontFamily: 'ArabicUIDisplayBold',
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: darkGreen),
                           ),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20),
-                          child: InfoRow(
-                            text: 'المنتج يوجد باي فرع؟ (مثال: 1245)',
-                            fontsize: 17,
-                            fontfamily: 'ArabicUIDisplayBold',
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomTextField(
-                          controller: controller.branchCode,
-                          secure: false,
-                          height: 35,
+                        CustomDropDownSearch(
+                          isMultiple: true,
+                          title: "اختر الفرع ",
+                          listData: controller.branchDropDownList,
+                          dropDownSelectedName: controller.branchCode,
+                          dropDownSelectedId: controller.branchCode,
                         ),
                         const SizedBox(
                           height: 10,

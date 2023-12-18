@@ -93,7 +93,7 @@ class CategoriesContainer extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 50,
                       ),
                       Text(
                         textAlign: TextAlign.end,
@@ -116,32 +116,6 @@ class CategoriesContainer extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: yellow),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => Items()));
-                        },
-                        child: Container(
-                          width: .5 * MediaQuery.sizeOf(context).width,
-                          height: 30,
-                          decoration: BoxDecoration(
-                              color: yellow,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: const Center(
-                            child: Text(
-                              'عرض',
-                              style: TextStyle(
-                                  fontFamily: 'ArabicUIDisplayBold',
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  color: darkGreen),
-                            ),
-                          ),
-                        ),
-                      )
                     ],
                   ),
                 ),

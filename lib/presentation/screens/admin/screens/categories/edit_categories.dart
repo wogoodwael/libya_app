@@ -58,7 +58,7 @@ class EditCategories extends StatelessWidget {
                                       width: .12 * MediaQuery.sizeOf(context).width,
                                     ),
                                     const Text(
-                                      "المنتجات",
+                                      "الاصناف",
                                       style: TextStyle(
                                           fontFamily: 'ArabicUIDisplayBold',
                                           fontSize: 30,
@@ -103,7 +103,7 @@ class EditCategories extends StatelessWidget {
                               children: [
                                 const Center(
                                   child: Text(
-                                    "تعديل منتج",
+                                    "تعديل صنف",
                                     style: TextStyle(
                                         fontFamily: 'ArabicUIDisplayBold',
                                         fontSize: 30,
@@ -141,7 +141,7 @@ class EditCategories extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(right: 20),
                               child: InfoRow(
-                                text: 'اسم المنتج',
+                                text: 'اسم الصنف',
                                 fontsize: 17,
                                 fontfamily: 'ArabicUIDisplayBold',
                               ),
@@ -150,6 +150,7 @@ class EditCategories extends StatelessWidget {
                               height: 10,
                             ),
                             CustomTextField(
+                              isNumber: false,
                               controller: controller.name,
                               secure: false,
                               height: 35,
@@ -169,6 +170,7 @@ class EditCategories extends StatelessWidget {
                               height: 10,
                             ),
                             CustomTextField(
+                              isNumber: false,
                               controller: controller.description,
                               secure: false,
                               height: 35,
@@ -185,7 +187,7 @@ class EditCategories extends StatelessWidget {
                             const Padding(
                               padding: EdgeInsets.only(left: 150),
                               child: Text(
-                                "تعديل/إضافة صورة",
+                                "تعديل صورة",
                                 style: TextStyle(
                                     fontFamily: 'ArabicUIDisplayBold',
                                     fontSize: 17,
