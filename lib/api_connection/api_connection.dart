@@ -41,23 +41,8 @@ class API {
   static const addressEdit = '$hostConnect/address/edit.php';//done
   static const addressView = '$hostConnect/address/view.php';//done
 
-  //=========Orders=======//
-  //view all orders
-  static const pendingOrders = '$hostConnect/orders/pending.php';//done
-  static const orderDetails = '$hostConnect/orders/details.php';//done
-
-  //=========Complains=======//
-  static const sendComplain = '$hostConnect/complains/sendcomplain.php';//done
-  //view all Complains
-  static const viewComplains = '$hostConnect/complains/view.php';//done
-
   //=========Choose Branch=======//
   static const chooseBranch = '$hostConnect/choosebranch.php';//done
-
-  //=========Fund Data=======//
-  static const fundData = '$hostConnect/auth/getDataFund.php';//done
-
-
 
 
   //=========Admin App=======//
@@ -79,6 +64,19 @@ class API {
   static const userChangeType = '$hostConnect/admin/users/changeType.php';//done
 
   //=========Complains=======//
-  // static const sendComplain = '$hostConnect/complains/sendcomplain.php';//done
+  static const sendReplyComplain = '$hostConnect/admin/complains/sendmail.php';//done
   static const viewAdminComplains = '$hostConnect/admin/complains/view.php';//done
+
+  //=========Orders=======//
+  static const approveOrders = '$hostConnect/admin/orders/approve.php';//done
+  static const archiveOrders = '$hostConnect/admin/orders/archive.php';//done
+  static const archiveOrders2 = '$hostConnect/admin/orders/archive2.php';//done
+  static const viewArchiveOrders = '$hostConnect/admin/orders/viewArchive.php';//done
+  static const prepareOrders = '$hostConnect/admin/orders/prepare.php';//done
+  static const viewPendingOrders = '$hostConnect/admin/orders/viewPending.php';//done
+  static const viewAcceptedOrders = '$hostConnect/admin/orders/viewAccepted.php';//done
+  static const orderDetails = '$hostConnect/admin/orders/details.php';//done
+
+  static const pendingOrders = '$hostConnect/orders/pending.php';//done
+
 }

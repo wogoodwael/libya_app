@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:libya_bakery/core/utils/strings.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/bills/bill_details.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/orders/order_details.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders_pending.dart';
 import 'package:libya_bakery/presentation/screens/auth/login/admin_login.dart';
 import 'package:libya_bakery/presentation/screens/auth/login/sign_in_body.dart';
 import 'package:libya_bakery/presentation/screens/auth/otp/otp.dart';
@@ -43,10 +43,6 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => ForgetPassword());
       case changePass:
         return MaterialPageRoute(builder: (_) => ChangePassword());
-      case ordersAdmin:
-        return MaterialPageRoute(builder: (_) => OrderScreen());
-      case orderDetails:
-        return MaterialPageRoute(builder: (_) => OrderDetails());
       case billDetails:
         return MaterialPageRoute(builder: (_) => BillDetails());
     }

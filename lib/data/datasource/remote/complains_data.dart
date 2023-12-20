@@ -5,11 +5,10 @@ class ComplainsData {
   Crud crud;
   ComplainsData(this.crud);
 
-  sendComplain(int userid, String complain, int branchCode) async{
-    var response = await crud.postData(API.sendComplain, {
-      "userid" : userid.toString(),
-      "complain" : complain,
-      "complainBranch" : branchCode.toString()
+  sendReply(String email, String reply) async{
+    var response = await crud.postData(API.sendReplyComplain, {
+      "email" : email,
+      "msg" : reply,
     });
     return response.fold((l) => l, (r) => r);
   }

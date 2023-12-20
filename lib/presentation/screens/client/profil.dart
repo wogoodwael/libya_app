@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:libya_bakery/controller/branch_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
 import 'package:libya_bakery/core/utils/strings.dart';
 import 'package:libya_bakery/presentation/screens/branch.dart';
 import 'package:libya_bakery/presentation/screens/client/forget_pass.dart';
+import 'package:libya_bakery/presentation/screens/client/personal_info.dart';
 import 'package:libya_bakery/presentation/screens/client/widgets/profile_row.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';
-
 import '../../../data/services/api.dart';
 import '../auth/login/sign_in.dart';
 
@@ -141,16 +140,17 @@ class ProfileScreen extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 60,
                     backgroundImage:
-                        ExactAssetImage("assets/images/persontwo.png"),
+                        ExactAssetImage("assets/images/person.png"),
+                    backgroundColor: Colors.white,
                   ),
                 ),
                 SizedBox(
                   height: .01 * MediaQuery.sizeOf(context).height,
                 ),
-                const Center(
+                Center(
                   child: Text(
-                    "لوريم ايبسوم",
-                    style: TextStyle(
+                    MyServices.sharedPreferences.getString("first_name").toString(),
+                    style: const TextStyle(
                         fontFamily: 'ArabicUIDisplay',
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
@@ -171,7 +171,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, personalInfo);
+                    Get.to(() => PersonalInfoScreen());
                   },
                   child: const ProfileRow(
                       img: "assets/images/edit.png", txt: 'معلومات شخصية'),
@@ -211,35 +211,35 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: .04 * MediaQuery.sizeOf(context).height,
                 ),
-                GestureDetector(
-                  onTap: (){
-                    Get.to(() => BranchScreen());
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                          padding: EdgeInsets.only(
-                            left: 40,
-                          ),
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: green,
-                          )),
-                      Padding(
-                        padding: EdgeInsets.only(right: 20),
-                        child: Text(
-                          " تغير الفرع  ",
-                          style: TextStyle(
-                              fontFamily: 'ArabicUIDisplayBold',
-                              fontSize: 21,
-                              fontWeight: FontWeight.bold,
-                              color: darkGreen),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: (){
+                //     Get.to(() => const BranchScreen());
+                //   },
+                //   child: const Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Padding(
+                //           padding: EdgeInsets.only(
+                //             left: 40,
+                //           ),
+                //           child: Icon(
+                //             Icons.arrow_back_ios,
+                //             color: green,
+                //           )),
+                //       Padding(
+                //         padding: EdgeInsets.only(right: 20),
+                //         child: Text(
+                //           " تغير الفرع  ",
+                //           style: TextStyle(
+                //               fontFamily: 'ArabicUIDisplayBold',
+                //               fontSize: 21,
+                //               fontWeight: FontWeight.bold,
+                //               color: darkGreen),
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
                 SizedBox(
                   height: .04 * MediaQuery.sizeOf(context).height,
                 ),

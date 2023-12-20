@@ -6,10 +6,10 @@ import 'package:libya_bakery/presentation/screens/admin/complaints.dart';
 import 'package:libya_bakery/presentation/screens/admin/control.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/bills/bills.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/clients/clients.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/order_screen.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders_pending.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/categories/categories.dart';
 import 'package:libya_bakery/presentation/widgets/menu_row.dart';
-
 import '../../controller/branch_controller.dart';
 import '../../data/services/api.dart';
 import 'admin/complaint.dart';

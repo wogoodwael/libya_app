@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:libya_bakery/core/utils/app_color.dart';
 import 'package:libya_bakery/core/utils/back_image.dart';
 import 'package:libya_bakery/core/utils/person.dart';
@@ -7,7 +6,8 @@ import 'package:libya_bakery/presentation/screens/admin/complaint.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/bills/bills.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/branch_admin.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/clients/clients.dart';
-import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/order_screen.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders_pending.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/categories/categories.dart';
 import 'package:libya_bakery/presentation/screens/admin/screens/sub_categories/items.dart';
 import 'package:libya_bakery/presentation/screens/menu.dart';

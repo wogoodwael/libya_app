@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:libya_bakery/controller/orders/accepted_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/order_details.dart';
 
 class AcceptedOrder extends StatelessWidget {
-  const AcceptedOrder({super.key});
+  final OrdersAcceptedController controller;
+  final int index;
+  const AcceptedOrder({super.key, required this.controller, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +23,31 @@ class AcceptedOrder extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      alignment: Alignment.topCenter,
-                      width: 70,
-                      height: 25,
-                      decoration: BoxDecoration(
-                        color: yellow,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "عرض",
-                          style: TextStyle(
-                              fontFamily: "ArabicUIDisplay",
-                              fontSize: 14,
-                              color: darkGreen,
-                              fontWeight: FontWeight.w700),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(() => const OrderDetails(),arguments: {
+                        "orderModel" : controller.data[index]
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Container(
+                        alignment: Alignment.topCenter,
+                        width: 70,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          color: yellow,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "عرض",
+                            style: TextStyle(
+                                fontFamily: "ArabicUIDisplay",
+                                fontSize: 14,
+                                color: darkGreen,
+                                fontWeight: FontWeight.w700),
+                          ),
                         ),
                       ),
                     ),
@@ -43,11 +55,11 @@ class AcceptedOrder extends StatelessWidget {
                   const SizedBox(
                     width: 90,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 20, top: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20, top: 10),
                     child: Text(
-                      "رقم الطلب : #00000",
-                      style: TextStyle(
+                      "رقم الطلب : #${controller.data[index].orderId}",
+                      style: const TextStyle(
                         fontFamily: "ArabicUIDisplayBold",
                         fontWeight: FontWeight.bold,
                         color: darkGreen,
@@ -62,12 +74,31 @@ class AcceptedOrder extends StatelessWidget {
                 indent: 10,
                 thickness: 1,
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 20),
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
+                    controller.data[index].orderStatus == 1 ?
+                    const Text(
+                      "الحالة : جارٍ إعداد الطلب",
+                      style: TextStyle(
+                        color: green,
+                        fontFamily: 'ArabicUIDisplayBold',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                      ),
+                    ):controller.data[index].orderStatus == 2 ?
+                    const Text(
+                      "الحالة : الطلب في الطريق",
+                      style: TextStyle(
+                        color: green,
+                        fontFamily: 'ArabicUIDisplayBold',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                      ),
+                    ):
+                    const Text(
                       "الحالة : تم الاستلام",
                       style: TextStyle(
                         color: green,
@@ -75,15 +106,15 @@ class AcceptedOrder extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
+              const Padding(
+                padding: EdgeInsets.only(right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -99,38 +130,54 @@ class AcceptedOrder extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Divider(
+              const Divider(
                 color: yellow,
                 endIndent: 10,
                 indent: 10,
                 thickness: 2,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Column(
                 children: [
-                  Container(
-                    width: .8 * MediaQuery.sizeOf(context).width,
-                    height: 35,
-                    decoration: const BoxDecoration(
-                      boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 5)],
-                      color: red,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20)),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "إلغاء",
-                        style: TextStyle(
-                          fontFamily: "ArabicUIDisplayBold",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                          color: offwhite,
+                  GestureDetector(
+                    onTap: (){
+                      if(controller.data[index].orderStatus! == 2){
+                        controller.archiveOrders2(
+                            controller.data[index].orderUserid!,
+                            controller.data[index].orderId!
+                        );
+                      } else {
+                        controller.donePrepare(
+                            controller.data[index].orderId!,
+                            controller.data[index].orderUserid!,
+                            controller.data[index].orderType!
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: .8 * MediaQuery.sizeOf(context).width,
+                      height: 35,
+                      decoration: const BoxDecoration(
+                        boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 5)],
+                        color: darkGreen,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "تم",
+                          style: TextStyle(
+                            fontFamily: "ArabicUIDisplayBold",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19,
+                            color: offwhite,
+                          ),
                         ),
                       ),
                     ),
@@ -139,6 +186,9 @@ class AcceptedOrder extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        const SizedBox(
+          height: 15,
         ),
       ],
     );

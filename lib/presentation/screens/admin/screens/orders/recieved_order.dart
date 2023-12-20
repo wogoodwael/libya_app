@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:libya_bakery/controller/orders/archive_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
+import 'order_details.dart';
 
 class RecievedOrder extends StatelessWidget {
-  const RecievedOrder({super.key});
+  final OrdersArchiveController controller;
+  final int index;
+  const RecievedOrder({super.key, required this.controller, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +23,31 @@ class RecievedOrder extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      alignment: Alignment.topCenter,
-                      width: 70,
-                      height: 25,
-                      decoration: BoxDecoration(
-                        color: yellow,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "عرض",
-                          style: TextStyle(
-                              fontFamily: "ArabicUIDisplay",
-                              fontSize: 14,
-                              color: darkGreen,
-                              fontWeight: FontWeight.w700),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(() => const OrderDetails(),arguments: {
+                        "orderModel" : controller.data[index]
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Container(
+                        alignment: Alignment.topCenter,
+                        width: 70,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          color: yellow,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "عرض",
+                            style: TextStyle(
+                                fontFamily: "ArabicUIDisplay",
+                                fontSize: 14,
+                                color: darkGreen,
+                                fontWeight: FontWeight.w700),
+                          ),
                         ),
                       ),
                     ),
@@ -43,11 +55,11 @@ class RecievedOrder extends StatelessWidget {
                   const SizedBox(
                     width: 90,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 20, top: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20, top: 10),
                     child: Text(
-                      "رقم الطلب : #00000",
-                      style: TextStyle(
+                      "رقم الطلب : #${controller.data[index].orderId}",
+                      style: const TextStyle(
                         fontFamily: "ArabicUIDisplayBold",
                         fontWeight: FontWeight.bold,
                         color: darkGreen,
@@ -79,7 +91,7 @@ class RecievedOrder extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -88,8 +100,8 @@ class RecievedOrder extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "التاريخ : 15 أكتوبر , 2023 - 9:00 مساءً",
-                      style: TextStyle(
+                      "التاريخ : ${controller.data[index].orderDatetime}ً",
+                      style: const TextStyle(
                         color: green,
                         fontFamily: 'ArabicUIDisplayBold',
                         fontWeight: FontWeight.w700,
@@ -99,12 +111,15 @@ class RecievedOrder extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],
           ),
         ),
+        const SizedBox(
+          height: 15,
+        )
       ],
     );
   }

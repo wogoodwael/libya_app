@@ -32,7 +32,7 @@ class ComplaintPage extends StatelessWidget {
                   Column(children: [
                     Container(
                       width: MediaQuery.sizeOf(context).width,
-                      height: .20 * MediaQuery.sizeOf(context).height,
+                      height: .22 * MediaQuery.sizeOf(context).height,
                       decoration: const BoxDecoration(
                           color: darkGreen,
                           borderRadius: BorderRadius.only(
@@ -51,6 +51,19 @@ class ComplaintPage extends StatelessWidget {
                                   width: .01 * MediaQuery.sizeOf(context).width,
                                 ),
                                 const Person(),
+                                SizedBox(
+                                  width: .01 * MediaQuery.sizeOf(context).width,
+                                ),
+                                IconButton(
+                                    onPressed: (){
+                                      controller.getComplains();
+                                    },
+                                    icon: const Icon(
+                                      Icons.refresh,
+                                      color: yellow,
+                                      size: 45,
+                                    )
+                                ),
                                 SizedBox(
                                   width: .12 * MediaQuery.sizeOf(context).width,
                                 ),

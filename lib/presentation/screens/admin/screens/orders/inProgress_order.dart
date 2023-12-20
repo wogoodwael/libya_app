@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:libya_bakery/controller/orders/pending_controller.dart';
 import 'package:libya_bakery/core/utils/app_color.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/order_details.dart';
+import 'package:libya_bakery/presentation/screens/admin/screens/orders/orders_pending.dart';
 
 class InProgress extends StatelessWidget {
-  const InProgress({super.key});
+  final OrdersPendingController controller;
+  final int index;
+  const InProgress({super.key, required this.controller, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +24,31 @@ class InProgress extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      alignment: Alignment.topCenter,
-                      width: 70,
-                      height: 25,
-                      decoration: BoxDecoration(
-                        color: yellow,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "عرض",
-                          style: TextStyle(
-                              fontFamily: "ArabicUIDisplay",
-                              fontSize: 14,
-                              color: darkGreen,
-                              fontWeight: FontWeight.w700),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(() => const OrderDetails(),arguments: {
+                        "orderModel" : controller.data[index]
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Container(
+                        alignment: Alignment.topCenter,
+                        width: 70,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          color: yellow,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "عرض",
+                            style: TextStyle(
+                                fontFamily: "ArabicUIDisplay",
+                                fontSize: 14,
+                                color: darkGreen,
+                                fontWeight: FontWeight.w700),
+                          ),
                         ),
                       ),
                     ),
@@ -43,11 +56,11 @@ class InProgress extends StatelessWidget {
                   const SizedBox(
                     width: 90,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 20, top: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20, top: 10),
                     child: Text(
-                      "رقم الطلب : #00000",
-                      style: TextStyle(
+                      "رقم الطلب : #${controller.data[index].orderId}",
+                      style: const TextStyle(
                         fontFamily: "ArabicUIDisplayBold",
                         fontWeight: FontWeight.bold,
                         color: darkGreen,
@@ -68,22 +81,22 @@ class InProgress extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "الحالة : تم الاستلام",
+                      "الحالة : في انتظار الموافقة",
                       style: TextStyle(
                         color: green,
                         fontFamily: 'ArabicUIDisplayBold',
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
+              const Padding(
+                padding: EdgeInsets.only(right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -99,65 +112,81 @@ class InProgress extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Divider(
+              const Divider(
                 color: yellow,
                 endIndent: 10,
                 indent: 10,
                 thickness: 2,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Column(
                 children: [
-                  Container(
-                    width: .8 * MediaQuery.sizeOf(context).width,
-                    height: 35,
-                    decoration: const BoxDecoration(
-                      color: darkGreen,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20)),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "قبول",
-                        style: TextStyle(
-                          fontFamily: "ArabicUIDisplayBold",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                          color: offwhite,
+                  GestureDetector(
+                    onTap: (){
+                      controller.approveOrders(
+                          controller.data[index].orderUserid!,
+                          controller.data[index].orderId!
+                      );
+                    },
+                    child: Container(
+                      width: .8 * MediaQuery.sizeOf(context).width,
+                      height: 35,
+                      decoration: const BoxDecoration(
+                        color: darkGreen,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "قبول",
+                          style: TextStyle(
+                            fontFamily: "ArabicUIDisplayBold",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19,
+                            color: offwhite,
+                          ),
                         ),
                       ),
                     ),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Column(
                 children: [
-                  Container(
-                    width: .8 * MediaQuery.sizeOf(context).width,
-                    height: 35,
-                    decoration: const BoxDecoration(
-                      color: red,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20)),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "إلغاء",
-                        style: TextStyle(
-                          fontFamily: "ArabicUIDisplayBold",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                          color: offwhite,
+                  GestureDetector(
+                    onTap: (){
+                      controller.archiveOrders(
+                          controller.data[index].orderUserid!,
+                          controller.data[index].orderId!
+                      );
+                    },
+                    child: Container(
+                      width: .8 * MediaQuery.sizeOf(context).width,
+                      height: 35,
+                      decoration: const BoxDecoration(
+                        color: red,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "إلغاء",
+                          style: TextStyle(
+                            fontFamily: "ArabicUIDisplayBold",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19,
+                            color: offwhite,
+                          ),
                         ),
                       ),
                     ),
@@ -166,6 +195,9 @@ class InProgress extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        const SizedBox(
+          height: 15,
         ),
       ],
     );

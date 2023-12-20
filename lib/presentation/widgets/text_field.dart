@@ -28,16 +28,19 @@ class CustomTextField extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(5)),
-      child: TextFormField(
-        keyboardType: isNumber == true ? TextInputType.number : TextInputType.text,
-        maxLength: maxLength,
-        controller: controller,
-        obscureText: secure,
-        textAlign: TextAlign.end,
-        textAlignVertical: TextAlignVertical.center,
-        style: const TextStyle(fontSize: 20),
-        decoration:
-        InputDecoration(border: InputBorder.none, prefixIcon: perfix),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        child: TextFormField(
+          keyboardType: isNumber == true ? TextInputType.number : TextInputType.text,
+          maxLength: maxLength,
+          controller: controller,
+          obscureText: secure,
+          textAlign: TextAlign.end,
+          textAlignVertical: TextAlignVertical.center,
+          style: const TextStyle(fontSize: 20),
+          decoration:
+          InputDecoration(border: InputBorder.none, prefixIcon: perfix),
+        ),
       ),
     );
   }
