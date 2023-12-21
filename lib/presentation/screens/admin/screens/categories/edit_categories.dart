@@ -153,7 +153,7 @@ class EditCategories extends StatelessWidget {
                               isNumber: false,
                               controller: controller.name,
                               secure: false,
-                              height: 35,
+                              height: 50,
                             ),
                             const SizedBox(
                               height: 10,
@@ -173,7 +173,7 @@ class EditCategories extends StatelessWidget {
                               isNumber: false,
                               controller: controller.description,
                               secure: false,
-                              height: 35,
+                              height: 50,
                             ),
                             const SizedBox(
                               height: 10,

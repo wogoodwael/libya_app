@@ -5,10 +5,8 @@ import 'package:libya_bakery/data/services/api.dart';
 import 'package:libya_bakery/presentation/screens/admin/control.dart';
 import 'package:libya_bakery/presentation/screens/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'binding/bindings.dart';
 import 'core/functions/check_permission.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +15,7 @@ void main() async {
   if (!MyServices.sharedPreferences.containsKey('firstTime')) {
     MyServices.sharedPreferences.setBool('firstTime', true);
   }
-  runApp(const MyApp(),);
+  runApp(const MyApp());
 }
 
 // ignore: must_be_immutable
