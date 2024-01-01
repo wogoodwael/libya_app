@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:libya_bakery/data/services/api.dart';
-import 'package:libya_bakery/presentation/screens/admin/control.dart';
-import 'package:libya_bakery/presentation/screens/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'binding/bindings.dart';
-import 'core/functions/check_permission.dart';
+import 'app/binding/bindings.dart';
+import 'app/core/functions/check_permission.dart';
+import 'app/data/services/api.dart';
+import 'app/presentation/screens/admin/control.dart';
+import 'app/presentation/screens/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
