@@ -30,6 +30,7 @@ class ItemsModel {
   String? categoriesName;
   String? categoriesImage;
   String? categoriesDatatime;
+  int? favorite;
   double? itemspricediscount;
   double? itemspricediscount2;
   double? itemspricediscount3;
@@ -78,6 +79,7 @@ class ItemsModel {
         this.categoriesName,
         this.categoriesImage,
         this.categoriesDatatime,
+        this.favorite,
         this.itemspricediscount,
         this.itemspricediscount2,
         this.itemspricediscount3,
@@ -119,7 +121,7 @@ class ItemsModel {
     fornownerPrice5 = double.parse(json['fornowner_price5'].toString());
     itemsDiscount = json['items_discount'];
     shopownerDiscount = json['shopowner_discount'];
-    fornownerDicount = json['fornowner_discount'] ?? 0;
+    fornownerDicount = json['fornowner_discount'];
     itemsDate = json['items_date'];
     itemsCat = json['items_cat'];
     branchCode = json['branch_code'];
@@ -127,6 +129,7 @@ class ItemsModel {
     categoriesName = json['categories_name'];
     categoriesImage = json['categories_image'];
     categoriesDatatime = json['categories_datatime'];
+    favorite = json['favorite'];
     itemspricediscount = double.tryParse(json['itemspricediscount'].toString());
     itemspricediscount2 = double.tryParse(json['itemspricediscount2'].toString());
     itemspricediscount3 = double.tryParse(json['itemspricediscount3'].toString());
@@ -175,6 +178,7 @@ class ItemsModel {
     data['categories_name'] = this.categoriesName;
     data['categories_image'] = this.categoriesImage;
     data['categories_datatime'] = this.categoriesDatatime;
+    data['favorite'] = this.favorite;
     data['itemspricediscount'] = this.itemspricediscount;
     data['itemspricediscount2'] = this.itemspricediscount2;
     data['itemspricediscount4'] = this.itemspricediscount3;

@@ -1,21 +1,49 @@
 import 'package:get/get.dart';
-
+import '../../../admin/handling_data/statusrequest.dart';
 import '../../core/functions/handling_data.dart';
-import '../../data/datasource/remote/orders/orders_pending_data.dart';
-import '../../handling_data/statusrequest.dart';
+import '../../data/datasource/remote/orders/pending_data.dart';
 import '../../models/orders_model.dart';
+import '../../services/MyServices.dart';
 
-class OrdersPendingController extends GetxController{
-  OrdersPendingData ordersPendingData = OrdersPendingData(Get.find());
-
+class PendingOrdersController extends GetxController{
+  PendingOrdersData pendingOrdersData = PendingOrdersData(Get.find());
   List<OrdersModel> data = [];
   late StatusRequest statusRequest;
+
+
+  String printOrderType(String val){
+    if(val == "0"){
+      return "Delivery";
+    } else {
+      return "Receive";
+    }
+  }
+
+  String printPaymentMethod(String val){
+    if(val == "0"){
+      return "Cash on Delivery";
+    } else {
+      return "Payment Card";
+    }
+  }
+
+  String printOrderStatus(String val){
+    if(val == "0"){
+      return "في انتظار الموافقة";
+    } else if(val == "1") {
+      return "جارٍ إعداد الطلب";
+    } else if (val == "2"){
+      return "الطلب في الطريق";
+    } else{
+      return "Archive";
+    }
+  }
 
   getOrders() async{
     data.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await ordersPendingData.getData();
+    var response = await pendingOrdersData.getData(int.parse(MyServices.sharedPreferences.getString('id').toString()));
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
       statusRequest = StatusRequest.failure;
@@ -25,44 +53,6 @@ class OrdersPendingController extends GetxController{
         data.addAll(listData.map((e) => OrdersModel.fromJson(e)));
       } else {
         statusRequest = StatusRequest.serverfailure;
-      }
-    }
-    update();
-  }
-
-  approveOrders(int userId, int orderId) async{
-    data.clear();
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await ordersPendingData.approveOrder(
-        userId,
-        orderId
-    );
-    statusRequest = handlingData(response);
-    if (StatusRequest.success == statusRequest){
-      if(response['status'] == "success"){
-        getOrders();
-      } else {
-        statusRequest = StatusRequest.failure;
-      }
-    }
-    update();
-  }
-
-  archiveOrders(int userId, int orderId) async{
-    data.clear();
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await ordersPendingData.archiveOrder(
-        userId,
-        orderId
-    );
-    statusRequest = handlingData(response);
-    if (StatusRequest.success == statusRequest){
-      if(response['status'] == "success"){
-        getOrders();
-      } else {
-        statusRequest = StatusRequest.failure;
       }
     }
     update();

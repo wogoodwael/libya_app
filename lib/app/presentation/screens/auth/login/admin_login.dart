@@ -1,20 +1,21 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:libya_bakery/app/core/utils/logo.dart';
-import 'package:libya_bakery/app/presentation/widgets/info_row.dart';
+import 'package:libya_bakery/app/presentation/screens/client/forget_pass.dart';
+import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
+import 'package:libya_bakery/app/presentation/widgets/text_field.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import '../../../../../admin/core/utils/app_color.dart';
+import '../../../../../admin/core/utils/logo.dart';
+import '../../../../../admin/presentation/widgets/info_row.dart';
 import '../../../../api_connection/api_connection.dart';
 import '../../../../core/functions/check_internet.dart';
 import '../../../../core/helper/snack.dart';
-import '../../../../core/utils/app_color.dart';
-import '../../../../data/services/api.dart';
-import '../../../widgets/custom_next.dart';
-import '../../../widgets/text_field.dart';
-import '../../admin/control.dart';
-import '../../client/forget_pass.dart';
+import '../../../../services/MyServices.dart';
+import '../../home/home.dart';
 import '../otp/otp.dart';
 
 class AdminLoginScreen extends StatefulWidget {
@@ -86,7 +87,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
           if (resBodyOfLogin['data']['users_approve'] == 1) {
             // // Save "Remember Me" preference
             saveRememberMe(rememberMe);
-            Get.offAll(() => ControlScreen());
+            Get.offAll(() => const HomeScreen());
           } else {
             Get.to(const OtpScreen(), arguments: [
               {'id': MyServices.sharedPreferences.getString('id')},
@@ -170,10 +171,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
-                child: CustomTextField(
-                  isNumber: false,
-                  height: 35,
-                  secure: false, controller: email,),
+                child: CustomTextField(height: 35, secure: false, controller: email,),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 20, top: 10, bottom: 5),
@@ -187,7 +185,6 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: CustomTextField(
-                  isNumber: false,
                   height: 35,
                   secure: false,
                   perfix: password
@@ -222,7 +219,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                   children: [
                     InkWell(
                       onTap:(){
-                        Get.to(() => ForgetPassword());
+                        Get.to(() => const ForgetPassword());
                       },
                       child: Container(
                         width: 130,

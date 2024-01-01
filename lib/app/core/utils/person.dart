@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../presentation/screens/client/profil.dart';
+import '../../../admin/presentation/screens/client/profil.dart';
 import 'app_color.dart';
 
 class Person extends StatelessWidget {

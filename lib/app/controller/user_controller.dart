@@ -1,54 +1,23 @@
 import 'package:get/get.dart';
-
+import '../../admin/handling_data/statusrequest.dart';
 import '../core/functions/handling_data.dart';
-import '../data/datasource/remote/user_data.dart';
-import '../handling_data/statusrequest.dart';
+import '../data/datasource/remote/orders/fund_data.dart';
 import '../models/user_model.dart';
+import '../services/MyServices.dart';
 
-class UserViewController extends GetxController{
+class UserController extends GetxController{
   UserData userData = UserData(Get.find());
 
-  List data = [];
-  List<String> userTypes = ["Admin","مستخدم عادي","صاحب محل","صاحب فرن"];
+  List<User> data = [];
   late StatusRequest statusRequest;
-  int? selectedCat;
-  int? userType;
 
-  changeCat(val, userVal) {
-    selectedCat = val;
-    userType = userVal;
-    getData(userType!);
-    update();
-  }
-
-  getData(userType) async{
-    data.clear();
+  getData() async{
     statusRequest = StatusRequest.loading;
-    update();
-    var response = await userData.changeType(userType);
+    var response = await userData.getData(MyServices.sharedPreferences.getString("email").toString());
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
-      if(response['status'] == 'success'){
-        List dataList = response['data'];
-        data.addAll(dataList.map((e) => UserModel.fromJson(e)));
-      }
-    } else {
-      statusRequest = StatusRequest.serverfailure;
-    }
-    update();
-  }
-
-  getDataIntial() async{
-    data.clear();
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await userData.viewData();
-    statusRequest = handlingData(response);
-    if (StatusRequest.success == statusRequest) {
-      if(response['status'] == 'success'){
-        List dataList = response['data'];
-        data.addAll(dataList.map((e) => UserModel.fromJson(e)));
-      }
+      // data.addAll(response['data']);
+      MyServices.sharedPreferences.setString('user_fund', response['userFund'].toString());
     } else {
       statusRequest = StatusRequest.serverfailure;
     }
@@ -58,6 +27,6 @@ class UserViewController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    getDataIntial();
+    getData();
   }
 }

@@ -1,7 +1,8 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:libya_bakery/app/core/utils/app_color.dart';
+
+import '../../../admin/core/utils/app_color.dart';
 
 class InfoRow extends StatelessWidget {
   InfoRow({super.key, required this.text, this.icon, this.fontfamily, this.fontsize});
@@ -26,8 +27,6 @@ class InfoRow extends StatelessWidget {
           padding: const EdgeInsets.only(right: 10, top: 5, bottom: 5),
           child: Text(
             text,
-            overflow: TextOverflow.ellipsis,
-            textDirection: TextDirection.rtl,
             style: TextStyle(
                 fontFamily: fontfamily,
                 color: darkGreen,

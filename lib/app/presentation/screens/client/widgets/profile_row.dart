@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_color.dart';
+import '../../../../../admin/core/utils/app_color.dart';
 
 class ProfileRow extends StatelessWidget {
   const ProfileRow({super.key, required this.img, required this.txt});

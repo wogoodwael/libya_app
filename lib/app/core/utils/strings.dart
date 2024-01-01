@@ -7,23 +7,15 @@ const String login = '/sign_in_body.dart';
 const String branch = '/branch.dart';
 const String home = '/home.dart';
 const String menu = '/menu.dart';
-const String categories = '/items.dart';
+const String categories = '/categories.dart';
 const String previousOrder = '/previous_orders.dart';
 const String favoriteScreen = '/favorite.dart';
 const String prevOrderDetails = '/previous_order_details.dart';
 const String subCategory = '/sub_category.dart';
 const String otp = '/otp.dart';
 const String problems = '/problems.dart';
-const String profile = '/profil.dart';
+const String profile = '/profile.dart';
 const String personalInfo = '/personal_into.dart';
-const String forgetPass = '/forget_pass.dart';
-const String changePass = '/change_pass.dart';
-const String cardOrders = '/card_order.dart';
-const String confirmOrders = '/confirm_order.dart';
-const String lastPageOrders = '/last_page.dart';
-const String ordersAdmin = '/orders_pending.dart';
-const String orderDetails = '/order_details.dart';
-const String billDetails = '/bill_details.dart';
 
 //? Main connection
 const hostConnect = 'https://www.koshtna.com/API_koshtna';

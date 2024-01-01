@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:libya_bakery/app/presentation/screens/auth/login/sign_in.dart';
+import 'package:libya_bakery/app/presentation/screens/on_boarding.dart';
 import '../../core/utils/app_color.dart';
-import '../../data/services/api.dart';
-import 'auth/login/sign_in.dart';
-import 'on_boarding.dart';
+import '../../services/MyServices.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -62,3 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+
+
+
+

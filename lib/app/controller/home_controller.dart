@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import '../../admin/handling_data/statusrequest.dart';
 import '../core/functions/handling_data.dart';
 import '../data/datasource/remote/home_data.dart';
-import '../data/services/api.dart';
-import '../handling_data/statusrequest.dart';
 import '../models/items_model.dart';
+import '../presentation/screens/categories/sub_category.dart';
+import '../presentation/screens/search_screen.dart';
+import '../services/MyServices.dart';
 
 abstract class HomeController extends SearchMixController{
   getData();
+  goToItems(List categories, int selectedCat, int categoryid, categoriesModel);
 }
 
 class HomeControllerImp extends HomeController{
@@ -48,6 +51,21 @@ class HomeControllerImp extends HomeController{
     search = TextEditingController();
   }
 
+  @override
+  goToItems(categories, selectedCat, categoryid, categoriesModel) {
+    Get.to(() => SubCategoryScreen(), arguments: {
+      'categories': categories,
+      'selectedCat': selectedCat,
+      'categoryid' : categoryid,
+      'categoriesModel' : categoriesModel,
+    });
+  }
+
+  goToProducts(itemsModel){
+    Get.to(() => SubCategoryScreen(), arguments: {
+      'itemsModel' : itemsModel
+    });
+  }
 
 }
 
@@ -84,6 +102,14 @@ class SearchMixController extends GetxController{
       statusRequestSearch = StatusRequest.failure;
       isSearch = false;
     }
+    update();
+  }
+
+  onSearchItems(){
+    isSearch = true;
+    searchData();
+    Get.to(() =>const SearchScreen());
+
     update();
   }
 }

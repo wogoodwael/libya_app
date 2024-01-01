@@ -3,15 +3,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:libya_bakery/app/core/helper/snack.dart';
 import 'package:libya_bakery/app/core/utils/back_image.dart';
+import 'package:libya_bakery/app/presentation/screens/home/home.dart';
+import 'package:libya_bakery/app/presentation/screens/menu.dart';
+import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
+
+import '../../../../../admin/core/utils/app_color.dart';
 import '../../../../api_connection/api_connection.dart';
-import '../../../../core/helper/snack.dart';
-import '../../../../core/utils/app_color.dart';
-import '../../../../data/services/api.dart';
-import '../../../widgets/custom_next.dart';
-import '../../admin/control.dart';
-import '../../menu.dart';
+import '../../../../services/MyServices.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -35,7 +36,7 @@ class _OtpScreenState extends State<OtpScreen> {
       if(res.statusCode == 200){
         var resBodyOfVerifyCode = jsonDecode(res.body);
         if (resBodyOfVerifyCode['status'] == "success") {
-          Get.off(() => ControlScreen());
+          Get.off(() => const HomeScreen());
         } else {
           showErrorSnack(context, "Error, Code Not Correct");
           if (kDebugMode) {
@@ -62,7 +63,7 @@ class _OtpScreenState extends State<OtpScreen> {
       if (res.statusCode == 200) {
         var resBodyOfChangeCode = jsonDecode(res.body);
         if (resBodyOfChangeCode['status'] == "success") {
-          showSuccessSnack(context, "تم ارسال رمز جديد الي بريدك");
+          showErrorSnack(context, "New Code has been sent to your email");
         } else {
           Get.snackbar('Error', 'Network Error.');
           if (kDebugMode) {
@@ -86,7 +87,7 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
-        endDrawer: Drawer(
+        endDrawer: const Drawer(
           width: 250,
           child: MenuScreen(),
         ),

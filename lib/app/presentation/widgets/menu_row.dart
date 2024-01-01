@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/utils/app_color.dart';
+import '../../../admin/core/utils/app_color.dart';
 
 class MenuRow extends StatelessWidget {
   const MenuRow({super.key, required this.text, this.ontap});

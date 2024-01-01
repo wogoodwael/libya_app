@@ -9,6 +9,8 @@
         android:label="libya_bakery"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCJduZhEhW_z76dyVw8djnO_ty-NQcUoiA"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:libya_bakery/app/presentation/screens/auth/login/sign_in.dart';
+import 'package:libya_bakery/app/presentation/screens/favorite/favorite.dart';
+import 'package:libya_bakery/app/presentation/screens/home/home.dart';
+import 'package:libya_bakery/app/presentation/screens/orders/previous_orders.dart';
+import 'package:libya_bakery/app/presentation/screens/settings/problems.dart';
+import 'package:libya_bakery/app/presentation/widgets/menu_row.dart';
+
 import '../../core/utils/app_color.dart';
-import '../../data/services/api.dart';
-import '../widgets/menu_row.dart';
-import 'admin/complaint.dart';
-import 'admin/control.dart';
-import 'admin/screens/bills/bills.dart';
-import 'admin/screens/categories/categories.dart';
-import 'admin/screens/clients/clients.dart';
-import 'admin/screens/orders/order_screen.dart';
-import 'auth/login/sign_in.dart';
+import '../../services/MyServices.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -63,10 +62,10 @@ class MenuScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
+                const Text(
                   "القائمة",
                   style: TextStyle(
                     fontFamily: 'ArabicUIDisplayBold',
@@ -75,16 +74,21 @@ class MenuScreen extends StatelessWidget {
                     fontSize: 27,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: Icon(
-                    Icons.arrow_forward,
-                    size: 35,
-                    color: yellow,
-                    weight: 100,
+                InkWell(
+                  onTap: (){
+                    Get.back();
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Icon(
+                      Icons.arrow_forward,
+                      size: 35,
+                      color: yellow,
+                      weight: 100,
+                    ),
                   ),
                 )
               ],
@@ -94,7 +98,7 @@ class MenuScreen extends StatelessWidget {
             ),
             MenuRow(
               ontap: () {
-                Get.off(() => ControlScreen());
+                Get.to(() => const HomeScreen());
               },
               text: 'الصفحة الرئيسية',
             ),
@@ -103,46 +107,34 @@ class MenuScreen extends StatelessWidget {
             ),
             MenuRow(
               ontap: () {
-                Get.off(() => ClientScreen());
+                Get.to(() => PreviousOrdersScreen());
                 },
-              text: 'العملاء',
+              text: 'طلباتك',
             ),
             const SizedBox(
               height: 20,
             ),
             MenuRow(
               ontap: () {
-                Get.off(() => BillsScreen());
-              },
-              text: 'الفواتير',
+                Get.to(() => FavoriteScreen());
+                },
+              text: 'منتجاتك المفضلة ',
             ),
             const SizedBox(
               height: 20,
             ),
             MenuRow(
               ontap: () {
-                Get.off(() => Categories());
+                Get.to(() => const ProblemScreen());
               },
-              text: 'المنتجات',
+              text: '  الشكاوي والمقترحات ',
             ),
             const SizedBox(
               height: 20,
             ),
-            MenuRow(
-              ontap: () {
-                Get.off(() => OrderScreen());
-              },
-              text: 'الطلبات',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            MenuRow(
-              ontap: () {
-                Get.off(() => ComplaintPage());
-              },
-              text: 'الشكاوي',
-            ),
+            // const MenuRow(
+            //   text: 'من نحن ؟ ',
+            // ),
             SizedBox(
               height: .35 * MediaQuery.sizeOf(context).height,
             ),

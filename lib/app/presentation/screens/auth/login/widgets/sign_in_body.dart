@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../../admin/core/helper/snack.dart';
+import '../../../../../../admin/core/utils/app_color.dart';
+import '../../../../../../admin/presentation/screens/auth/login/admin_login.dart';
+import '../../../../../../admin/presentation/screens/auth/otp/otp.dart';
+import '../../../../../../admin/presentation/widgets/info_row.dart';
+import '../../../../../../admin/presentation/widgets/text_field.dart';
 import '../../../../../api_connection/api_connection.dart';
 import '../../../../../core/functions/check_internet.dart';
-import '../../../../../core/helper/snack.dart';
-import '../../../../../core/utils/app_color.dart';
-import '../../../../../data/services/api.dart';
+import '../../../../../services/MyServices.dart';
 import '../../../../widgets/custom_next.dart';
-import '../../../../widgets/info_row.dart';
-import '../../../../widgets/text_field.dart';
-import '../../../admin/control.dart';
 import '../../../client/forget_pass.dart';
-import '../../otp/otp.dart';
-import '../admin_login.dart';
+import '../../../home/home.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({super.key});
@@ -88,7 +88,7 @@ class _SignInBodyState extends State<SignInBody> {
           if (resBodyOfLogin['data']['users_approve'] == 1) {
             // // Save "Remember Me" preference
             saveRememberMe(rememberMe);
-            Get.offAll(() => ControlScreen());
+            Get.offAll(() => const HomeScreen());
           } else {
             Get.to(const OtpScreen(), arguments: [
               {'id': MyServices.sharedPreferences.getString('id')},
@@ -200,7 +200,7 @@ class _SignInBodyState extends State<SignInBody> {
             children: [
               InkWell(
                 onTap:(){
-                  Get.to(() => ForgetPassword());
+                  Get.to(() => const ForgetPassword());
                 },
                 child: Container(
                   width: 110,

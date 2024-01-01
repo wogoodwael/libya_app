@@ -3,14 +3,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:libya_bakery/app/core/helper/snack.dart';
+import 'package:libya_bakery/app/core/utils/back_image.dart';
+import 'package:libya_bakery/app/presentation/screens/client/change_pass.dart';
+import 'package:libya_bakery/app/presentation/screens/menu.dart';
+import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
+
+import '../../../../../admin/core/utils/app_color.dart';
 import '../../../../api_connection/api_connection.dart';
-import '../../../../core/helper/snack.dart';
-import '../../../../core/utils/app_color.dart';
-import '../../../../core/utils/back_image.dart';
-import '../../../widgets/custom_next.dart';
-import '../../client/change_pass.dart';
-import '../../menu.dart';
 
 class OtpForChangePasswordScreen extends StatefulWidget {
   const OtpForChangePasswordScreen({super.key});
@@ -67,7 +68,7 @@ class _OtpForChangePasswordScreenState extends State<OtpForChangePasswordScreen>
       if (res.statusCode == 200) {
         var resBodyOfChangeCode = jsonDecode(res.body);
         if (resBodyOfChangeCode['status'] == "success") {
-          showSuccessSnack(context, "تم ارسال رمز جديد الي بريدك");
+          showErrorSnack(context, "تم ارسال رمز جديد الي بريدك");
         } else {
           Get.snackbar('Error', 'Network Error.');
           if (kDebugMode) {
@@ -88,7 +89,7 @@ class _OtpForChangePasswordScreenState extends State<OtpForChangePasswordScreen>
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
-        endDrawer: Drawer(
+        endDrawer: const Drawer(
           width: 250,
           child: MenuScreen(),
         ),
@@ -146,6 +147,9 @@ class _OtpForChangePasswordScreenState extends State<OtpForChangePasswordScreen>
                       ///in case you want to change the action of keyboard
                       /// to clear the Otp pin Controller
                       onSubmit: (text) {
+                        if (kDebugMode) {
+                          print('Entered pin is $text');
+                        }
 
                         /// return the entered pin
                       },

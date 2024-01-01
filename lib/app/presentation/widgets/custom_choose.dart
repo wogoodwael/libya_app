@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:libya_bakery/app/core/utils/strings.dart';
+import 'package:get/get.dart';
+import 'package:libya_bakery/app/presentation/screens/auth/login/market_admin_login.dart';
 
 import '../../core/utils/app_color.dart';
 
@@ -35,7 +36,7 @@ class CustomChooseContainer extends StatelessWidget {
         //*go to market admin page
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, marketLogin);
+            Get.to(() => MarketLoginScreen());
           },
           child: Container(
             width: 150,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:libya_bakery/app/presentation/screens/auth/signup/sign_up.dart';
 
 import '../../core/utils/app_color.dart';
-import 'auth/login/sign_in.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -72,7 +72,7 @@ class OnBoardingScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(() => const SignInScreen());
+              Get.to(() => const SignUpScreen());
             },
             child: Container(
               margin: EdgeInsets.symmetric(

@@ -1,25 +1,23 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:libya_bakery/app/presentation/screens/client/widgets/custom_pass_container.dart';
+import 'package:libya_bakery/app/core/helper/snack.dart';
+import 'package:libya_bakery/app/core/utils/back_image.dart';
+import 'package:libya_bakery/app/presentation/screens/auth/login/sign_in.dart';
+import 'package:libya_bakery/app/presentation/screens/menu.dart';
+import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
+import 'package:libya_bakery/app/presentation/widgets/info_row.dart';
 
 import '../../../api_connection/api_connection.dart';
-import '../../../core/helper/snack.dart';
 import '../../../core/utils/app_color.dart';
-import '../../../core/utils/back_image.dart';
-import '../../widgets/custom_next.dart';
-import '../../widgets/info_row.dart';
-import '../auth/login/sign_in.dart';
-import '../menu.dart';
 
 class ChangePassword extends StatelessWidget {
   ChangePassword({super.key});
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  TextEditingController pass = TextEditingController();
-  TextEditingController confirmPass = TextEditingController();
+  final TextEditingController pass = TextEditingController();
+  final TextEditingController pass2 = TextEditingController();
   String email = Get.arguments["email_final"];
 
   resetPassword() async {
@@ -72,7 +70,7 @@ class ChangePassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      endDrawer: Drawer(
+      endDrawer: const Drawer(
         width: 250,
         child: MenuScreen(),
       ),
@@ -129,7 +127,24 @@ class ChangePassword extends StatelessWidget {
               SizedBox(
                 height: .01 * MediaQuery.sizeOf(context).height,
               ),
-              CustomChangePass(controller: pass),
+              Container(
+                margin: EdgeInsets.symmetric(
+                    horizontal: .06 * MediaQuery.sizeOf(context).width),
+                width: .90 * MediaQuery.sizeOf(context).width,
+                height: 35,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5)),
+                child: TextFormField(
+                  controller: pass,
+                  obscureText: false,
+                  textAlign: TextAlign.end,
+                  textAlignVertical: TextAlignVertical.center,
+                  style: const TextStyle(fontSize: 20),
+                  decoration: const InputDecoration(
+                      border: InputBorder.none, hintText: 'xxxxxxxxx'),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 10, top: 10),
                 child: InfoRow(
@@ -141,21 +156,36 @@ class ChangePassword extends StatelessWidget {
               SizedBox(
                 height: .01 * MediaQuery.sizeOf(context).height,
               ),
-              CustomChangePass(controller: confirmPass),
+              Container(
+                margin: EdgeInsets.symmetric(
+                    horizontal: .06 * MediaQuery.sizeOf(context).width),
+                width: .90 * MediaQuery.sizeOf(context).width,
+                height: 35,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5)),
+                child: TextFormField(
+                  controller: pass2,
+                  obscureText: false,
+                  textAlign: TextAlign.end,
+                  textAlignVertical: TextAlignVertical.center,
+                  style: const TextStyle(fontSize: 20),
+                  decoration: const InputDecoration(
+                      border: InputBorder.none, hintText: 'xxxxxxxxx'),
+                ),
+              ),
               SizedBox(
                 height: .07 * MediaQuery.sizeOf(context).height,
               ),
-              GestureDetector(
-                  onTap: (){
-                    if(pass.text == confirmPass.text){
-                      resetPassword();
-                      showSuccessSnack(context, "نجاح");
-                    }else{
-                      showErrorSnack(context, "كلمات المرور غير متطابقة");
-                    }
-                  },
-                  child: CustomNext(text: 'حفظ')
-              )
+              InkWell(
+                onTap: (){
+                  if(pass.text == pass2.text){
+                    resetPassword();
+                  }else{
+                    showErrorSnack(context, "كلمات المرور غير متطابقة");
+                  }
+                },
+                  child: CustomNext(text: 'حفظ'))
             ],
           ),
         ),

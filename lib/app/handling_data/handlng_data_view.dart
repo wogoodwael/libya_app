@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:libya_bakery/app/handling_data/statusrequest.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../admin/handling_data/statusrequest.dart';
 
 class HandlingDataView extends StatelessWidget {
   final StatusRequest statusRequest;

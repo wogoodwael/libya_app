@@ -3,8 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:libya_bakery/app/presentation/screens/auth/otp/otp.dart';
+
 import '../../../../api_connection/api_connection.dart';
-import '../otp/otp.dart';
 
 var emailController = TextEditingController();
 
@@ -19,7 +20,10 @@ checkEMail() async {
     if(res.statusCode == 200){
       var resBodyOfCheckEmail = jsonDecode(res.body);
       if (resBodyOfCheckEmail['status'] == "success") {
-        Get.to(() => const OtpScreen());
+        Get.to(() => OtpScreen());
+        // setState(() {
+        //   emailController.clear();
+        // });
       } else {
         Get.snackbar('Error', "Email Not found");
       }

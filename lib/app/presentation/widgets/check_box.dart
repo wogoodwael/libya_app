@@ -1,4 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../core/functions/check_internet.dart';
 
 class CustomCheckBox extends StatefulWidget {
   const CustomCheckBox({super.key});
@@ -8,8 +12,38 @@ class CustomCheckBox extends StatefulWidget {
 }
 
 class _CustomCheckBoxState extends State<CustomCheckBox> {
-  bool remeberMe = false;
+  bool rememberMe = false;
   bool agree = false;
+
+  Future<void> saveRememberMe(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('rememberMe', value);
+  }
+
+  Future<bool> loadRememberMe() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('rememberMe') ?? false;
+  }
+
+  var res;
+
+  intialData() async {
+    res = await checkInternet();
+    if (kDebugMode) {
+      print('Internet Connected: $res');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    intialData();
+    loadRememberMe().then((value) {
+      setState(() {
+        rememberMe = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +68,10 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
                 side: const BorderSide(color: Colors.white, width: 2),
                 activeColor: Colors.white,
                 checkColor: Colors.blue,
-
-                //TODO: Shared prefernce
-
-                value: remeberMe,
+                value: rememberMe,
                 onChanged: (val) {
                   setState(() {
-                    remeberMe = val!;
+                    rememberMe = val!;
                   });
                 }),
           ],
@@ -65,7 +96,6 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
                 checkColor: Colors.blue,
                 activeColor: Colors.white,
                 value: agree,
-                    //TODO: Shared prefernce
                 onChanged: (value) {
                   setState(() {
                     agree = value!;

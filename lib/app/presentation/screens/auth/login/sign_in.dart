@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:libya_bakery/app/presentation/widgets/tab_section.dart';
 
-import '../../../../core/utils/app_color.dart';
-import '../../../widgets/tab_section.dart';
+import '../../../../../admin/core/utils/app_color.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});

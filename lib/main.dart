@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'app/binding/bindings.dart';
-import 'app/core/functions/check_permission.dart';
-import 'app/data/services/api.dart';
-import 'app/presentation/screens/admin/control.dart';
-import 'app/presentation/screens/splash.dart';
+import 'admin/binding/bindings.dart';
+import 'admin/core/functions/check_permission.dart';
+import 'admin/data/services/api.dart';
+import 'admin/presentation/screens/admin/control.dart';
+import 'admin/presentation/screens/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
