@@ -3,8 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:libya_bakery/app/presentation/screens/auth/login/admin_login.dart';
+import 'package:libya_bakery/app/presentation/screens/home/home.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../core/functions/check_internet.dart';
 import '../../../../core/helper/snack.dart';
 import '../../../../core/utils/app_color.dart';
@@ -13,7 +15,6 @@ import '../../../../data/services/api.dart';
 import '../../../widgets/custom_next.dart';
 import '../../../widgets/info_row.dart';
 import '../../../widgets/text_field.dart';
-import '../../admin/control.dart';
 import '../../client/forget_pass.dart';
 import '../otp/otp.dart';
 
@@ -89,7 +90,7 @@ class _SignInBodyState extends State<SignInBody> {
             .setString('user_type', data['data']['user_type'].toString());
         if (data['data']['users_approve'] == 1) {
           saveRememberMe(rememberMe);
-          Get.to(() => ControlScreen());
+          Get.to(() => const HomeScreen());
         } else {
           Get.to(() => const OtpScreen());
         }
@@ -133,9 +134,6 @@ class _SignInBodyState extends State<SignInBody> {
               icon: Icons.error,
               text: 'البريد الالكتروني   '),
         ),
-
-        //TOdO: Upload Information of user to server
-
         CustomLoginContainer(controller: email, pass: false),
         const SizedBox(
           height: 10,
@@ -251,6 +249,33 @@ class _SignInBodyState extends State<SignInBody> {
           indent: 10,
           thickness: 3,
         ),
+        const SizedBox(
+          height: 20,
+        ),
+        const Center(
+          child: Text(
+            "هل انت مسؤل في المخابز ؟",
+            style: TextStyle(
+                fontFamily: 'ArabicUIDisplayBold',
+                color: darkGreen,
+                fontWeight: FontWeight.w700,
+                fontSize: 20),
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Center(
+          child: GestureDetector(
+            onTap: () {
+              Get.to(() => const AdminLoginScreen());
+            },
+            child: CustomNext(
+              width: .75 * MediaQuery.sizeOf(context).width,
+              text: 'تسجيل دخول ',
+            ),
+          ),
+        )
       ],
     );
   }

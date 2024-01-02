@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:libya_bakery/app/presentation/widgets/branch_row.dart';
 import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import 'package:selectable_container/selectable_container.dart';
 
 import '../../../admin/core/utils/app_color.dart';
 import '../../controller/branch_controller.dart';
 import '../../handling_data/handlng_data_view.dart';
-import '../../services/MyServices.dart';
 
 class BranchScreen extends StatefulWidget {
   const BranchScreen({super.key});
@@ -210,7 +210,7 @@ class _BranchScreenState extends State<BranchScreen> {
                       GestureDetector(
                           onTap: () {
                               branchController.chooseBranch(val);
-                              MyServices.sharedPreferences
+                              MyServicesApp.sharedPreferences
                                   .setString('branch_code', val.toString());
                           },
                           child: CustomNext(text: 'التالي')),

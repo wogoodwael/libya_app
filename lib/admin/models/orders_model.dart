@@ -53,6 +53,9 @@ class OrdersModel {
   int? orderPricedelivery;
   double? orderPrice;
   double? orderTotalprice;
+  double? orderAmountPaid;
+  int? noOfInstallments;
+  double? orderAmountRequired;
   int? orderStatus;
   String? orderBranch;
   String? orderDatetime;
@@ -119,6 +122,9 @@ class OrdersModel {
         this.orderPricedelivery,
         this.orderPrice,
         this.orderTotalprice,
+        this.orderAmountPaid,
+        this.noOfInstallments,
+        this.orderAmountRequired,
         this.orderStatus,
         this.orderBranch,
         this.orderDatetime,
@@ -185,6 +191,9 @@ class OrdersModel {
     orderPricedelivery = json['order_pricedelivery'];
     orderPrice = double.parse(json['order_price'].toString());
     orderTotalprice = double.parse(json['order_totalprice'].toString());
+    orderAmountPaid = double.parse(json['order_amount_paid'].toString());
+    noOfInstallments = int.parse(json['no_of_installments'].toString());
+    orderAmountRequired = double.parse(json['order_amount_required'].toString());
     orderStatus = json['order_status'];
     orderBranch = json['order_branch'];
     orderDatetime = json['order_datetime'];
@@ -198,71 +207,74 @@ class OrdersModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['itemsprice'] = this.itemsprice;
-    data['itemsprice2'] = this.itemsprice2;
-    data['itemsprice3'] = this.itemsprice3;
-    data['itemsprice4'] = this.itemsprice4;
-    data['itemsprice5'] = this.itemsprice5;
-    data['shopownerprice'] = this.shopownerprice;
-    data['shopownerprice2'] = this.shopownerprice2;
-    data['shopownerprice3'] = this.shopownerprice3;
-    data['shopownerprice4'] = this.shopownerprice4;
-    data['shopownerprice5'] = this.shopownerprice5;
-    data['fornownerprice'] = this.fornownerprice;
-    data['fornownerprice2'] = this.fornownerprice2;
-    data['fornownerprice3'] = this.fornownerprice3;
-    data['fornownerprice4'] = this.fornownerprice4;
-    data['fornownerprice5'] = this.fornownerprice5;
-    data['countitems'] = this.countitems;
-    data['cart_id'] = this.cartId;
-    data['cart_userid'] = this.cartUserid;
-    data['cart_itemid'] = this.cartItemid;
-    data['cart_orders'] = this.cartOrders;
-    data['items_id'] = this.itemsId;
-    data['items_name'] = this.itemsName;
-    data['items_desc'] = this.itemsDesc;
-    data['items_image'] = this.itemsImage;
-    data['items_count'] = this.itemsCount;
-    data['items_active'] = this.itemsActive;
-    data['items_price'] = this.itemsPrice;
-    data['items_price2'] = this.itemsPrice2;
-    data['items_price3'] = this.itemsPrice3;
-    data['items_price4'] = this.itemsPrice4;
-    data['items_price5'] = this.itemsPrice5;
-    data['shopowner_price'] = this.shopownerPrice;
-    data['shopowner_price2'] = this.shopownerPrice2;
-    data['shopowner_price3'] = this.shopownerPrice3;
-    data['shopowner_price4'] = this.shopownerPrice4;
-    data['shopowner_price5'] = this.shopownerPrice5;
-    data['fornowner_price'] = this.fornownerPrice;
-    data['fornowner_price2'] = this.fornownerPrice2;
-    data['fornowner_price3'] = this.fornownerPrice3;
-    data['fornowner_price4'] = this.fornownerPrice4;
-    data['fornowner_price5'] = this.fornownerPrice5;
-    data['items_discount'] = this.itemsDiscount;
-    data['shopowner_discount'] = this.shopownerDiscount;
-    data['fornowner_dicount'] = this.fornownerDicount;
-    data['items_date'] = this.itemsDate;
-    data['items_cat'] = this.itemsCat;
-    data['branch_code'] = this.branchCode;
-    data['order_id'] = this.orderId;
-    data['order_userid'] = this.orderUserid;
-    data['order_address'] = this.orderAddress;
-    data['order_type'] = this.orderType;
-    data['order_pricedelivery'] = this.orderPricedelivery;
-    data['order_price'] = this.orderPrice;
-    data['order_totalprice'] = this.orderTotalprice;
-    data['order_status'] = this.orderStatus;
-    data['order_branch'] = this.orderBranch;
-    data['order_datetime'] = this.orderDatetime;
-    data['address_id'] = this.addressId;
-    data['address_userid'] = this.addressUserid;
-    data['address_name'] = this.addressName;
-    data['address_city'] = this.addressCity;
-    data['address_street'] = this.addressStreet;
-    data['address_lat'] = this.addressLat;
-    data['address_long'] = this.addressLong;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['itemsprice'] = itemsprice;
+    data['itemsprice2'] = itemsprice2;
+    data['itemsprice3'] = itemsprice3;
+    data['itemsprice4'] = itemsprice4;
+    data['itemsprice5'] = itemsprice5;
+    data['shopownerprice'] = shopownerprice;
+    data['shopownerprice2'] = shopownerprice2;
+    data['shopownerprice3'] = shopownerprice3;
+    data['shopownerprice4'] = shopownerprice4;
+    data['shopownerprice5'] = shopownerprice5;
+    data['fornownerprice'] = fornownerprice;
+    data['fornownerprice2'] = fornownerprice2;
+    data['fornownerprice3'] = fornownerprice3;
+    data['fornownerprice4'] = fornownerprice4;
+    data['fornownerprice5'] = fornownerprice5;
+    data['countitems'] = countitems;
+    data['cart_id'] = cartId;
+    data['cart_userid'] = cartUserid;
+    data['cart_itemid'] = cartItemid;
+    data['cart_orders'] = cartOrders;
+    data['items_id'] = itemsId;
+    data['items_name'] = itemsName;
+    data['items_desc'] = itemsDesc;
+    data['items_image'] = itemsImage;
+    data['items_count'] = itemsCount;
+    data['items_active'] = itemsActive;
+    data['items_price'] = itemsPrice;
+    data['items_price2'] = itemsPrice2;
+    data['items_price3'] = itemsPrice3;
+    data['items_price4'] = itemsPrice4;
+    data['items_price5'] = itemsPrice5;
+    data['shopowner_price'] = shopownerPrice;
+    data['shopowner_price2'] = shopownerPrice2;
+    data['shopowner_price3'] = shopownerPrice3;
+    data['shopowner_price4'] = shopownerPrice4;
+    data['shopowner_price5'] = shopownerPrice5;
+    data['fornowner_price'] = fornownerPrice;
+    data['fornowner_price2'] = fornownerPrice2;
+    data['fornowner_price3'] = fornownerPrice3;
+    data['fornowner_price4'] = fornownerPrice4;
+    data['fornowner_price5'] = fornownerPrice5;
+    data['items_discount'] = itemsDiscount;
+    data['shopowner_discount'] = shopownerDiscount;
+    data['fornowner_dicount'] = fornownerDicount;
+    data['items_date'] = itemsDate;
+    data['items_cat'] = itemsCat;
+    data['branch_code'] = branchCode;
+    data['order_id'] = orderId;
+    data['order_userid'] = orderUserid;
+    data['order_address'] = orderAddress;
+    data['order_type'] = orderType;
+    data['order_pricedelivery'] = orderPricedelivery;
+    data['order_price'] = orderPrice;
+    data['order_totalprice'] = orderTotalprice;
+    data['order_amount_paid'] = orderAmountPaid;
+    data['no_of_installments'] = noOfInstallments;
+    data['order_amount_required'] = orderAmountRequired;
+    data['order_status'] = orderStatus;
+    data['order_branch'] = orderBranch;
+    data['order_datetime'] = orderDatetime;
+    data['address_id'] = addressId;
+    data['address_userid'] = addressUserid;
+    data['address_name'] = addressName;
+    data['address_city'] = addressCity;
+    data['address_street'] = addressStreet;
+    data['address_lat'] = addressLat;
+    data['address_long'] = addressLong;
     return data;
   }
 }

@@ -12,31 +12,9 @@ class CustomChooseContainer extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Container(
-          width: 150,
-          height: 35,
-          decoration: BoxDecoration(boxShadow: const [
-            BoxShadow(
-                // offset: Offset(0, 0),
-                color: Color.fromARGB(255, 187, 186, 186),
-                blurRadius: 1,
-                spreadRadius: 2)
-          ], borderRadius: BorderRadius.circular(5), color: yellow),
-          child: const Center(
-            child: Text(
-              "مسوق",
-              style: TextStyle(
-                  fontFamily: 'ArabicUIDisplay',
-                  color: darkGreen,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-        //*go to market admin page
         GestureDetector(
           onTap: () {
-            Get.to(() => MarketLoginScreen());
+            Get.to(() => const MarketLoginScreen());
           },
           child: Container(
             width: 150,

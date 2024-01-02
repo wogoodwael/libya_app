@@ -7,11 +7,11 @@ import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
 import 'package:libya_bakery/app/presentation/widgets/info_row.dart';
 import 'package:libya_bakery/app/presentation/widgets/phone_row.dart';
 import 'package:libya_bakery/app/presentation/widgets/text_field.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../admin/presentation/screens/menu.dart';
 import '../../../controller/update_info_controller.dart';
 import '../../../core/helper/snack.dart';
 import '../../../core/utils/app_color.dart';
-import '../../../services/MyServices.dart';
 
 // ignore: must_be_immutable
 class PersonalInfoScreen extends StatelessWidget {
@@ -21,10 +21,10 @@ class PersonalInfoScreen extends StatelessWidget {
   TextEditingController lastName = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController mobile = TextEditingController();
-  String? firstNameSaved = MyServices.sharedPreferences.getString("first_name");
-  String? lastNameSaved = MyServices.sharedPreferences.getString("last_name");
-  String? emailSaved = MyServices.sharedPreferences.getString("email");
-  String? mobileSaved = MyServices.sharedPreferences.getString("mobile");
+  String? firstNameSaved = MyServicesApp.sharedPreferences.getString("first_name");
+  String? lastNameSaved = MyServicesApp.sharedPreferences.getString("last_name");
+  String? emailSaved = MyServicesApp.sharedPreferences.getString("email");
+  String? mobileSaved = MyServicesApp.sharedPreferences.getString("mobile");
   UpdateInfoController updateInfoController = Get.put(UpdateInfoController());
 
   @override

@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:libya_bakery/app/services/MyServices.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../admin/core/helper/snack.dart';
 import '../../../../../../admin/core/utils/app_color.dart';
@@ -12,7 +13,6 @@ import '../../../../../../admin/presentation/widgets/info_row.dart';
 import '../../../../../../admin/presentation/widgets/text_field.dart';
 import '../../../../../api_connection/api_connection.dart';
 import '../../../../../core/functions/check_internet.dart';
-import '../../../../../services/MyServices.dart';
 import '../../../../widgets/custom_next.dart';
 import '../../../client/forget_pass.dart';
 import '../../../home/home.dart';
@@ -69,21 +69,21 @@ class _SignInBodyState extends State<SignInBody> {
       if (response.statusCode == 200) {
         var resBodyOfLogin = jsonDecode(response.body);
         if (resBodyOfLogin["status"] == "success") {
-          MyServices.sharedPreferences
+          MyServicesApp.sharedPreferences
               .setString('id', resBodyOfLogin['data']['user_id'].toString());
-          MyServices.sharedPreferences
+          MyServicesApp.sharedPreferences
               .setString('first_name', resBodyOfLogin['data']['first_name']);
-          MyServices.sharedPreferences
+          MyServicesApp.sharedPreferences
               .setString('last_name', resBodyOfLogin['data']['last_name']);
-          MyServices.sharedPreferences
+          MyServicesApp.sharedPreferences
               .setString('email', resBodyOfLogin['data']['email']);
-          MyServices.sharedPreferences
+          MyServicesApp.sharedPreferences
               .setString('mobile', resBodyOfLogin['data']['mobile']);
-          MyServices.sharedPreferences.setString(
+          MyServicesApp.sharedPreferences.setString(
               'branch_code', resBodyOfLogin['data']['branch_code'].toString());
-          MyServices.sharedPreferences.setString(
+          MyServicesApp.sharedPreferences.setString(
               'user_type', resBodyOfLogin['data']['user_type'].toString());
-          MyServices.sharedPreferences.setString(
+          MyServicesApp.sharedPreferences.setString(
               'user_fund', resBodyOfLogin['data']['user_fund'].toString());
           if (resBodyOfLogin['data']['users_approve'] == 1) {
             // // Save "Remember Me" preference
@@ -91,25 +91,25 @@ class _SignInBodyState extends State<SignInBody> {
             Get.offAll(() => const HomeScreen());
           } else {
             Get.to(const OtpScreen(), arguments: [
-              {'id': MyServices.sharedPreferences.getString('id')},
+              {'id': MyServicesApp.sharedPreferences.getString('id')},
               {
                 'first_name':
-                    MyServices.sharedPreferences.getString('first_name')
+                    MyServicesApp.sharedPreferences.getString('first_name')
               },
               {
-                'last_name': MyServices.sharedPreferences.getString('last_name')
+                'last_name': MyServicesApp.sharedPreferences.getString('last_name')
               },
-              {'email': MyServices.sharedPreferences.getString('email')},
-              {'mobile': MyServices.sharedPreferences.getString('mobile')},
+              {'email': MyServicesApp.sharedPreferences.getString('email')},
+              {'mobile': MyServicesApp.sharedPreferences.getString('mobile')},
               {
                 'branch_code':
-                    MyServices.sharedPreferences.getString('branch_code')
+                    MyServicesApp.sharedPreferences.getString('branch_code')
               },
               {
-                'user_type': MyServices.sharedPreferences.getString('user_type')
+                'user_type': MyServicesApp.sharedPreferences.getString('user_type')
               },
               {
-                'user_fund': MyServices.sharedPreferences.getString('user_fund')
+                'user_fund': MyServicesApp.sharedPreferences.getString('user_fund')
               },
             ]);
           }

@@ -8,11 +8,11 @@ import 'package:libya_bakery/app/core/utils/back_image.dart';
 import 'package:libya_bakery/app/presentation/screens/home/home.dart';
 import 'package:libya_bakery/app/presentation/screens/menu.dart';
 import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
 
 import '../../../../../admin/core/utils/app_color.dart';
 import '../../../../api_connection/api_connection.dart';
-import '../../../../services/MyServices.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -57,7 +57,7 @@ class _OtpScreenState extends State<OtpScreen> {
       var res = await http.post(
           Uri.parse(API.changeVerifyCode),
           body: {
-            'email': MyServices.sharedPreferences.getString('email').toString(),
+            'email': MyServicesApp.sharedPreferences.getString('email').toString(),
           }
       );
       if (res.statusCode == 200) {
@@ -82,7 +82,7 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
-      print(MyServices.sharedPreferences.getString('email').toString());
+      print(MyServicesApp.sharedPreferences.getString('email').toString());
     }
     return Scaffold(
         backgroundColor: offwhite,

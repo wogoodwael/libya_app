@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:libya_bakery/app/presentation/screens/cart/card_order.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../api_connection/api_connection.dart';
 import '../../../../controller/favorite_controller.dart';
 import '../../../../controller/product_details_controller.dart';
 import '../../../../core/utils/app_color.dart';
 import '../../../../models/items_model.dart';
-import '../../../../services/MyServices.dart';
 
 class CustomListItems extends StatefulWidget {
   final ItemsModel itemsModel;
@@ -34,8 +34,8 @@ class _CustomListItemsState extends State<CustomListItems> {
   @override
   Widget build(BuildContext context) {
     Get.put(ProductDetailsControllerImp());
-    var branchCode = int.parse(MyServices.sharedPreferences.getString("branch_code").toString());
-    var userType = int.parse(MyServices.sharedPreferences.getString("user_type").toString());
+    var branchCode = int.parse(MyServicesApp.sharedPreferences.getString("branch_code").toString());
+    var userType = int.parse(MyServicesApp.sharedPreferences.getString("user_type").toString());
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       elevation: 3,

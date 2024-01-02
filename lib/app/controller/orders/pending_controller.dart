@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import '../../../admin/handling_data/statusrequest.dart';
+import '../../../admin/models/orders_model.dart';
 import '../../core/functions/handling_data.dart';
 import '../../data/datasource/remote/orders/pending_data.dart';
-import '../../models/orders_model.dart';
 import '../../services/MyServices.dart';
 
 class PendingOrdersController extends GetxController{
@@ -43,7 +43,7 @@ class PendingOrdersController extends GetxController{
     data.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await pendingOrdersData.getData(int.parse(MyServices.sharedPreferences.getString('id').toString()));
+    var response = await pendingOrdersData.getData(int.parse(MyServicesApp.sharedPreferences.getString('id').toString()));
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
       statusRequest = StatusRequest.failure;

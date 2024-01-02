@@ -13,11 +13,11 @@ class UserController extends GetxController{
 
   getData() async{
     statusRequest = StatusRequest.loading;
-    var response = await userData.getData(MyServices.sharedPreferences.getString("email").toString());
+    var response = await userData.getData(MyServicesApp.sharedPreferences.getString("email").toString());
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       // data.addAll(response['data']);
-      MyServices.sharedPreferences.setString('user_fund', response['userFund'].toString());
+      MyServicesApp.sharedPreferences.setString('user_fund', response['userFund'].toString());
     } else {
       statusRequest = StatusRequest.serverfailure;
     }

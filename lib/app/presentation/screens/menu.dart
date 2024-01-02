@@ -6,9 +6,9 @@ import 'package:libya_bakery/app/presentation/screens/home/home.dart';
 import 'package:libya_bakery/app/presentation/screens/orders/previous_orders.dart';
 import 'package:libya_bakery/app/presentation/screens/settings/problems.dart';
 import 'package:libya_bakery/app/presentation/widgets/menu_row.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 
 import '../../core/utils/app_color.dart';
-import '../../services/MyServices.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -33,7 +33,7 @@ class MenuScreen extends StatelessWidget {
             )),
         TextButton(
             onPressed: () {
-              MyServices.sharedPreferences.clear();
+              MyServicesApp.sharedPreferences.clear();
               Get.offAll(() => const SignInScreen());
             },
             child: const Text(

@@ -122,7 +122,7 @@ class OrderDetails extends StatelessWidget {
                             ),
                             child: Container(
                                 width: .90 * MediaQuery.sizeOf(context).width,
-                                height: .22 * MediaQuery.sizeOf(context).height,
+                                height: .32 * MediaQuery.sizeOf(context).height,
                                 decoration: BoxDecoration(
                                     boxShadow: const [
                                       BoxShadow(
@@ -169,6 +169,37 @@ class OrderDetails extends StatelessWidget {
                                     SizedBox(
                                       height: .01 * MediaQuery.sizeOf(context).height,
                                     ),
+                                    if(controller.ordersModel.noOfInstallments != null)
+                                    Text(
+                                      " عدد الدفعات___________________________${controller.ordersModel.noOfInstallments} د.ل",
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    Text(
+                                      " المدفوع___________________________${controller.ordersModel.orderAmountPaid} د.ل",
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    Text(
+                                      " المتبقي___________________________${controller.ordersModel.orderAmountRequired} د.ل",
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
                                     Text(
                                       controller.ordersModel.orderType == 0 ?
                                       "طريقة الدفع___________________________دفع عند المتجر"
@@ -196,7 +227,9 @@ class OrderDetails extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                ))),
+                                )
+                            )
+                        ),
                       ],
                     ),
                   )

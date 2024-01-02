@@ -14,8 +14,8 @@ class MyFavoriteController extends GetxController {
     data.clear();
     statusRequest = StatusRequest.loading;
     var response = await myFavoriteData.getData(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
-        MyServices.sharedPreferences.getString('branch_code').toString()
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
+        MyServicesApp.sharedPreferences.getString('branch_code').toString()
     );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {

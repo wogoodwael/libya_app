@@ -16,7 +16,7 @@ class BranchController extends GetxController{
   late StatusRequest statusRequest;
 
   chooseBranch(int branchCode) async{
-    if(branchCode.toString() == MyServices.sharedPreferences.getString("branch_code")){
+    if(branchCode.toString() == MyServicesApp.sharedPreferences.getString("branch_code")){
       Get.back();
       Get.snackbar(
         "",
@@ -27,13 +27,13 @@ class BranchController extends GetxController{
       );
     } else {
       statusRequest = StatusRequest.loading;
-      var response = await branchData.chooseBranch(int.parse(MyServices.sharedPreferences.getString('id').toString()),branchCode);
+      var response = await branchData.chooseBranch(int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),branchCode);
       statusRequest = handlingData(response);
       if (response['status'] == 'failure') {
         statusRequest = StatusRequest.failure;
       }  else{
         if (StatusRequest.success == statusRequest) {
-          MyServices.sharedPreferences.setString('branch_code', '$branchCode');
+          MyServicesApp.sharedPreferences.setString('branch_code', '$branchCode');
           homeControllerImp.items.clear();
           homeControllerImp.categories.clear();
           homeControllerImp.getData();

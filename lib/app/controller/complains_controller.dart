@@ -15,7 +15,7 @@ class ComplainsController extends GetxController{
     data.clear();
     statusRequest = StatusRequest.loading;
     var response = await complainsData.sendComplain(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
         complain,
         branchCode
     );
@@ -35,7 +35,7 @@ class ComplainsController extends GetxController{
   getComplains() async{
     data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await complainsData.getComplains(int.parse(MyServices.sharedPreferences.getString('id').toString()));
+    var response = await complainsData.getComplains(int.parse(MyServicesApp.sharedPreferences.getString('id').toString()));
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
       statusRequest = StatusRequest.failure;

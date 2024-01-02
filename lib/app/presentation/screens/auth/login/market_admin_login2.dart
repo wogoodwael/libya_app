@@ -7,12 +7,12 @@ import 'package:libya_bakery/admin/presentation/widgets/custom_next.dart';
 import 'package:libya_bakery/app/core/utils/logo.dart';
 import 'package:libya_bakery/app/presentation/widgets/info_row.dart';
 import 'package:libya_bakery/app/presentation/widgets/text_field.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../api_connection/api_connection.dart';
 import '../../../../controller/address/add_details_controller.dart';
 import '../../../../core/helper/snack.dart';
 import '../../../../core/utils/app_color.dart';
 import '../../../../handling_data/handlng_data_view.dart';
-import '../../../../services/MyServices.dart';
 
 class MarketLoginScreen2 extends StatefulWidget {
   const MarketLoginScreen2({super.key});
@@ -30,7 +30,7 @@ class _MarketLoginScreen2State extends State<MarketLoginScreen2> {
           Uri.parse(API.validateStoreName),
           body: {
             'store_name':controller.name!.text.trim(),
-            "email" : MyServices.sharedPreferences.getString("email").toString()
+            "email" : MyServicesApp.sharedPreferences.getString("email").toString()
           }
       );
       if (res.statusCode == 200) {

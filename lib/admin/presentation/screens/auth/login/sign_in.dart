@@ -24,7 +24,6 @@ class SignInScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     tabSection(context),
-                    // Positioned(top: 20, child: tabSection(context)),
                   ],
                 ),
               )),

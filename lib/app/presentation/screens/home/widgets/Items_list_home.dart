@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../api_connection/api_connection.dart';
 import '../../../../controller/home_controller.dart';
 import '../../../../models/items_model.dart';
-import '../../../../services/MyServices.dart';
 
 class ItemsListHome extends GetView<HomeControllerImp> {
   const ItemsListHome({super.key});
@@ -36,7 +36,7 @@ class Items extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var userType = int.parse(MyServices.sharedPreferences.getString("user_type").toString());
+    var userType = int.parse(MyServicesApp.sharedPreferences.getString("user_type").toString());
     return Card(
       color: Colors.white,
       child: Stack(

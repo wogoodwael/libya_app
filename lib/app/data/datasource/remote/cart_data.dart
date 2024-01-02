@@ -1,5 +1,5 @@
 import '../../../api_connection/api_connection.dart';
-import '../../../core/class/crud.dart';
+import '../../../../../admin/core/class/crud.dart';
 
 class  CartData {
   Crud crud;

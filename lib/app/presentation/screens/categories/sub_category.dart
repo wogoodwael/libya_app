@@ -19,6 +19,7 @@ class SubCategoryScreen extends GetView<ItemsControllerImp> {
   @override
   Widget build(BuildContext context) {
     FavoriteController favoriteController = Get.put(FavoriteController());
+    Get.put(ItemsControllerImp());
     Map<String, dynamic> argumentsData = Get.arguments;
     CategoriesModel categoriesModel = argumentsData['categoriesModel'];
     return Scaffold(
@@ -40,7 +41,8 @@ class SubCategoryScreen extends GetView<ItemsControllerImp> {
                       color: darkGreen,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(40),
-                          bottomRight: Radius.circular(40))),
+                          bottomRight: Radius.circular(40))
+                  ),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

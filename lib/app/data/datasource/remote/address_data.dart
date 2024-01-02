@@ -1,7 +1,5 @@
-import 'package:get/get.dart';
-
+import '../../../../admin/core/class/crud.dart';
 import '../../../api_connection/api_connection.dart';
-import '../../../core/class/crud.dart';
 
 class AddressData {
   Crud crud;

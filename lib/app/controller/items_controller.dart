@@ -24,7 +24,7 @@ class ItemsControllerImp extends ItemsController{
   @override
   late StatusRequest statusRequest;
   late ItemsModel itemsModel2;
-  String branchCode = MyServices.sharedPreferences.getString('branch_code').toString();
+  String branchCode = MyServicesApp.sharedPreferences.getString('branch_code').toString();
 
   @override
   void onInit() {
@@ -56,7 +56,7 @@ class ItemsControllerImp extends ItemsController{
     statusRequest = StatusRequest.loading;
     var response = await itemsData.getData(
         categoryid,
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
         branchCode
     );
     statusRequest = handlingData(response);
@@ -65,10 +65,10 @@ class ItemsControllerImp extends ItemsController{
     }  else{
       if (StatusRequest.success == statusRequest) {
         data.addAll(response['data']);
-        for (final key in MyServices.sharedPreferences.getKeys()) {
+        for (final key in MyServicesApp.sharedPreferences.getKeys()) {
           for(int i = 0; i<=26;i++){
             if (key.startsWith('item_count_')) {
-              MyServices.sharedPreferences.setInt('item_count_$i', 0);
+              MyServicesApp.sharedPreferences.setInt('item_count_$i', 0);
             }
           }
         }

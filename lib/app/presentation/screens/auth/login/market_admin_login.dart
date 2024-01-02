@@ -8,10 +8,10 @@ import 'package:libya_bakery/app/core/utils/logo.dart';
 import 'package:libya_bakery/app/presentation/screens/address/add.dart';
 import 'package:libya_bakery/app/presentation/widgets/info_row.dart';
 import 'package:libya_bakery/app/presentation/widgets/text_field.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../../admin/core/utils/app_color.dart';
 import '../../../../api_connection/api_connection.dart';
 import '../../../../core/helper/snack.dart';
-import '../../../../services/MyServices.dart';
 import '../../../widgets/phone_row.dart';
 
 class MarketLoginScreen extends StatefulWidget {
@@ -75,22 +75,22 @@ class _MarketLoginScreenState extends State<MarketLoginScreen> {
         if (resBodyOfSignUp['status'] == 'success') {
           showErrorSnack(context, "Sign Up Successfully");
 
-          MyServices.sharedPreferences.setString('id', resBodyOfSignUp['data']['user_id'].toString());
-          MyServices.sharedPreferences.setString('first_name', resBodyOfSignUp['data']['first_name']);
-          MyServices.sharedPreferences.setString('last_name', resBodyOfSignUp['data']['last_name']);
-          MyServices.sharedPreferences.setString('email', resBodyOfSignUp['data']['email']);
-          MyServices.sharedPreferences.setString('mobile', resBodyOfSignUp['data']['mobile']);
-          MyServices.sharedPreferences.setString('branch_code', resBodyOfSignUp['data']['branch_code'].toString());
-          MyServices.sharedPreferences.setString('user_type', resBodyOfSignUp['data']['user_type'].toString());
+          MyServicesApp.sharedPreferences.setString('id', resBodyOfSignUp['data']['user_id'].toString());
+          MyServicesApp.sharedPreferences.setString('first_name', resBodyOfSignUp['data']['first_name']);
+          MyServicesApp.sharedPreferences.setString('last_name', resBodyOfSignUp['data']['last_name']);
+          MyServicesApp.sharedPreferences.setString('email', resBodyOfSignUp['data']['email']);
+          MyServicesApp.sharedPreferences.setString('mobile', resBodyOfSignUp['data']['mobile']);
+          MyServicesApp.sharedPreferences.setString('branch_code', resBodyOfSignUp['data']['branch_code'].toString());
+          MyServicesApp.sharedPreferences.setString('user_type', resBodyOfSignUp['data']['user_type'].toString());
 
           Get.to(() => const AddAddressView(), arguments: [
-            {'id' : MyServices.sharedPreferences.getString('id')},
-            {'first_name' : MyServices.sharedPreferences.getString('first_name')},
-            {'last_name' : MyServices.sharedPreferences.getString('last_name')},
-            {'email' : MyServices.sharedPreferences.getString('email')},
-            {'mobile' : MyServices.sharedPreferences.getString('mobile')},
-            {'branch_code' : MyServices.sharedPreferences.getString('branch_code')},
-            {'user_type' : MyServices.sharedPreferences.getString('user_type')},
+            {'id' : MyServicesApp.sharedPreferences.getString('id')},
+            {'first_name' : MyServicesApp.sharedPreferences.getString('first_name')},
+            {'last_name' : MyServicesApp.sharedPreferences.getString('last_name')},
+            {'email' : MyServicesApp.sharedPreferences.getString('email')},
+            {'mobile' : MyServicesApp.sharedPreferences.getString('mobile')},
+            {'branch_code' : MyServicesApp.sharedPreferences.getString('branch_code')},
+            {'user_type' : MyServicesApp.sharedPreferences.getString('user_type')},
           ]);
         } else {
           showErrorSnack(context, "Error, Try Again");

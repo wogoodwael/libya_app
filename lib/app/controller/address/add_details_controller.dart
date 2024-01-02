@@ -37,8 +37,8 @@ class AddressDetailsController extends GetxController{
     statusRequest = StatusRequest.loading;
     update();
     var response = await addressData.addData(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
-        MyServices.sharedPreferences.getString("first_name").toString(),
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
+        MyServicesApp.sharedPreferences.getString("first_name").toString(),
         city!.text,
         street!.text,
         lat!,
@@ -57,7 +57,7 @@ class AddressDetailsController extends GetxController{
     statusRequest = StatusRequest.loading;
     update();
     var response = await addressData.addDataUser(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
         name!.text,
         city!.text,
         street!.text,

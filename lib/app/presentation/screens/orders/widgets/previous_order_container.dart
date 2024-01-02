@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:libya_bakery/app/presentation/screens/orders/previous_order_details.dart';
+import '../../../../../admin/models/orders_model.dart';
 import '../../../../controller/orders/pending_controller.dart';
 import '../../../../core/utils/app_color.dart';
-import '../../../../models/orders_model.dart';
 
 class PreviousOrderContainer extends GetView<PendingOrdersController> {
   const PreviousOrderContainer({super.key, required this.listData});

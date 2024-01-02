@@ -14,10 +14,10 @@ import 'package:libya_bakery/app/presentation/widgets/text_field.dart';
 import 'package:libya_bakery/app/core/helper/snack.dart';
 import 'package:libya_bakery/app/presentation/screens/auth/otp/otp.dart';
 import 'package:libya_bakery/app/presentation/widgets/info_row.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 
 import '../../../../../../admin/core/utils/app_color.dart';
 import '../../../../../api_connection/api_connection.dart';
-import '../../../../../services/MyServices.dart';
 
 class SignUpBody extends StatefulWidget {
   const SignUpBody({super.key});
@@ -82,22 +82,22 @@ class _SignUpBodyState extends State<SignUpBody> {
         if (resBodyOfSignUp['status'] == 'success') {
           showErrorSnack(context, "Sign Up Successfully");
 
-          MyServices.sharedPreferences.setString('id', resBodyOfSignUp['data']['user_id'].toString());
-          MyServices.sharedPreferences.setString('first_name', resBodyOfSignUp['data']['first_name']);
-          MyServices.sharedPreferences.setString('last_name', resBodyOfSignUp['data']['last_name']);
-          MyServices.sharedPreferences.setString('email', resBodyOfSignUp['data']['email']);
-          MyServices.sharedPreferences.setString('mobile', resBodyOfSignUp['data']['mobile']);
-          MyServices.sharedPreferences.setString('branch_code', resBodyOfSignUp['data']['branch_code'].toString());
-          MyServices.sharedPreferences.setString('user_type', resBodyOfSignUp['data']['user_type'].toString());
+          MyServicesApp.sharedPreferences.setString('id', resBodyOfSignUp['data']['user_id'].toString());
+          MyServicesApp.sharedPreferences.setString('first_name', resBodyOfSignUp['data']['first_name']);
+          MyServicesApp.sharedPreferences.setString('last_name', resBodyOfSignUp['data']['last_name']);
+          MyServicesApp.sharedPreferences.setString('email', resBodyOfSignUp['data']['email']);
+          MyServicesApp.sharedPreferences.setString('mobile', resBodyOfSignUp['data']['mobile']);
+          MyServicesApp.sharedPreferences.setString('branch_code', resBodyOfSignUp['data']['branch_code'].toString());
+          MyServicesApp.sharedPreferences.setString('user_type', resBodyOfSignUp['data']['user_type'].toString());
 
           Get.to(() => const OtpScreen(), arguments: [
-            {'id' : MyServices.sharedPreferences.getString('id')},
-            {'first_name' : MyServices.sharedPreferences.getString('first_name')},
-            {'last_name' : MyServices.sharedPreferences.getString('last_name')},
-            {'email' : MyServices.sharedPreferences.getString('email')},
-            {'mobile' : MyServices.sharedPreferences.getString('mobile')},
-            {'branch_code' : MyServices.sharedPreferences.getString('branch_code')},
-            {'user_type' : MyServices.sharedPreferences.getString('user_type')},
+            {'id' : MyServicesApp.sharedPreferences.getString('id')},
+            {'first_name' : MyServicesApp.sharedPreferences.getString('first_name')},
+            {'last_name' : MyServicesApp.sharedPreferences.getString('last_name')},
+            {'email' : MyServicesApp.sharedPreferences.getString('email')},
+            {'mobile' : MyServicesApp.sharedPreferences.getString('mobile')},
+            {'branch_code' : MyServicesApp.sharedPreferences.getString('branch_code')},
+            {'user_type' : MyServicesApp.sharedPreferences.getString('user_type')},
           ]);
           setState(() {
             firstName.clear();
@@ -280,7 +280,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                 Padding(
                   padding: EdgeInsets.only(right: 10, top: 20),
                   child: Text(
-                    " هل انت مسوق ام صاحب متجر ؟",
+                    " هل انت صاحب متجر ؟",
                     style: TextStyle(
                         fontSize: 17,
                         color: darkGreen,
@@ -292,13 +292,8 @@ class _SignUpBodyState extends State<SignUpBody> {
             const SizedBox(
               height: 20,
             ),
-            //*go to market manager page
             const CustomChooseContainer(),
-
-            //todo: upload to server and shared pref
-
             const CustomCheckBox(),
-
             const SizedBox(
               height: 20,
             ),

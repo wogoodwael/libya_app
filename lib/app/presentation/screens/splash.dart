@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:libya_bakery/app/presentation/screens/auth/login/sign_in.dart';
 import 'package:libya_bakery/app/presentation/screens/on_boarding.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../core/utils/app_color.dart';
-import '../../services/MyServices.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,11 +17,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    MyServices.sharedPreferences.getBool('firstTime') == true
+    MyServicesApp.sharedPreferences.getBool('firstTime') == true
         ?
     Future.delayed(const Duration(seconds: 5), () {
       Get.offAll(() => const OnBoardingScreen());
-      MyServices.sharedPreferences.setBool('firstTime', false);
+      MyServicesApp.sharedPreferences.setBool('firstTime', false);
     })
         :
     Future.delayed(const Duration(seconds: 5), () {

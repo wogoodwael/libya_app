@@ -28,7 +28,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     update();
     itemsID = itemId ?? 0;
     var response = await cartData.addToCart(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
         itemId
     );
     statusRequest = handlingData(response);
@@ -41,7 +41,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
         // If the item is in the cart, increase its quantity
         itemCounts[itemId] = existingCount + 1;
         // Save the updated count to SharedPreferences
-        MyServices.sharedPreferences.setInt(
+        MyServicesApp.sharedPreferences.setInt(
             'item_count_$itemId', itemCounts[itemId] ?? 0);
         Get.rawSnackbar(title: 'Added Successfully',
             messageText: Text('$itemName has been added to your Cart list',
@@ -57,7 +57,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.deleteFromCart(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
         itemsId);
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
@@ -72,7 +72,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
           itemCounts.remove(itemsId);
         }
         // Save the updated count to SharedPreferences
-        MyServices.sharedPreferences.setInt(
+        MyServicesApp.sharedPreferences.setInt(
             'item_count_$itemsId', itemCounts[itemsId] ?? 0);
         Get.rawSnackbar(title: 'Deleted Successfully',
             messageText: Text(
@@ -106,7 +106,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   getCountItems(itemsId) async {
     statusRequest = StatusRequest.loading;
     var response = await cartData.getCountItems(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
         itemsId);
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
@@ -129,10 +129,10 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   @override
   void onInit() {
     // Load item counts from SharedPreferences when the app starts
-    for (final key in MyServices.sharedPreferences.getKeys()) {
+    for (final key in MyServicesApp.sharedPreferences.getKeys()) {
       if (key.startsWith('item_count_')) {
         final itemId = int.parse(key.substring(11));
-        final count = MyServices.sharedPreferences.getInt(key) ?? 0;
+        final count = MyServicesApp.sharedPreferences.getInt(key) ?? 0;
         itemCounts[itemId] = count;
       }
     }
@@ -147,10 +147,10 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   }
 
   void clearCartCounts() {
-    for (final key in MyServices.sharedPreferences.getKeys()) {
+    for (final key in MyServicesApp.sharedPreferences.getKeys()) {
       for (int i = 0; i <= 26; i++) {
         if (key.startsWith('item_count_')) {
-          MyServices.sharedPreferences.setInt('item_count_$i', 0);
+          MyServicesApp.sharedPreferences.setInt('item_count_$i', 0);
         }
       }
       // update();

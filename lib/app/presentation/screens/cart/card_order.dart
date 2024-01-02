@@ -5,11 +5,11 @@ import 'package:libya_bakery/app/core/utils/back_image.dart';
 import 'package:libya_bakery/app/presentation/screens/home/home.dart';
 import 'package:libya_bakery/app/presentation/screens/menu.dart';
 import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../admin/core/utils/app_color.dart';
 import '../../../controller/address/view_controller.dart';
 import '../../../controller/cart_controller.dart';
 import '../../../handling_data/handlng_data_view.dart';
-import '../../../services/MyServices.dart';
 import 'widgets/card_items_count.dart';
 import 'confirm_order.dart';
 import 'widgets/custom_cart_items_list.dart';
@@ -22,8 +22,8 @@ class CartOrders extends StatelessWidget {
   Widget build(BuildContext context) {
     CartController cartController = Get.put(CartController());
     AddressViewController addressViewController = Get.put(AddressViewController());
-    var branchCode = int.parse(MyServices.sharedPreferences.getString("branch_code").toString());
-    var userType = int.parse(MyServices.sharedPreferences.getString("user_type").toString());
+    var branchCode = int.parse(MyServicesApp.sharedPreferences.getString("branch_code").toString());
+    var userType = int.parse(MyServicesApp.sharedPreferences.getString("user_type").toString());
     return WillPopScope(
       onWillPop: (){
         Get.off(const HomeScreen());

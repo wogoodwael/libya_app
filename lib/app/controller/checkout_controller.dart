@@ -16,6 +16,7 @@ class CheckoutController extends GetxController {
   CheckoutData checkoutData = Get.put(CheckoutData(Get.find()));
   StatusRequest statusRequest = StatusRequest.success;
   TextEditingController ta2sitController = TextEditingController();
+  TextEditingController noOfTa2sitController = TextEditingController();
 
   String? paymentMethod;
   String? deliveryType;
@@ -46,7 +47,7 @@ class CheckoutController extends GetxController {
   deleteAllFromCart(int userId) async {
     statusRequest = StatusRequest.loading;
     var response = await checkoutData.deleteAllFromCart(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()));
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()));
     statusRequest = handlingData(response);
     try {
       if (response['status'] == 'failure') {
@@ -69,12 +70,12 @@ class CheckoutController extends GetxController {
     update();
   }
 
-  checkout(userId, String amountPaid) async {
+  checkout(userId, String amountPaid, String noOfInstallments) async {
     DateTime now = DateTime.now();
     if (kDebugMode) {
       print(now.hour);
     }
-    if (now.hour >= 0 && now.hour < 12) {
+    if (now.hour >= 0 && now.hour > 12) {
       Get.snackbar("", "",
           titleText: const Text(
             "خطأ",
@@ -97,16 +98,17 @@ class CheckoutController extends GetxController {
       if(paymentMethod == null) return Get.snackbar("Error", 'Please choose Payment Method');
       statusRequest = StatusRequest.loading;
       Map data = {
-        "userid": MyServices.sharedPreferences.getString('id').toString(),
+        "userid": MyServicesApp.sharedPreferences.getString('id').toString(),
         "addressid": shippingId.toString(),
         "ordertype": deliveryType.toString(),
         "orderpricedelivery": "5",
         "order_amountPaid": amountPaid,
+        "order_noofinstallments": noOfInstallments,
         "order_amountRequired": (double.tryParse(priceorders)! - num.parse(amountPaid)).toString(),
         "orderprice": priceorders,
         "orderpaymentmethod" : paymentMethod,
         "orderbranch":
-            MyServices.sharedPreferences.getString("branch_code").toString(),
+            MyServicesApp.sharedPreferences.getString("branch_code").toString(),
       };
       var response = await checkoutData.getData(data);
       statusRequest = handlingData(response);
@@ -155,7 +157,7 @@ class CheckoutController extends GetxController {
   getShippingAddress() async {
     statusRequest = StatusRequest.loading;
     var response = await addressData.getData(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()));
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()));
     statusRequest = handlingData(response);
     try {
       if (response['status'] == 'failure') {

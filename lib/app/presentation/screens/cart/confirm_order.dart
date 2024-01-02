@@ -5,12 +5,12 @@ import 'package:libya_bakery/app/core/utils/back_image.dart';
 import 'package:libya_bakery/app/core/utils/person.dart';
 import 'package:libya_bakery/app/presentation/screens/menu.dart';
 import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../controller/cart_controller.dart';
 import '../../../controller/checkout_controller.dart';
 import '../../../controller/user_controller.dart';
 import '../../../core/helper/snack.dart';
 import '../../../handling_data/handlng_data_view.dart';
-import '../../../services/MyServices.dart';
 import '../../widgets/payment_method_button.dart';
 import '../address/address_view.dart';
 import '../address/custom_shipping_card.dart';
@@ -29,8 +29,8 @@ class ConfirmOrders extends StatefulWidget {
 class _ConfirmOrdersState extends State<ConfirmOrders> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   CartController cartController = Get.put(CartController());
-  var branchCode = int.parse(MyServices.sharedPreferences.getString("branch_code").toString());
-  var userType = int.parse(MyServices.sharedPreferences.getString("user_type").toString());
+  var branchCode = int.parse(MyServicesApp.sharedPreferences.getString("branch_code").toString());
+  var userType = int.parse(MyServicesApp.sharedPreferences.getString("user_type").toString());
   CheckoutController controller = Get.put(CheckoutController());
   bool visible = false;
   bool ta2sitVisible = false;
@@ -482,7 +482,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                         ),
                         child: Container(
                           width: .90 * MediaQuery.sizeOf(context).width,
-                          height: .15 * MediaQuery.sizeOf(context).height,
+                          height: .25 * MediaQuery.sizeOf(context).height,
                           decoration: BoxDecoration(boxShadow: const [
                             BoxShadow(
                               color: Color.fromARGB(255, 121, 119, 119),
@@ -496,7 +496,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                 const Padding(
                                   padding: EdgeInsets.only(top: 15, right: 5),
                                   child: Text(
-                                    " : الدفعه اللتي تريد دفعها",
+                                    " : الدفعات",
                                     style: TextStyle(
                                         color: darkGreen,
                                         fontFamily: 'ArabicUIDisplay',
@@ -515,8 +515,22 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                     height: .07 * MediaQuery.sizeOf(context).height,
                                     child: TextField(
                                       controller: controller.ta2sitController,
+                                      textDirection: TextDirection.rtl,
                                       decoration: const InputDecoration(
-                                        hintText: "1000"
+                                        hintText: "المبلغ الذي تريد دفعه",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: SizedBox(
+                                    width: .6 * MediaQuery.sizeOf(context).width,
+                                    height: .07 * MediaQuery.sizeOf(context).height,
+                                    child: TextField(
+                                      controller: controller.noOfTa2sitController,
+                                      textDirection: TextDirection.rtl,
+                                      decoration: const InputDecoration(
+                                        hintText: "عدد الدفعات",
                                       ),
                                     ),
                                   ),
@@ -534,8 +548,9 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                         onTap: () {
                           if(button1 == true || button2 == true){
                             controller.checkout(
-                                int.parse(MyServices.sharedPreferences.getString("id").toString()),
-                                controller.ta2sitController.text
+                                int.parse(MyServicesApp.sharedPreferences.getString("id").toString()),
+                                controller.ta2sitController.text,
+                                controller.noOfTa2sitController.text,
                             );
                             userController.getData();
                             button1 = false;

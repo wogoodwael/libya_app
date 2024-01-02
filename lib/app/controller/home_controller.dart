@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../admin/handling_data/statusrequest.dart';
 import '../core/functions/handling_data.dart';
 import '../data/datasource/remote/home_data.dart';
 import '../models/items_model.dart';
 import '../presentation/screens/categories/sub_category.dart';
 import '../presentation/screens/search_screen.dart';
-import '../services/MyServices.dart';
 
 abstract class HomeController extends SearchMixController{
   getData();
@@ -14,9 +14,7 @@ abstract class HomeController extends SearchMixController{
 }
 
 class HomeControllerImp extends HomeController{
-  @override
-  HomeData homeData = HomeData(Get.find());
-  var branchCode = int.parse(MyServices.sharedPreferences.getString("branch_code").toString());
+  var branchCode = int.parse(MyServicesApp.sharedPreferences.getString("branch_code").toString());
 
   //list with all categories data (name - image - ...)
   List categories = [];
@@ -79,7 +77,7 @@ class SearchMixController extends GetxController{
     statusRequestSearch = StatusRequest.loading;
     var response = await homeData.searchData(
         search!.text,
-        MyServices.sharedPreferences.getString("branch_code").toString()
+        MyServicesApp.sharedPreferences.getString("branch_code").toString()
     );
     statusRequestSearch = handlingData(response);
     if (StatusRequest.success == statusRequestSearch) {

@@ -65,7 +65,7 @@ class CustomLoginContainer extends StatelessWidget {
       width: .80 * MediaQuery
           .sizeOf(context)
           .width,
-      height: 35,
+      height: 60,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(5)),
       child: TextFormField(

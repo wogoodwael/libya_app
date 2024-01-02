@@ -21,9 +21,9 @@ class FavoriteController extends GetxController{
     data.clear();
     statusRequest = StatusRequest.loading;
     var response = await favoriteData.addFavorite(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
         itemsId,
-        MyServices.sharedPreferences.getString('branch_code').toString()
+        MyServicesApp.sharedPreferences.getString('branch_code').toString()
     );
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
@@ -40,7 +40,7 @@ class FavoriteController extends GetxController{
   removeFavorite(itemsId) async{
     data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await favoriteData.removeFavorite(int.parse(MyServices.sharedPreferences.getString('id').toString()), itemsId);
+    var response = await favoriteData.removeFavorite(int.parse(MyServicesApp.sharedPreferences.getString('id').toString()), itemsId);
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
       statusRequest = StatusRequest.failure;

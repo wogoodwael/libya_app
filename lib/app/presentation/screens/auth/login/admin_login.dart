@@ -1,8 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:libya_bakery/admin/data/services/api.dart';
+import 'package:libya_bakery/admin/presentation/screens/admin/control.dart';
 import 'package:libya_bakery/app/presentation/screens/client/forget_pass.dart';
 import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
 import 'package:libya_bakery/app/presentation/widgets/text_field.dart';
@@ -14,8 +15,6 @@ import '../../../../../admin/presentation/widgets/info_row.dart';
 import '../../../../api_connection/api_connection.dart';
 import '../../../../core/functions/check_internet.dart';
 import '../../../../core/helper/snack.dart';
-import '../../../../services/MyServices.dart';
-import '../../home/home.dart';
 import '../otp/otp.dart';
 
 class AdminLoginScreen extends StatefulWidget {
@@ -85,9 +84,8 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
           MyServices.sharedPreferences.setString(
               'user_type', resBodyOfLogin['data']['user_type'].toString());
           if (resBodyOfLogin['data']['users_approve'] == 1) {
-            // // Save "Remember Me" preference
             saveRememberMe(rememberMe);
-            Get.offAll(() => const HomeScreen());
+            Get.offAll(() => ControlScreen());
           } else {
             Get.to(const OtpScreen(), arguments: [
               {'id': MyServices.sharedPreferences.getString('id')},

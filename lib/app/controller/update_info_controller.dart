@@ -11,7 +11,7 @@ class UpdateInfoController extends GetxController{
   updateUserInfo(String firstName, String lastName, String email, String mobile) async{
     statusRequest = StatusRequest.loading;
     var response = await updateInfoData.updateData(
-        int.parse(MyServices.sharedPreferences.getString("id").toString()),
+        int.parse(MyServicesApp.sharedPreferences.getString("id").toString()),
         firstName,
         lastName,
         email,

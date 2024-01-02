@@ -9,8 +9,8 @@ import 'package:libya_bakery/app/presentation/screens/client/forget_pass.dart';
 import 'package:libya_bakery/app/presentation/screens/client/personal_info.dart';
 import 'package:libya_bakery/app/presentation/screens/client/widgets/profile_row.dart';
 import 'package:libya_bakery/app/presentation/screens/menu.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../admin/core/utils/app_color.dart';
-import '../../../services/MyServices.dart';
 import '../auth/login/sign_in.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -46,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
             )),
         TextButton(
             onPressed: () {
-              MyServices.sharedPreferences.clear();
+              MyServicesApp.sharedPreferences.clear();
               Get.offAll(() => const SignInScreen());
             },
             child: const Text(
@@ -64,9 +64,9 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     UserController userController = Get.put(UserController());
     var userType = int.parse(
-        MyServices.sharedPreferences.getString("user_type").toString());
+        MyServicesApp.sharedPreferences.getString("user_type").toString());
     var userFund = double.parse(
-        MyServices.sharedPreferences.getString("user_fund").toString());
+        MyServicesApp.sharedPreferences.getString("user_fund").toString());
     return Scaffold(
         backgroundColor: offwhite,
         key: scaffoldKey,
@@ -178,8 +178,8 @@ class ProfileScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     userType == 1
-                        ? '${MyServices.sharedPreferences.getString("first_name").toString()} ${MyServices.sharedPreferences.getString("last_name").toString()}'
-                        : MyServices.sharedPreferences
+                        ? '${MyServicesApp.sharedPreferences.getString("first_name").toString()} ${MyServicesApp.sharedPreferences.getString("last_name").toString()}'
+                        : MyServicesApp.sharedPreferences
                             .getString("first_name")
                             .toString(),
                     style: const TextStyle(

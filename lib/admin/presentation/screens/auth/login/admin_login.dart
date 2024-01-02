@@ -172,7 +172,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                 padding: const EdgeInsets.only(right: 20),
                 child: CustomTextField(
                   isNumber: false,
-                  height: 35,
+                  height: 60,
                   secure: false, controller: email,),
               ),
               Padding(
@@ -188,7 +188,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                 padding: const EdgeInsets.only(right: 20),
                 child: CustomTextField(
                   isNumber: false,
-                  height: 35,
+                  height: 60,
                   secure: false,
                   perfix: password
                       ? IconButton(

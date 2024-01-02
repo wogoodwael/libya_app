@@ -28,7 +28,7 @@ class AddressViewController extends GetxController{
 
   getData() async{
     statusRequest = StatusRequest.loading;
-    var response = await addressData.getData(int.parse(MyServices.sharedPreferences.getString('id').toString()));
+    var response = await addressData.getData(int.parse(MyServicesApp.sharedPreferences.getString('id').toString()));
     statusRequest = handlingData(response);
     try {
       if (response['status'] == 'failure') {

@@ -8,12 +8,12 @@ import 'package:libya_bakery/app/presentation/screens/home/home.dart';
 import 'package:libya_bakery/app/presentation/screens/menu.dart';
 import 'package:libya_bakery/app/presentation/screens/orders/widgets/custom_order_details.dart';
 import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../admin/core/utils/app_color.dart';
 import '../../../controller/checkout_controller.dart';
 import '../../../controller/orders/order_details_controller.dart';
 import '../../../controller/orders/pending_controller.dart';
 import '../../../handling_data/handlng_data_view.dart';
-import '../../../services/MyServices.dart';
 
 class PreviousOrderDetails extends StatefulWidget {
   const PreviousOrderDetails({super.key});
@@ -433,7 +433,10 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                   // checkoutController.choosePaymentMethod(controller.ordersModel.);
                                   checkoutController.chooseDeliveryType(controller.ordersModel.orderType.toString());
                                   checkoutController.chooseShippingAddress(controller.ordersModel.addressId ?? 0);
-                                  checkoutController.checkout(int.parse(MyServices.sharedPreferences.getString("id").toString()),'100');
+                                  checkoutController.checkout(int.parse(MyServicesApp.sharedPreferences.getString("id").toString()),
+                                      controller.ordersModel.orderAmountPaid.toString(),
+                                      controller.ordersModel.noOfInstallments.toString(),
+                                  );
                                   Get.to(() => const HomeScreen());
                                   showErrorSnack(context, "تم اعادة الطلب بنجاح");
                                 },

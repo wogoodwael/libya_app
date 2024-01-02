@@ -13,15 +13,15 @@ class CartController extends GetxController{
   List<CartModel> data = [];
   double totalPrice = 0.0;
   int totalCountItems = 0;
-  var branchCode = int.parse(MyServices.sharedPreferences.getString("branch_code").toString());
-  var userType = int.parse(MyServices.sharedPreferences.getString("user_type").toString());
+  var branchCode = int.parse(MyServicesApp.sharedPreferences.getString("branch_code").toString());
+  var userType = int.parse(MyServicesApp.sharedPreferences.getString("user_type").toString());
 
 
 
   addToCart(itemId,itemName) async{
     statusRequest = StatusRequest.loading;
     update();
-    var response = await cartData.addToCart(int.parse(MyServices.sharedPreferences.getString('id').toString()), itemId);
+    var response = await cartData.addToCart(int.parse(MyServicesApp.sharedPreferences.getString('id').toString()), itemId);
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
       statusRequest = StatusRequest.failure;
@@ -38,7 +38,7 @@ class CartController extends GetxController{
   deleteFromCart(itemsId,itemName) async{
     statusRequest = StatusRequest.loading;
     update();
-    var response = await cartData.deleteFromCart(int.parse(MyServices.sharedPreferences.getString('id').toString()), itemsId);
+    var response = await cartData.deleteFromCart(int.parse(MyServicesApp.sharedPreferences.getString('id').toString()), itemsId);
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
       statusRequest = StatusRequest.failure;
@@ -54,7 +54,7 @@ class CartController extends GetxController{
 
   getCountItems(itemsId) async{
     statusRequest = StatusRequest.loading;
-    var response = await cartData.getCountItems(int.parse(MyServices.sharedPreferences.getString('id').toString()), itemsId);
+    var response = await cartData.getCountItems(int.parse(MyServicesApp.sharedPreferences.getString('id').toString()), itemsId);
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {
       statusRequest = StatusRequest.failure;
@@ -77,8 +77,8 @@ class CartController extends GetxController{
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.getData(
-        int.parse(MyServices.sharedPreferences.getString('id').toString()),
-      MyServices.sharedPreferences.getString("branch_code").toString()
+        int.parse(MyServicesApp.sharedPreferences.getString('id').toString()),
+      MyServicesApp.sharedPreferences.getString("branch_code").toString()
     );
     statusRequest = handlingData(response);
     if (response['status'] == 'failure') {

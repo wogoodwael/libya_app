@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:libya_bakery/app/presentation/screens/orders/previous_orders.dart';
 import '../../../../../admin/core/utils/app_color.dart';
+import '../../../../../admin/models/orders_model.dart';
 import '../../../../controller/orders/pending_controller.dart';
-import '../../../../models/orders_model.dart';
 
 class OrdersListCard extends GetView<PendingOrdersController> {
   final OrdersModel listData;

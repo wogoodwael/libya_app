@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:libya_bakery/app/services/MyServices.dart';
 import '../../../../api_connection/api_connection.dart';
 import '../../../../controller/myfavorite_controller.dart';
 import '../../../../core/utils/app_color.dart';
 import '../../../../models/favorites_model.dart';
-import '../../../../services/MyServices.dart';
 
 class FavoriteCard extends GetView<MyFavoriteController> {
   final FavoriteModel favoriteModel;
@@ -14,9 +14,9 @@ class FavoriteCard extends GetView<MyFavoriteController> {
   @override
   Widget build(BuildContext context) {
     var branchCode = int.parse(
-        MyServices.sharedPreferences.getString("branch_code").toString());
+        MyServicesApp.sharedPreferences.getString("branch_code").toString());
     var userType = int.parse(
-        MyServices.sharedPreferences.getString("user_type").toString());
+        MyServicesApp.sharedPreferences.getString("user_type").toString());
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       elevation: 3,
