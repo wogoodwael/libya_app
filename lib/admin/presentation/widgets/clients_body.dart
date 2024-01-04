@@ -190,36 +190,36 @@ class ClientsBody extends StatelessWidget {
                   ],
                 ),
               ),
-              const Divider(
-                thickness: 1,
-                color: yellow,
-                endIndent: 10,
-                indent: 10,
-              ),
-              MaterialButton(
-                elevation: 5,
-                color: yellow,
-                minWidth: .7 * MediaQuery.sizeOf(context).width,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        topRight: Radius.circular(20))),
-                onPressed: () {
-                  _dialogBuilder(context);
-                },
-                child: const Text(
-                  "الدين السابق ",
-                  style: TextStyle(
-                      fontFamily: 'ArabicUIDisplay',
-                      color: darkGreen,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-              )
+              // const Divider(
+              //   thickness: 1,
+              //   color: yellow,
+              //   endIndent: 10,
+              //   indent: 10,
+              // ),
+              // MaterialButton(
+              //   elevation: 5,
+              //   color: yellow,
+              //   minWidth: .7 * MediaQuery.sizeOf(context).width,
+              //   shape: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.only(
+              //           bottomLeft: Radius.circular(20),
+              //           topRight: Radius.circular(20))),
+              //   onPressed: () {
+              //     _dialogBuilder(context);
+              //   },
+              //   child: const Text(
+              //     "الدين السابق ",
+              //     style: TextStyle(
+              //         fontFamily: 'ArabicUIDisplay',
+              //         color: darkGreen,
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 15),
+              //   ),
+              // )
             ],
           ),
         ),
-        const SizedBox(height: 15,)
+        const SizedBox(height: 45,)
       ],
     );
   }
