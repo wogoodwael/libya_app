@@ -8,10 +8,10 @@ import 'package:libya_bakery/app/presentation/widgets/info_row.dart';
 import 'package:libya_bakery/app/presentation/widgets/phone_row.dart';
 import 'package:libya_bakery/app/presentation/widgets/text_field.dart';
 import 'package:libya_bakery/app/services/MyServices.dart';
-import '../../../../admin/presentation/screens/menu.dart';
 import '../../../controller/update_info_controller.dart';
 import '../../../core/helper/snack.dart';
 import '../../../core/utils/app_color.dart';
+import '../menu.dart';
 
 // ignore: must_be_immutable
 class PersonalInfoScreen extends StatelessWidget {
@@ -62,7 +62,7 @@ class PersonalInfoScreen extends StatelessWidget {
                           SizedBox(
                             width: .01 * MediaQuery.sizeOf(context).width,
                           ),
-                          const Person(),
+                          const AppPerson(),
                           const Icon(
                             Icons.shopping_cart_rounded,
                             size: 40,

@@ -20,7 +20,7 @@ class EditCategories extends StatelessWidget {
       key: scaffoldKey,
       endDrawer: Drawer(
         width: 250,
-        child: MenuScreen(),
+        child: AdminMenuScreen(),
       ),
       body: GetBuilder<CategoriesEditController>(
         builder: (controller) {

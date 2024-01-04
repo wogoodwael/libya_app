@@ -19,9 +19,9 @@ class OrderAcceptedScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: offwhite,
       key: scaffoldKey,
-      endDrawer: Drawer(
+      endDrawer: const Drawer(
         width: 250,
-        child: MenuScreen(),
+        child: AdminMenuScreen(),
       ),
       body: GetBuilder<OrdersAcceptedController>(
         builder: (controller) {

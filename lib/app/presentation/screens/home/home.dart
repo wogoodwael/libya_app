@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         width: .01 * MediaQuery.sizeOf(context).width,
                       ),
-                      const Person(),
+                      const AppPerson(),
                       InkWell(
                         onTap: () {
                           Get.to(() => CartOrders());

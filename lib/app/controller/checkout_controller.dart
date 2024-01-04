@@ -75,7 +75,7 @@ class CheckoutController extends GetxController {
     if (kDebugMode) {
       print(now.hour);
     }
-    if (now.hour >= 0 && now.hour > 12) {
+    if (now.hour >= 0 && now.hour < 12) {
       Get.snackbar("", "",
           titleText: const Text(
             "خطأ",

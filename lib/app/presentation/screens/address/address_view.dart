@@ -62,7 +62,7 @@ class AddressView extends StatelessWidget {
                             SizedBox(
                               width: .055 * MediaQuery.sizeOf(context).width,
                             ),
-                            const Person(),
+                            const AppPerson(),
                             GestureDetector(
                               onTap: () {
                                 Get.to(() => CartOrders());

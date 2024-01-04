@@ -11,8 +11,8 @@ import 'admin/screens/clients/clients.dart';
 import 'admin/screens/orders/order_screen.dart';
 import 'auth/login/sign_in.dart';
 
-class MenuScreen extends StatelessWidget {
-  const MenuScreen({super.key});
+class AdminMenuScreen extends StatelessWidget {
+  const AdminMenuScreen({super.key});
 
   signOutUser() async {
     Get.dialog(AlertDialog(
@@ -107,15 +107,15 @@ class MenuScreen extends StatelessWidget {
                 },
               text: 'العملاء',
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            MenuRow(
-              ontap: () {
-                Get.off(() => BillsScreen());
-              },
-              text: 'الفواتير',
-            ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // MenuRow(
+            //   ontap: () {
+            //     Get.off(() => BillsScreen());
+            //   },
+            //   text: 'الفواتير',
+            // ),
             const SizedBox(
               height: 20,
             ),

@@ -76,7 +76,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                               SizedBox(
                                 width: .055 * MediaQuery.sizeOf(context).width,
                               ),
-                              const Person(),
+                              const AppPerson(),
                               GestureDetector(
                                 onTap: () {
                                   Get.to(() => CartOrders());
@@ -318,7 +318,8 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                 setState(() {
                                   visible = true;
                                 });
-                                Get.dialog(AlertDialog(
+                                Get.dialog(
+                                    AlertDialog(
                                   backgroundColor: Colors.white,
                                   title: const Text(
                                     'طريقة الدفع',
@@ -333,7 +334,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                             ta2sitVisible = false;
                                           });
 
-                                          Get.back();
+                                          Get.close(1);
                                           controller.choosePaymentMethod("0");
                                         },
                                         child: const Text(
@@ -345,7 +346,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                           setState(() {
                                             ta2sitVisible = true;
                                           });
-                                          Get.back();
+                                          Get.close(1);
                                           controller.choosePaymentMethod("1");
                                         },
                                         child: const Text(

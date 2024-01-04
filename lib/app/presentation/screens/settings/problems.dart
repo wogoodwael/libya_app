@@ -53,8 +53,7 @@ class _ProblemScreenState extends State<ProblemScreen> {
                               SizedBox(
                                 width: .01 * MediaQuery.sizeOf(context).width,
                               ),
-                        const Person(),
-
+                              const AppPerson(),
                               SizedBox(
                                 width: .04 * MediaQuery.sizeOf(context).width,
                               ),

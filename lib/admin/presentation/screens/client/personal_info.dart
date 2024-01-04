@@ -26,7 +26,7 @@ class PersonalInfoScreen extends StatelessWidget {
         key: scaffoldKey,
         endDrawer: Drawer(
           width: 250,
-          child: MenuScreen(),
+          child: AdminMenuScreen(),
         ),
         body: GetBuilder<PersonalInfoController>(
           builder: (controller) {

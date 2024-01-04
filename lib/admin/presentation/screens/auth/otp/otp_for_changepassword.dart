@@ -90,7 +90,7 @@ class _OtpForChangePasswordScreenState extends State<OtpForChangePasswordScreen>
         key: scaffoldKey,
         endDrawer: Drawer(
           width: 250,
-          child: MenuScreen(),
+          child: AdminMenuScreen(),
         ),
         body: Stack(children: [
           const BackGroundImage(),

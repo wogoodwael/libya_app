@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       MyServices.sharedPreferences.setBool('firstTime', false);
     })
         :
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Get.offAll(() => const SignInScreen());
     });
   }

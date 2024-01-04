@@ -25,7 +25,7 @@ class _ProblemScreenState extends State<ProblemScreen> {
       key: scaffoldKey,
       endDrawer: Drawer(
         width: 250,
-        child: MenuScreen(),
+        child: AdminMenuScreen(),
       ),
       body: Stack(
         children: [

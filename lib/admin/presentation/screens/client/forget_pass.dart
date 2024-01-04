@@ -84,7 +84,7 @@ class ForgetPassword extends StatelessWidget {
       key: scaffoldKey,
       endDrawer: Drawer(
         width: 250,
-        child: MenuScreen(),
+        child: AdminMenuScreen(),
       ),
       backgroundColor: offwhite,
       body: Stack(children: [

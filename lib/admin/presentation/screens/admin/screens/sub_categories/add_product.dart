@@ -28,7 +28,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       key: scaffoldKey,
       endDrawer: Drawer(
         width: 250,
-        child: MenuScreen(),
+        child: AdminMenuScreen(),
       ),
       body: GetBuilder<ItemsAddController>(builder: (controller) {
         return HandlingDataView(

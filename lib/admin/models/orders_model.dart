@@ -51,6 +51,7 @@ class OrdersModel {
   int? orderAddress;
   int? orderType;
   int? orderPricedelivery;
+  int? orderPaymentMethod;
   double? orderPrice;
   double? orderTotalprice;
   double? orderAmountPaid;
@@ -120,6 +121,7 @@ class OrdersModel {
         this.orderAddress,
         this.orderType,
         this.orderPricedelivery,
+        this.orderPaymentMethod,
         this.orderPrice,
         this.orderTotalprice,
         this.orderAmountPaid,
@@ -189,6 +191,7 @@ class OrdersModel {
     orderAddress = json['order_address'];
     orderType = json['order_type'];
     orderPricedelivery = json['order_pricedelivery'];
+    orderPaymentMethod = json['order_paymentmethod'];
     orderPrice = double.parse(json['order_price'].toString());
     orderTotalprice = double.parse(json['order_totalprice'].toString());
     orderAmountPaid = double.parse(json['order_amount_paid'].toString());
@@ -260,6 +263,7 @@ class OrdersModel {
     data['order_address'] = orderAddress;
     data['order_type'] = orderType;
     data['order_pricedelivery'] = orderPricedelivery;
+    data['order_paymentmethod'] = orderPaymentMethod;
     data['order_price'] = orderPrice;
     data['order_totalprice'] = orderTotalprice;
     data['order_amount_paid'] = orderAmountPaid;

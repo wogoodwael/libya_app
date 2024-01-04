@@ -28,7 +28,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
       key: scaffoldKey,
       endDrawer: Drawer(
         width: 250,
-        child: MenuScreen(),
+        child: AdminMenuScreen(),
       ),
       body: GetBuilder<ItemsEditController>(builder: (controller) {
         return HandlingDataView(

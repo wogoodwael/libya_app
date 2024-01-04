@@ -21,7 +21,7 @@ class ComplaintPage extends StatelessWidget {
         key: scaffoldKey,
         endDrawer: Drawer(
           width: 250,
-          child: MenuScreen(),
+          child: AdminMenuScreen(),
         ),
         body: GetBuilder<ComplainsController>(
           builder: (controller) {

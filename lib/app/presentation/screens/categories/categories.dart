@@ -53,7 +53,7 @@ class CategoriesScreen extends StatelessWidget {
                                   SizedBox(
                                     width: .01 * MediaQuery.sizeOf(context).width,
                                   ),
-                                  const Person(),
+                                  const AppPerson(),
                                   const Icon(
                                     Icons.shopping_cart_rounded,
                                     size: 40,

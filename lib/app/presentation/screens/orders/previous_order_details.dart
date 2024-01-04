@@ -429,15 +429,14 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                   style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
                                 )),
                             TextButton(
-                                onPressed: () {
-                                  // checkoutController.choosePaymentMethod(controller.ordersModel.);
+                                onPressed: () async{
                                   checkoutController.chooseDeliveryType(controller.ordersModel.orderType.toString());
                                   checkoutController.chooseShippingAddress(controller.ordersModel.addressId ?? 0);
-                                  checkoutController.checkout(int.parse(MyServicesApp.sharedPreferences.getString("id").toString()),
+                                  checkoutController.choosePaymentMethod(controller.ordersModel.orderPaymentMethod.toString());
+                                  await checkoutController.checkout(int.parse(MyServicesApp.sharedPreferences.getString("id").toString()),
                                       controller.ordersModel.orderAmountPaid.toString(),
                                       controller.ordersModel.noOfInstallments.toString(),
                                   );
-                                  Get.to(() => const HomeScreen());
                                   showErrorSnack(context, "تم اعادة الطلب بنجاح");
                                 },
                                 child: const Text(

@@ -99,7 +99,6 @@ class ProfileScreen extends StatelessWidget {
                           SizedBox(
                             width: .01 * MediaQuery.sizeOf(context).width,
                           ),
-                          const Person(),
                           InkWell(
                             onTap: () {
                               userController.getData();

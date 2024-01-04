@@ -49,7 +49,7 @@ class PreviousOrdersScreen extends StatelessWidget {
                     SizedBox(
                       width: .01 * MediaQuery.sizeOf(context).width,
                     ),
-                    const Person(),
+                    const AppPerson(),
                     SizedBox(
                       width: .03 * MediaQuery.sizeOf(context).width,
                     ),

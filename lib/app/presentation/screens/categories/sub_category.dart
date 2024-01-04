@@ -55,7 +55,7 @@ class SubCategoryScreen extends GetView<ItemsControllerImp> {
                             SizedBox(
                               width: .01 * MediaQuery.sizeOf(context).width,
                             ),
-                            const Person(),
+                            const AppPerson(),
                             InkWell(
                               onTap: (){
                                 Get.to(() => CartOrders());
