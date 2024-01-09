@@ -23,30 +23,30 @@ class ClientScreen extends StatelessWidget {
         width: 250,
         child: AdminMenuScreen(),
       ),
-      body: GetBuilder<UserViewController>(
-        builder: (controller) {
-          return HandlingDataView(
-              statusRequest: controller.statusRequest,
-              widget: Stack(children: [
-                const BackGroundImage(),
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: MediaQuery.sizeOf(context).width,
-                        height: .20 * MediaQuery.sizeOf(context).height,
-                        decoration: const BoxDecoration(
-                            color: darkGreen,
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(40),
-                                bottomRight: Radius.circular(40))),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: .09 * MediaQuery.sizeOf(context).height,
-                            ),
-                            Row(
+      body: GetBuilder<UserViewController>(builder: (controller) {
+        return HandlingDataView(
+            statusRequest: controller.statusRequest,
+            widget: Stack(children: [
+              const BackGroundImage(),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: .20 * MediaQuery.sizeOf(context).height,
+                      decoration: const BoxDecoration(
+                          color: darkGreen,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(40),
+                              bottomRight: Radius.circular(40))),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: .09 * MediaQuery.sizeOf(context).height,
+                          ),
+                          FittedBox(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 SizedBox(
@@ -66,7 +66,7 @@ class ClientScreen extends StatelessWidget {
                                       color: yellow),
                                 ),
                                 SizedBox(
-                                  width: .15 * MediaQuery.sizeOf(context).width,
+                                  width: .13 * MediaQuery.sizeOf(context).width,
                                 ),
                                 //* go to menu page
                                 GestureDetector(
@@ -74,7 +74,7 @@ class ClientScreen extends StatelessWidget {
                                       scaffoldKey.currentState!.openEndDrawer();
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.only(right: 15),
+                                      padding: const EdgeInsets.only(right: 10),
                                       child: SizedBox(
                                         width: 30,
                                         height: 25,
@@ -87,33 +87,32 @@ class ClientScreen extends StatelessWidget {
                                     )),
                               ],
                             ),
-                            SizedBox(
-                              height: .04 * MediaQuery.sizeOf(context).height,
-                            )
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: .04 * MediaQuery.sizeOf(context).height,
+                          )
+                        ],
                       ),
-                      const SizedBox(
-                        height: 20,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    // const UserTypeList(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    ...List.generate(
+                      controller.data.length,
+                      (index) => ClientsBody(
+                        controller: controller,
+                        index: index,
                       ),
-                      // const UserTypeList(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      ...List.generate(
-                          controller.data.length,
-                              (index) => ClientsBody(
-                                controller: controller,
-                                index: index,
-                              ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ])
-          );
-        }
-      ),
+              ),
+            ]));
+      }),
     );
   }
 }

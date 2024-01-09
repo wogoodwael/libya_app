@@ -23,28 +23,28 @@ class ComplaintPage extends StatelessWidget {
           width: 250,
           child: AdminMenuScreen(),
         ),
-        body: GetBuilder<ComplainsController>(
-          builder: (controller) {
-            return HandlingDataView(
-                statusRequest: controller.statusRequest,
-                widget: Stack(children: [
-                  const BackGroundImage(),
-                  Column(children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      height: .22 * MediaQuery.sizeOf(context).height,
-                      decoration: const BoxDecoration(
-                          color: darkGreen,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(40),
-                              bottomRight: Radius.circular(40))),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: .1 * MediaQuery.sizeOf(context).height,
-                            ),
-                            Row(
+        body: GetBuilder<ComplainsController>(builder: (controller) {
+          return HandlingDataView(
+              statusRequest: controller.statusRequest,
+              widget: Stack(children: [
+                const BackGroundImage(),
+                Column(children: [
+                  Container(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: .22 * MediaQuery.sizeOf(context).height,
+                    decoration: const BoxDecoration(
+                        color: darkGreen,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(40),
+                            bottomRight: Radius.circular(40))),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: .1 * MediaQuery.sizeOf(context).height,
+                          ),
+                          FittedBox(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 SizedBox(
@@ -52,20 +52,19 @@ class ComplaintPage extends StatelessWidget {
                                 ),
                                 const Person(),
                                 SizedBox(
-                                  width: .01 * MediaQuery.sizeOf(context).width,
+                                  width: .03 * MediaQuery.sizeOf(context).width,
                                 ),
                                 IconButton(
-                                    onPressed: (){
+                                    onPressed: () {
                                       controller.getComplains();
                                     },
                                     icon: const Icon(
                                       Icons.refresh,
                                       color: yellow,
                                       size: 45,
-                                    )
-                                ),
+                                    )),
                                 SizedBox(
-                                  width: .12 * MediaQuery.sizeOf(context).width,
+                                  width: .09 * MediaQuery.sizeOf(context).width,
                                 ),
                                 const Text(
                                   "الشكاوي",
@@ -76,7 +75,7 @@ class ComplaintPage extends StatelessWidget {
                                       color: yellow),
                                 ),
                                 SizedBox(
-                                  width: .15 * MediaQuery.sizeOf(context).width,
+                                  width: .13 * MediaQuery.sizeOf(context).width,
                                 ),
                                 //* go to menu page
                                 GestureDetector(
@@ -84,7 +83,7 @@ class ComplaintPage extends StatelessWidget {
                                       scaffoldKey.currentState!.openEndDrawer();
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.only(right: 15),
+                                      padding: const EdgeInsets.only(right: 10),
                                       child: SizedBox(
                                         width: 30,
                                         height: 25,
@@ -97,25 +96,24 @@ class ComplaintPage extends StatelessWidget {
                                     )),
                               ],
                             ),
-                            SizedBox(
-                              height: .04 * MediaQuery.sizeOf(context).height,
-                            )
-                          ]),
+                          ),
+                          SizedBox(
+                            height: .04 * MediaQuery.sizeOf(context).height,
+                          )
+                        ]),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  ...List.generate(
+                    controller.data.length,
+                    (index) => ComplainsContainer(
+                      controller: controller,
+                      index: index,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    ...List.generate(
-                        controller.data.length,
-                            (index) =>  ComplainsContainer(
-                              controller: controller,
-                              index: index,
-                            ),
-                    ),
-                  ]),
-                ])
-            );
-          }
-        ));
+                  ),
+                ]),
+              ]));
+        }));
   }
 }

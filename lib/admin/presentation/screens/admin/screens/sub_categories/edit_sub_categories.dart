@@ -14,7 +14,8 @@ class EditSubCategoriesScreen extends StatefulWidget {
   const EditSubCategoriesScreen({super.key});
 
   @override
-  State<EditSubCategoriesScreen> createState() => _EditSubCategoriesScreenState();
+  State<EditSubCategoriesScreen> createState() =>
+      _EditSubCategoriesScreenState();
 }
 
 class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
@@ -52,46 +53,48 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           SizedBox(
                             height: .1 * MediaQuery.sizeOf(context).height,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                width: .01 * MediaQuery.sizeOf(context).width,
-                              ),
-                              const Person(),
+                          FittedBox(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                  width: .01 * MediaQuery.sizeOf(context).width,
+                                ),
+                                const Person(),
 
-                              SizedBox(
-                                width: .12 * MediaQuery.sizeOf(context).width,
-                              ),
-                              const Text(
-                                "المنتجات",
-                                style: TextStyle(
-                                    fontFamily: 'ArabicUIDisplayBold',
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: yellow),
-                              ),
-                              SizedBox(
-                                width: .15 * MediaQuery.sizeOf(context).width,
-                              ),
-                              //* go to menu page
-                              GestureDetector(
-                                  onTap: () {
-                                    scaffoldKey.currentState!.openEndDrawer();
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 15),
-                                    child: SizedBox(
-                                      width: 30,
-                                      height: 25,
-                                      child: Image.asset(
-                                        "assets/images/icon_menu.png",
-                                        color: yellow,
-                                        fit: BoxFit.cover,
+                                SizedBox(
+                                  width: .12 * MediaQuery.sizeOf(context).width,
+                                ),
+                                const Text(
+                                  "المنتجات",
+                                  style: TextStyle(
+                                      fontFamily: 'ArabicUIDisplayBold',
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: yellow),
+                                ),
+                                SizedBox(
+                                  width: .15 * MediaQuery.sizeOf(context).width,
+                                ),
+                                //* go to menu page
+                                GestureDetector(
+                                    onTap: () {
+                                      scaffoldKey.currentState!.openEndDrawer();
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 15),
+                                      child: SizedBox(
+                                        width: 30,
+                                        height: 25,
+                                        child: Image.asset(
+                                          "assets/images/icon_menu.png",
+                                          color: yellow,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    ),
-                                  )),
-                            ],
+                                    )),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: .04 * MediaQuery.sizeOf(context).height,
@@ -219,21 +222,19 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           height: 10,
                         ),
                         RadioListTile(
-                          title: const Text("غير متوفر"),
+                            title: const Text("غير متوفر"),
                             value: "0",
                             groupValue: controller.active,
-                            onChanged: (val){
+                            onChanged: (val) {
                               controller.changeActive(val);
-                            }
-                        ),
+                            }),
                         RadioListTile(
                             title: const Text("متوفر"),
                             value: "1",
                             groupValue: controller.active,
-                            onChanged: (val){
+                            onChanged: (val) {
                               controller.changeActive(val);
-                            }
-                        ),
+                            }),
                         const SizedBox(
                           height: 10,
                         ),
@@ -640,7 +641,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        if(controller.file != null)
+                        if (controller.file != null)
                           Image.file(
                             controller.file!,
                             width: 100,
@@ -703,7 +704,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                         Column(
                           children: [
                             InkWell(
-                              onTap: (){
+                              onTap: () {
                                 controller.editData();
                               },
                               child: Container(
@@ -711,7 +712,8 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                                 height: 45,
                                 decoration: const BoxDecoration(
                                     boxShadow: [
-                                      BoxShadow(color: Colors.grey, blurRadius: 5)
+                                      BoxShadow(
+                                          color: Colors.grey, blurRadius: 5)
                                     ],
                                     color: Color(0xffbfed700),
                                     borderRadius: BorderRadius.only(

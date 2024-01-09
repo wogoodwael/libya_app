@@ -56,55 +56,57 @@ class AddressView extends StatelessWidget {
                         SizedBox(
                           height: .06 * MediaQuery.sizeOf(context).height,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              width: .055 * MediaQuery.sizeOf(context).width,
-                            ),
-                            const AppPerson(),
-                            GestureDetector(
-                              onTap: () {
-                                Get.to(() => CartOrders());
-                              },
-                              child: const Icon(
-                                Icons.shopping_cart_rounded,
-                                size: 40,
-                                color: yellow,
+                        FittedBox(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                width: .055 * MediaQuery.sizeOf(context).width,
                               ),
-                            ),
-                            SizedBox(
-                              width: .08 * MediaQuery.sizeOf(context).width,
-                            ),
-                            const Text(
-                              "العناوين ",
-                              style: TextStyle(
-                                  fontFamily: 'ArabicUIDisplayBold',
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  color: yellow),
-                            ),
-                            SizedBox(
-                              width: .15 * MediaQuery.sizeOf(context).width,
-                            ),
-                            //* go to menu page
-                            GestureDetector(
+                              const AppPerson(),
+                              GestureDetector(
                                 onTap: () {
-                                  scaffoldKey.currentState!.openEndDrawer();
+                                  Get.to(() => CartOrders());
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: SizedBox(
-                                    width: 30,
-                                    height: 25,
-                                    child: Image.asset(
-                                      "assets/images/icon_menu.png",
-                                      color: yellow,
-                                      fit: BoxFit.cover,
+                                child: const Icon(
+                                  Icons.shopping_cart_rounded,
+                                  size: 40,
+                                  color: yellow,
+                                ),
+                              ),
+                              SizedBox(
+                                width: .08 * MediaQuery.sizeOf(context).width,
+                              ),
+                              const Text(
+                                "العناوين ",
+                                style: TextStyle(
+                                    fontFamily: 'ArabicUIDisplayBold',
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: yellow),
+                              ),
+                              SizedBox(
+                                width: .15 * MediaQuery.sizeOf(context).width,
+                              ),
+                              //* go to menu page
+                              GestureDetector(
+                                  onTap: () {
+                                    scaffoldKey.currentState!.openEndDrawer();
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 15),
+                                    child: SizedBox(
+                                      width: 30,
+                                      height: 25,
+                                      child: Image.asset(
+                                        "assets/images/icon_menu.png",
+                                        color: yellow,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                  ),
-                                )),
-                          ],
+                                  )),
+                            ],
+                          ),
                         ),
                       ],
                     ),

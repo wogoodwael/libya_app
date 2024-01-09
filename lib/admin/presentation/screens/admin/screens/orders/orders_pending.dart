@@ -23,48 +23,55 @@ class OrderPendingScreen extends StatelessWidget {
         width: 250,
         child: AdminMenuScreen(),
       ),
-      body: GetBuilder<OrdersPendingController>(
-        builder: (controller) {
-          return HandlingDataView(
-              statusRequest: controller.statusRequest,
-              widget: Stack(
-                children: [
-                  const BackGroundImage(),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: MediaQuery.sizeOf(context).width,
-                          height: .22 * MediaQuery.sizeOf(context).height,
-                          decoration: const BoxDecoration(
-                              color: darkGreen,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(40),
-                                  bottomRight: Radius.circular(40))),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: .1 * MediaQuery.sizeOf(context).height,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: GetBuilder<OrdersPendingController>(builder: (controller) {
+        return HandlingDataView(
+            statusRequest: controller.statusRequest,
+            widget: Stack(
+              children: [
+                const BackGroundImage(),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.sizeOf(context).width,
+                        height: .22 * MediaQuery.sizeOf(context).height,
+                        decoration: const BoxDecoration(
+                            color: darkGreen,
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(40),
+                                bottomRight: Radius.circular(40))),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: .1 * MediaQuery.sizeOf(context).height,
+                            ),
+                            FittedBox(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
-                                    width: .01 * MediaQuery.sizeOf(context).width,
+                                    width:
+                                        .01 * MediaQuery.sizeOf(context).width,
                                   ),
                                   const Person(),
                                   SizedBox(
-                                    width: .01 * MediaQuery.sizeOf(context).width,
+                                    width:
+                                        .01 * MediaQuery.sizeOf(context).width,
                                   ),
                                   IconButton(
-                                      onPressed: (){
+                                      onPressed: () {
                                         controller.getOrders();
                                       },
-                                      icon: const Icon(Icons.refresh,color: yellow,size: 45,)
-                                  ),
+                                      icon: const Icon(
+                                        Icons.refresh,
+                                        color: yellow,
+                                        size: 45,
+                                      )),
                                   SizedBox(
-                                    width: .02 * MediaQuery.sizeOf(context).width,
+                                    width:
+                                        .02 * MediaQuery.sizeOf(context).width,
                                   ),
                                   const Text(
                                     " الطلبات الحاليه",
@@ -75,15 +82,18 @@ class OrderPendingScreen extends StatelessWidget {
                                         color: yellow),
                                   ),
                                   SizedBox(
-                                    width: .05 * MediaQuery.sizeOf(context).width,
+                                    width:
+                                        .05 * MediaQuery.sizeOf(context).width,
                                   ),
                                   //* go to menu page
                                   GestureDetector(
                                       onTap: () {
-                                        scaffoldKey.currentState!.openEndDrawer();
+                                        scaffoldKey.currentState!
+                                            .openEndDrawer();
                                       },
                                       child: Padding(
-                                        padding: const EdgeInsets.only(right: 15),
+                                        padding:
+                                            const EdgeInsets.only(right: 10),
                                         child: SizedBox(
                                           width: 30,
                                           height: 25,
@@ -96,30 +106,29 @@ class OrderPendingScreen extends StatelessWidget {
                                       )),
                                 ],
                               ),
-                              SizedBox(
-                                height: .04 * MediaQuery.sizeOf(context).height,
-                              )
-                            ],
-                          ),
+                            ),
+                            SizedBox(
+                              height: .04 * MediaQuery.sizeOf(context).height,
+                            )
+                          ],
                         ),
-                        const SizedBox(
-                          height: 30,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      ...List.generate(
+                        controller.data.length,
+                        (index) => InProgress(
+                          controller: controller,
+                          index: index,
                         ),
-                        ...List.generate(
-                            controller.data.length,
-                                (index) => InProgress(
-                                  controller: controller,
-                                  index: index,
-                                ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              )
-          );
-        }
-      ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ));
+      }),
     );
   }
 }

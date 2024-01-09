@@ -41,63 +41,67 @@ class SubCategoryScreen extends GetView<ItemsControllerImp> {
                       color: darkGreen,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(40),
-                          bottomRight: Radius.circular(40))
-                  ),
+                          bottomRight: Radius.circular(40))),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
                           height: .06 * MediaQuery.sizeOf(context).height,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              width: .01 * MediaQuery.sizeOf(context).width,
-                            ),
-                            const AppPerson(),
-                            InkWell(
-                              onTap: (){
-                                Get.to(() => CartOrders());
-                              },
-                              child: const Icon(
-                                Icons.shopping_cart_rounded,
-                                size: 40,
-                                color: yellow,
+                        FittedBox(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                width: .01 * MediaQuery.sizeOf(context).width,
                               ),
-                            ),
-                            SizedBox(
-                              width: .12 * MediaQuery.sizeOf(context).width,
-                            ),
-                            Text(
-                              categoriesModel.categoriesName!,
-                              style: const TextStyle(
-                                  fontFamily: 'ArabicUIDisplayBold',
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: yellow),
-                            ),
-                            SizedBox(
-                              width: .15 * MediaQuery.sizeOf(context).width,
-                            ),
-                            //^ go to menu page
-                            GestureDetector(
+                              const AppPerson(),
+                              SizedBox(
+                                width: .03 * MediaQuery.sizeOf(context).width,
+                              ),
+                              InkWell(
                                 onTap: () {
-                                  scaffoldKey.currentState!.openEndDrawer();
+                                  Get.to(() => CartOrders());
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: SizedBox(
-                                    width: 30,
-                                    height: 25,
-                                    child: Image.asset(
-                                      "assets/images/icon_menu.png",
-                                      color: yellow,
-                                      fit: BoxFit.cover,
+                                child: const Icon(
+                                  Icons.shopping_cart_rounded,
+                                  size: 40,
+                                  color: yellow,
+                                ),
+                              ),
+                              SizedBox(
+                                width: .09 * MediaQuery.sizeOf(context).width,
+                              ),
+                              Text(
+                                categoriesModel.categoriesName!,
+                                style: const TextStyle(
+                                    fontFamily: 'ArabicUIDisplayBold',
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: yellow),
+                              ),
+                              SizedBox(
+                                width: .13 * MediaQuery.sizeOf(context).width,
+                              ),
+                              //^ go to menu page
+                              GestureDetector(
+                                  onTap: () {
+                                    scaffoldKey.currentState!.openEndDrawer();
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: SizedBox(
+                                      width: 30,
+                                      height: 25,
+                                      child: Image.asset(
+                                        "assets/images/icon_menu.png",
+                                        color: yellow,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                  ),
-                                )),
-                          ],
+                                  )),
+                            ],
+                          ),
                         ),
                       ]),
                 ),
@@ -105,19 +109,18 @@ class SubCategoryScreen extends GetView<ItemsControllerImp> {
                   return HandlingDataView(
                       statusRequest: controller.statusRequest,
                       widget: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: controller.data.length,
-                              itemBuilder: (context, index) {
-                                favoriteController.isFavorite[
-                                        controller.data[index]['items_id']] =
-                                    controller.data[index]['favorite'];
-                                return CustomListItems(
-                                  itemsModel: ItemsModel.fromJson(
-                                      controller.data[index]),
-                                );
-                              })
-                          );
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: controller.data.length,
+                          itemBuilder: (context, index) {
+                            favoriteController.isFavorite[controller.data[index]
+                                    ['items_id']] =
+                                controller.data[index]['favorite'];
+                            return CustomListItems(
+                              itemsModel:
+                                  ItemsModel.fromJson(controller.data[index]),
+                            );
+                          }));
                 }),
               ],
             ),

@@ -58,54 +58,59 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: .06 * MediaQuery.sizeOf(context).height,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        width: .01 * MediaQuery.sizeOf(context).width,
-                      ),
-                      const AppPerson(),
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => CartOrders());
-                        },
-                        child: const Icon(
-                          Icons.shopping_cart_rounded,
-                          size: 40,
-                          color: yellow,
+                  FittedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          width: .01 * MediaQuery.sizeOf(context).width,
                         ),
-                      ),
-                      SizedBox(
-                        width: .12 * MediaQuery.sizeOf(context).width,
-                      ),
-                      const Text(
-                        "استكشف",
-                        style: TextStyle(
-                            fontFamily: 'ArabicUIDisplayBold',
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: yellow),
-                      ),
-                      SizedBox(
-                        width: .15 * MediaQuery.sizeOf(context).width,
-                      ),
-                      GestureDetector(
+                        const AppPerson(),
+                        SizedBox(
+                          width: .03 * MediaQuery.sizeOf(context).width,
+                        ),
+                        InkWell(
                           onTap: () {
-                            scaffoldKey.currentState!.openEndDrawer();
+                            Get.to(() => CartOrders());
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 15),
-                            child: SizedBox(
-                              width: 30,
-                              height: 25,
-                              child: Image.asset(
-                                "assets/images/icon_menu.png",
-                                color: yellow,
-                                fit: BoxFit.cover,
+                          child: const Icon(
+                            Icons.shopping_cart_rounded,
+                            size: 40,
+                            color: yellow,
+                          ),
+                        ),
+                        SizedBox(
+                          width: .09 * MediaQuery.sizeOf(context).width,
+                        ),
+                        const Text(
+                          "استكشف",
+                          style: TextStyle(
+                              fontFamily: 'ArabicUIDisplayBold',
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: yellow),
+                        ),
+                        SizedBox(
+                          width: .13 * MediaQuery.sizeOf(context).width,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              scaffoldKey.currentState!.openEndDrawer();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: SizedBox(
+                                width: 30,
+                                height: 25,
+                                child: Image.asset(
+                                  "assets/images/icon_menu.png",
+                                  color: yellow,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                          )),
-                    ],
+                            )),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: .04 * MediaQuery.sizeOf(context).height,
@@ -126,13 +131,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'ابحث عن منتج',
-                            hintStyle: const TextStyle(color: darkGreen,fontFamily: 'ArabicUIDisplay',),
+                            hintStyle: const TextStyle(
+                              color: darkGreen,
+                              fontFamily: 'ArabicUIDisplay',
+                            ),
                             suffixIcon: IconButton(
                               color: darkGreen,
                               onPressed: () {
-                                if(controller.search!.text == ""){
-                                  showErrorSnack(context, "الرجاء إدخال اسم المنتج");
-                                }else {
+                                if (controller.search!.text == "") {
+                                  showErrorSnack(
+                                      context, "الرجاء إدخال اسم المنتج");
+                                } else {
                                   controller.onSearchItems();
                                 }
                               },
@@ -202,9 +211,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 )),
-                if(pendingOrdersController.data.isNotEmpty)
-            GetBuilder<PendingOrdersController>(
-              builder: (controllerpending) {
+            if (pendingOrdersController.data.isNotEmpty)
+              GetBuilder<PendingOrdersController>(builder: (controllerpending) {
                 return HandlingDataView(
                     statusRequest: controllerpending.statusRequest,
                     widget: Column(
@@ -215,7 +223,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           text: 'طلباتك ',
                           widthOfSized: .46 * MediaQuery.sizeOf(context).width,
-                          widthOfpadding: .05 * MediaQuery.sizeOf(context).width,
+                          widthOfpadding:
+                              .05 * MediaQuery.sizeOf(context).width,
                         ),
                         SizedBox(
                           height: .02 * MediaQuery.sizeOf(context).height,
@@ -230,19 +239,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               //* go to order details  page
                               SizedBox(
                                 width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
                                 child: ListView.builder(
-                                    itemCount:  pendingOrdersController.data.length,
+                                    itemCount:
+                                        pendingOrdersController.data.length,
                                     scrollDirection: Axis.horizontal,
                                     reverse: true,
-                                    itemBuilder: (context, index){
+                                    itemBuilder: (context, index) {
                                       return Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 8),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 8),
                                         child: OrdersListCard(
-                                            listData: pendingOrdersController.data[index]),
+                                            listData: pendingOrdersController
+                                                .data[index]),
                                       );
-                                    }
-                                ),
+                                    }),
                               ),
                               const SizedBox(
                                 width: 10,
@@ -251,10 +263,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ],
-                    )
-                );
-              }
-            ),
+                    ));
+              }),
           ]))
         ]);
       }),

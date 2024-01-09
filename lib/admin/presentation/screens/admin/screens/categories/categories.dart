@@ -50,56 +50,58 @@ class Categories extends StatelessWidget {
                               SizedBox(
                                 height: .1 * MediaQuery.sizeOf(context).height,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: .01 * MediaQuery.sizeOf(context).width,
-                                  ),
-                                  const Person(),
-
-                                  SizedBox(
-                                    width: .12 * MediaQuery.sizeOf(context).width,
-                                  ),
-                                  const Text(
-                                    "المنتجات",
-                                    style: TextStyle(
-                                        fontFamily: 'ArabicUIDisplayBold',
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                        color: yellow),
-                                  ),
-                                  SizedBox(
-                                    width: .15 * MediaQuery.sizeOf(context).width,
-                                  ),
-                                  //* go to menu page
-                                  GestureDetector(
-                                      onTap: () {
-                                        scaffoldKey.currentState!.openEndDrawer();
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(right: 15),
-                                        child: SizedBox(
-                                          width: 30,
-                                          height: 25,
-                                          child: Image.asset(
-                                            "assets/images/icon_menu.png",
-                                            color: yellow,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      )),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Icon(
-                                      Icons.arrow_forward,
-                                      size: 40,
-                                      color: yellow,
+                              FittedBox(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                      width: .01 * MediaQuery.sizeOf(context).width,
                                     ),
-                                  ),
-                                ],
+                                    const Person(),
+                                
+                                    SizedBox(
+                                      width: .12 * MediaQuery.sizeOf(context).width,
+                                    ),
+                                    const Text(
+                                      "المنتجات",
+                                      style: TextStyle(
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          color: yellow),
+                                    ),
+                                    SizedBox(
+                                      width: .15 * MediaQuery.sizeOf(context).width,
+                                    ),
+                                    //* go to menu page
+                                    GestureDetector(
+                                        onTap: () {
+                                          scaffoldKey.currentState!.openEndDrawer();
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(right: 15),
+                                          child: SizedBox(
+                                            width: 30,
+                                            height: 25,
+                                            child: Image.asset(
+                                              "assets/images/icon_menu.png",
+                                              color: yellow,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        )),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Icon(
+                                        Icons.arrow_forward,
+                                        size: 40,
+                                        color: yellow,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               SizedBox(
                                 height: .04 * MediaQuery.sizeOf(context).height,

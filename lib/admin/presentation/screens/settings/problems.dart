@@ -48,58 +48,60 @@ class _ProblemScreenState extends State<ProblemScreen> {
                       SizedBox(
                         height: .08 * MediaQuery.sizeOf(context).height,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: .01 * MediaQuery.sizeOf(context).width,
-                          ),
-                    const Person(),
-
-                          SizedBox(
-                            width: .04 * MediaQuery.sizeOf(context).width,
-                          ),
-                          const Text(
-                            "الشكاوي والمقترحات",
-                            style: TextStyle(
-                                fontFamily: 'ArabicUIDisplayBold',
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: yellow),
-                          ),
-                          SizedBox(
-                            width: .02 * MediaQuery.sizeOf(context).width,
-                          ),
-
-                          //* go to menu page
-                          GestureDetector(
-                              onTap: () {
-                                scaffoldKey.currentState!.openEndDrawer();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 5),
-                                child: SizedBox(
-                                  width: 30,
-                                  height: 25,
-                                  child: Image.asset(
-                                    "assets/images/icon_menu.png",
-                                    color: yellow,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              )),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: yellow,
-                              size: 30,
-                              weight: 200,
+                      FittedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              width: .01 * MediaQuery.sizeOf(context).width,
                             ),
-                            onPressed: () {
-                              Navigator.pushReplacementNamed(context, home);
-                            },
-                          ),
-                        ],
+                                            const Person(),
+                        
+                            SizedBox(
+                              width: .04 * MediaQuery.sizeOf(context).width,
+                            ),
+                            const Text(
+                              "الشكاوي والمقترحات",
+                              style: TextStyle(
+                                  fontFamily: 'ArabicUIDisplayBold',
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: yellow),
+                            ),
+                            SizedBox(
+                              width: .02 * MediaQuery.sizeOf(context).width,
+                            ),
+                        
+                            //* go to menu page
+                            GestureDetector(
+                                onTap: () {
+                                  scaffoldKey.currentState!.openEndDrawer();
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 5),
+                                  child: SizedBox(
+                                    width: 30,
+                                    height: 25,
+                                    child: Image.asset(
+                                      "assets/images/icon_menu.png",
+                                      color: yellow,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                )),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.arrow_forward,
+                                color: yellow,
+                                size: 30,
+                                weight: 200,
+                              ),
+                              onPressed: () {
+                                Navigator.pushReplacementNamed(context, home);
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: .04 * MediaQuery.sizeOf(context).height,
