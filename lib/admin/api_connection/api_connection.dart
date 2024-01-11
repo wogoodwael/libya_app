@@ -62,6 +62,7 @@ class API {
   //=========User=======//
   static const userView = '$hostConnect/admin/users/view.php';//done
   static const userChangeType = '$hostConnect/admin/users/changeType.php';//done
+  static const userChangeFund = '$hostConnect/admin/users/changeFund.php';//done
 
   //=========Complains=======//
   static const sendReplyComplain = '$hostConnect/admin/complains/sendmail.php';//done

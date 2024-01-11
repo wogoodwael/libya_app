@@ -61,7 +61,7 @@ class SubCategoryScreen extends GetView<ItemsControllerImp> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(() => CartOrders());
+                                  Get.to(() => const CartOrders());
                                 },
                                 child: const Icon(
                                   Icons.shopping_cart_rounded,

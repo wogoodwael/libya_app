@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../core/functions/handling_data.dart';
@@ -13,6 +14,7 @@ class UserViewController extends GetxController{
   late StatusRequest statusRequest;
   int? selectedCat;
   int? userType;
+  final editUserFundController = TextEditingController();
 
   changeCat(val, userVal) {
     selectedCat = val;
@@ -52,6 +54,21 @@ class UserViewController extends GetxController{
     } else {
       statusRequest = StatusRequest.serverfailure;
     }
+    update();
+  }
+
+  changeFund(id , fund) async{
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await userData.changeFund(id, fund);
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if(response['status'] == 'success'){
+      }
+    } else {
+      statusRequest = StatusRequest.serverfailure;
+    }
+    getDataIntial();
     update();
   }
 

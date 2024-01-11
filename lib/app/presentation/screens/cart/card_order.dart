@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:libya_bakery/admin/core/utils/person.dart';
 import 'package:libya_bakery/app/core/utils/back_image.dart';
+import 'package:libya_bakery/app/core/utils/person.dart';
 import 'package:libya_bakery/app/presentation/screens/home/home.dart';
 import 'package:libya_bakery/app/presentation/screens/menu.dart';
 import 'package:libya_bakery/app/presentation/widgets/custom_next.dart';
@@ -14,8 +14,14 @@ import 'widgets/card_items_count.dart';
 import 'confirm_order.dart';
 import 'widgets/custom_cart_items_list.dart';
 
-class CartOrders extends StatelessWidget {
-  CartOrders({super.key});
+class CartOrders extends StatefulWidget {
+  const CartOrders({super.key});
+
+  @override
+  State<CartOrders> createState() => _CartOrdersState();
+}
+
+class _CartOrdersState extends State<CartOrders> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -29,7 +35,7 @@ class CartOrders extends StatelessWidget {
         MyServicesApp.sharedPreferences.getString("user_type").toString());
     return WillPopScope(
       onWillPop: () {
-        Get.off(const HomeScreen());
+        Get.offAll(const HomeScreen());
         return Future.value(true);
       },
       child: Scaffold(
@@ -190,7 +196,7 @@ class CartOrders extends StatelessWidget {
                                   width:
                                       .055 * MediaQuery.sizeOf(context).width,
                                 ),
-                                const Person(),
+                                const AppPerson(),
                                 SizedBox(
                                   width: .08 * MediaQuery.sizeOf(context).width,
                                 ),

@@ -104,7 +104,7 @@ class CheckoutController extends GetxController {
         "orderpricedelivery": "5",
         "order_amountPaid": amountPaid,
         "order_noofinstallments": noOfInstallments,
-        "order_amountRequired": (double.tryParse(priceorders)! - num.parse(amountPaid)).toString(),
+        "order_amountRequired": (double.tryParse(priceorders)! - double.parse(amountPaid)).toString(),
         "orderprice": priceorders,
         "orderpaymentmethod" : paymentMethod,
         "orderbranch":

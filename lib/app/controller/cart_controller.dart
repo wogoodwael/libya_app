@@ -174,6 +174,7 @@ class CartController extends GetxController{
   @override
   void onInit() {
     getData();
+    update();
     super.onInit();
   }
 }

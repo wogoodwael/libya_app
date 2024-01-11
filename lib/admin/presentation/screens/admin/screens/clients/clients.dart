@@ -19,7 +19,7 @@ class ClientScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: offwhite,
       key: scaffoldKey,
-      endDrawer: Drawer(
+      endDrawer: const Drawer(
         width: 250,
         child: AdminMenuScreen(),
       ),
@@ -52,8 +52,16 @@ class ClientScreen extends StatelessWidget {
                                 SizedBox(
                                   width: .01 * MediaQuery.sizeOf(context).width,
                                 ),
-                                const Person(),
-
+                                InkWell(
+                                  onTap: (){
+                                    controller.getDataIntial();
+                                  },
+                                  child: const Icon(
+                                    Icons.refresh,
+                                    color: yellow,
+                                    size: 35,
+                                  ),
+                                ),
                                 SizedBox(
                                   width: .12 * MediaQuery.sizeOf(context).width,
                                 ),

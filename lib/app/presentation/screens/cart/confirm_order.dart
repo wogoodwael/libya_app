@@ -141,13 +141,10 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                             ),
                           ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
                           padding: const EdgeInsets.all(10),
-                          child: SingleChildScrollView(
-                            child:
+                          child: ListView(
+                            children:[
                               Column(
                                 children: [
-                                  SizedBox(
-                                    height: .01 * MediaQuery.sizeOf(context).height,
-                                  ),
                                   const Text(
                                     "تفاصيل الطلب ",
                                     style: TextStyle(
@@ -252,6 +249,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                       ))
                                 ],
                               ),
+                            ]
                           )),
                     ),
                     SizedBox(

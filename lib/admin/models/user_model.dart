@@ -9,7 +9,7 @@ class UserModel {
   int? usersApprove;
   String? usersCreate;
   int? branchCode;
-  int? userFund;
+  double? userFund;
   int? userType;
 
   UserModel(
@@ -37,7 +37,7 @@ class UserModel {
     usersApprove = json['users_approve'];
     usersCreate = json['users_create'];
     branchCode = json['branch_code'];
-    userFund = json['user_fund'];
+    userFund = double.tryParse(json['user_fund'].toString());
     userType = json['user_type'];
   }
 
