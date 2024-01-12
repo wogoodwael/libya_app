@@ -14,6 +14,7 @@ class EditLocationUser extends StatelessWidget {
   Widget build(BuildContext context) {
     int addressId;
     addressId = Get.arguments['addressId'];
+    Get.put(AddressController());
     return SafeArea(
       child: Scaffold(
         body: GetBuilder<AddressController>(

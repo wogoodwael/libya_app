@@ -27,7 +27,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
     return Scaffold(
       backgroundColor: offwhite,
       key: scaffoldKey,
-      endDrawer: Drawer(
+      endDrawer: const Drawer(
         width: 250,
         child: AdminMenuScreen(),
       ),
@@ -61,7 +61,6 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                                   width: .01 * MediaQuery.sizeOf(context).width,
                                 ),
                                 const Person(),
-
                                 SizedBox(
                                   width: .12 * MediaQuery.sizeOf(context).width,
                                 ),
@@ -76,7 +75,6 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                                 SizedBox(
                                   width: .15 * MediaQuery.sizeOf(context).width,
                                 ),
-                                //* go to menu page
                                 GestureDetector(
                                     onTap: () {
                                       scaffoldKey.currentState!.openEndDrawer();
@@ -154,7 +152,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: 'اسم المنتج',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -165,7 +163,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: false,
                           controller: controller.name,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -174,7 +172,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: 'التفاصيل ',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -185,7 +183,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: false,
                           controller: controller.description,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -194,7 +192,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: 'العدد ',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -205,7 +203,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.count,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -214,7 +212,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: 'هل المنتج متوفر؟ ',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -242,7 +240,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج للمشتري العادي في فرع تاجوراء',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -253,7 +251,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.itemPrice,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -262,7 +260,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج للمشتري العادي في فرع عين زارة',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -273,7 +271,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.itemPrice2,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -282,7 +280,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج للمشتري العادي في فرع تربلس',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -293,7 +291,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.itemPrice3,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -302,7 +300,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج للمشتري العادي في فرع مصراتة',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -313,7 +311,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.itemPrice4,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -322,7 +320,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج للمشتري العادي في فرع الزاوية',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -333,7 +331,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.itemPrice5,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -342,7 +340,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب المحلات في فرع تاجوراء',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -353,7 +351,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.shopOwnerPrice,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -362,7 +360,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب المحلات في فرع عين زارة',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -373,7 +371,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.shopOwnerPrice2,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -382,7 +380,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب المحلات في فرع تربلس',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -393,7 +391,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.shopOwnerPrice3,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -402,7 +400,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب المحلات في فرع مصراتة',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -413,7 +411,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.shopOwnerPrice4,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -422,7 +420,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب المحلات في فرع الزاوية',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -433,7 +431,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.shopOwnerPrice5,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -442,7 +440,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب الافران في فرع تاجوراء',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -453,7 +451,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.fornOwnerPrice,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -462,7 +460,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب الافران في فرع عين زارة',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -473,7 +471,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.fornOwnerPrice2,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -482,7 +480,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب الافران في فرع تربلس',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -493,7 +491,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.fornOwnerPrice3,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -502,7 +500,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب الافران في فرع مصراتة',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -513,7 +511,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.fornOwnerPrice4,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -522,7 +520,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' سعر المنتج لاصحاب الافران في فرع الزاوية',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -533,7 +531,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.fornOwnerPrice5,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -542,7 +540,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' الخصم للمشتري العادي (ان لم يوجد اكتب 0)',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -553,7 +551,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.itemsDiscount,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -562,7 +560,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' الخصم لاصحاب المحلات (ان لم يوجد اكتب 0)',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -573,7 +571,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.shopOwnerDiscount,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -582,7 +580,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           padding: const EdgeInsets.only(right: 20),
                           child: InfoRow(
                             text: ' الخصم لاصحاب الافران (ان لم يوجد اكتب 0)',
-                            fontsize: 17,
+                            fontsize: Get.width * 0.035,
                             fontfamily: 'ArabicUIDisplayBold',
                           ),
                         ),
@@ -593,7 +591,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                           isNumber: true,
                           controller: controller.fornOwnerDiscount,
                           secure: false,
-                          height: 35,
+                          height: 50,
                         ),
                         const SizedBox(
                           height: 10,
@@ -674,8 +672,8 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 180),
+                        Padding(
+                          padding: EdgeInsets.only(left: Get.width * 0.28),
                           child: Text(
                             "هذا المنتج في أي فرع؟",
                             style: TextStyle(

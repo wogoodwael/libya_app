@@ -6,7 +6,7 @@ requestPerLocation() async{
   LocationPermission permission;
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-    return Get.snackbar('Attention', 'Please allow location');
+    // return Get.snackbar('Attention', 'Please allow location');
   }
   permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {

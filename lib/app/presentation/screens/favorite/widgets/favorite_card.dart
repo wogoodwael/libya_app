@@ -24,7 +24,7 @@ class FavoriteCard extends GetView<MyFavoriteController> {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Container(
-        width: .90 * MediaQuery.sizeOf(context).width,
+        width: 1 * MediaQuery.sizeOf(context).width,
         height: .19 * MediaQuery.sizeOf(context).height,
         decoration: BoxDecoration(boxShadow: const [
           BoxShadow(
@@ -35,23 +35,21 @@ class FavoriteCard extends GetView<MyFavoriteController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(children: [
+            Row(
+                children: [
               Container(
                 width: 125,
                 height: 120,
                 margin: const EdgeInsets.only(
                   top: 15,
-                  left: 20,
-                  right: 10,
                 ),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Image.network(
                   '${API.itemsImages}/${favoriteModel.itemsImage}',
                   fit: BoxFit.fitWidth,
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              SizedBox(width: Get.width * 0.02,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -278,17 +276,12 @@ class FavoriteCard extends GetView<MyFavoriteController> {
                   ),
                 ],
               ),
-              Padding(
-                  padding: EdgeInsets.only(
-                      bottom: .1 * MediaQuery.sizeOf(context).height,
-                      // top: .1 * MediaQuery.sizeOf(context).height
-                      left: .02 * MediaQuery.sizeOf(context).height
-                  ),
-                  child: IconButton(
+                  IconButton(
                       onPressed: () {
                         controller.deleteFromFav(favoriteModel.favoriteId);
+                        controller.deleteFav(favoriteModel.favoriteId);
                       },
-                      icon: Icon(Icons.delete))),
+                      icon: const Icon(Icons.delete)),
             ]),
           ],
         ),

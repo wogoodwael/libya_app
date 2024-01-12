@@ -126,131 +126,131 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                     SizedBox(
                       height: .02 * MediaQuery.sizeOf(context).height,
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 200),
+                      child: Text(
+                        textAlign: TextAlign.end,
+                        "تفاصيل الطلب",
+                        style: TextStyle(
+                            fontFamily: 'ArabicUIDisplay',
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: darkGreen),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Card(
                       elevation: 3,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: Container(
-                          width: .90 * MediaQuery.sizeOf(context).width,
-                          height: .50 * MediaQuery.sizeOf(context).height,
-                          decoration: BoxDecoration(boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 121, 119, 119),
-                              blurRadius: 1.0,
-                            ),
-                          ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
-                          padding: const EdgeInsets.all(10),
-                          child: ListView(
-                            children:[
-                              Column(
-                                children: [
-                                  const Text(
-                                    "تفاصيل الطلب ",
-                                    style: TextStyle(
-                                        color: darkGreen,
-                                        fontFamily: 'ArabicUIDisplay',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const Divider(
-                                    thickness: 2,
-                                    color: yellow,
-                                    endIndent: 10,
-                                    indent: 10,
-                                  ),
-                                  ...List.generate(
-                                      cartController.data.length,
-                                          (index) => CustomConfirmItemsList(
-                                        name: "${cartController.data[index].itemsName}",
-                                        price:
-                                        branchCode == 1 && userType == 1
-                                            ?
-                                        (cartController.data[index].itemsprice)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 2 && userType == 1
-                                            ?
-                                        (cartController.data[index].itemsprice2)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 3 && userType == 1
-                                            ?
-                                        (cartController.data[index].itemsprice3)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 4 && userType == 1
-                                            ?
-                                        (cartController.data[index].itemsprice4)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 5 && userType == 1
-                                            ?
-                                        (cartController.data[index].itemsprice5)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 1 && userType == 2
-                                            ?
-                                        (cartController.data[index].shopownerprice)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 2 && userType == 2
-                                            ?
-                                        (cartController.data[index].shopownerprice2)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 3 && userType == 2
-                                            ?
-                                        (cartController.data[index].shopownerprice3)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 4 && userType == 2
-                                            ?
-                                        (cartController.data[index].shopownerprice4)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 5 && userType == 2
-                                            ?
-                                        (cartController.data[index].shopownerprice5)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 1 && userType == 3
-                                            ?
-                                        (cartController.data[index].fornownerprice)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 2 && userType == 3
-                                            ?
-                                        (cartController.data[index].fornownerprice2)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 3 && userType == 3
-                                            ?
-                                        (cartController.data[index].fornownerprice3)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 4 && userType == 3
-                                            ?
-                                        (cartController.data[index].fornownerprice4)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        branchCode == 5 && userType == 3
-                                            ?
-                                        (cartController.data[index].fornownerprice5)!
-                                            .toStringAsFixed(2)
-                                            :
-                                        (cartController.data[index].itemsprice)!
-                                            .toStringAsFixed(2),
-                                        count:
-                                        "${cartController.data[index].countitems}",
-                                        image:
-                                        '${cartController.data[index].itemsImage}',
-                                        discount:
-                                        '${cartController.data[index].itemsDiscount}',
-                                      ))
-                                ],
+                      child: SingleChildScrollView(
+                        child: Container(
+                            width: .90 * MediaQuery.sizeOf(context).width,
+                            height: .50 * MediaQuery.sizeOf(context).height,
+                            decoration: BoxDecoration(boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 121, 119, 119),
+                                blurRadius: 1.0,
                               ),
-                            ]
-                          )),
+                            ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                ...List.generate(
+                                    cartController.data.length,
+                                        (index) => CustomConfirmItemsList(
+                                      name: "${cartController.data[index].itemsName}",
+                                      price:
+                                      branchCode == 1 && userType == 1
+                                          ?
+                                      (cartController.data[index].itemsprice)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 2 && userType == 1
+                                          ?
+                                      (cartController.data[index].itemsprice2)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 3 && userType == 1
+                                          ?
+                                      (cartController.data[index].itemsprice3)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 4 && userType == 1
+                                          ?
+                                      (cartController.data[index].itemsprice4)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 5 && userType == 1
+                                          ?
+                                      (cartController.data[index].itemsprice5)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 1 && userType == 2
+                                          ?
+                                      (cartController.data[index].shopownerprice)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 2 && userType == 2
+                                          ?
+                                      (cartController.data[index].shopownerprice2)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 3 && userType == 2
+                                          ?
+                                      (cartController.data[index].shopownerprice3)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 4 && userType == 2
+                                          ?
+                                      (cartController.data[index].shopownerprice4)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 5 && userType == 2
+                                          ?
+                                      (cartController.data[index].shopownerprice5)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 1 && userType == 3
+                                          ?
+                                      (cartController.data[index].fornownerprice)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 2 && userType == 3
+                                          ?
+                                      (cartController.data[index].fornownerprice2)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 3 && userType == 3
+                                          ?
+                                      (cartController.data[index].fornownerprice3)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 4 && userType == 3
+                                          ?
+                                      (cartController.data[index].fornownerprice4)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      branchCode == 5 && userType == 3
+                                          ?
+                                      (cartController.data[index].fornownerprice5)!
+                                          .toStringAsFixed(2)
+                                          :
+                                      (cartController.data[index].itemsprice)!
+                                          .toStringAsFixed(2),
+                                      count:
+                                      "${cartController.data[index].countitems}",
+                                      image:
+                                      '${cartController.data[index].itemsImage}',
+                                      discount:
+                                      '${cartController.data[index].itemsDiscount}',
+                                    ))
+                              ],
+                            )),
+                      ),
                     ),
                     SizedBox(
                       height: .03 * MediaQuery.sizeOf(context).height,
@@ -273,14 +273,14 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                     textDirection: TextDirection.rtl,
                                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                   ),
-                                  content: const Text('هل تريد دفع المبلغ كامل ام دفعات؟',style: TextStyle(fontFamily: 'ArabicUIDisplayBold',),),
+                                  content: const Text('هل تريد دفع المبلغ كامل ام دفعات؟',textAlign: TextAlign.right,textDirection: TextDirection.rtl,style: TextStyle(fontFamily: 'ArabicUIDisplayBold',),),
                                   actions: [
                                     TextButton(
                                         onPressed: () {
                                           setState(() {
                                             ta2sitVisible = false;
+                                            Get.back();
                                           });
-                                          Get.back();
                                           controller.choosePaymentMethod("0");
                                         },
                                         child: const Text(
@@ -291,8 +291,8 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                         onPressed: () {
                                           setState(() {
                                             ta2sitVisible = true;
+                                            Get.back();
                                           });
-                                          Get.back();
                                           controller.choosePaymentMethod("1");
                                         },
                                         child: const Text(
@@ -324,15 +324,14 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                     textDirection: TextDirection.rtl,
                                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                   ),
-                                  content: const Text('هل تريد دفع المبلغ كامل ام دفعات؟',style: TextStyle(fontFamily: 'ArabicUIDisplayBold',),),
+                                  content: const Text('هل تريد دفع المبلغ كامل ام دفعات؟',textAlign: TextAlign.right,textDirection: TextDirection.rtl,style: TextStyle(fontFamily: 'ArabicUIDisplayBold',),),
                                   actions: [
                                     TextButton(
                                         onPressed: () {
                                           setState(() {
                                             ta2sitVisible = false;
+                                            Get.back();
                                           });
-
-                                          Get.close(1);
                                           controller.choosePaymentMethod("0");
                                         },
                                         child: const Text(
@@ -343,8 +342,8 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                         onPressed: () {
                                           setState(() {
                                             ta2sitVisible = true;
+                                            Get.back();
                                           });
-                                          Get.close(1);
                                           controller.choosePaymentMethod("1");
                                         },
                                         child: const Text(
@@ -374,7 +373,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                         ),
                         child: Container(
                           width: .90 * MediaQuery.sizeOf(context).width,
-                          height: .41 * MediaQuery.sizeOf(context).height,
+                          height: .44 * MediaQuery.sizeOf(context).height,
                           decoration: BoxDecoration(boxShadow: const [
                             BoxShadow(
                               color: Color.fromARGB(255, 121, 119, 119),
@@ -457,6 +456,9 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                     ),
                                   ),
                                 ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                               ],
                             ),
                           ),
@@ -515,8 +517,10 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                     child: TextField(
                                       controller: controller.ta2sitController,
                                       textDirection: TextDirection.rtl,
+                                      textAlign: TextAlign.right,
                                       decoration: const InputDecoration(
                                         hintText: "المبلغ الذي تريد دفعه",
+                                        hintTextDirection: TextDirection.rtl
                                       ),
                                     ),
                                   ),
@@ -528,8 +532,10 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                     child: TextField(
                                       controller: controller.noOfTa2sitController,
                                       textDirection: TextDirection.rtl,
+                                      textAlign: TextAlign.right,
                                       decoration: const InputDecoration(
                                         hintText: "عدد الدفعات",
+                                          hintTextDirection: TextDirection.rtl
                                       ),
                                     ),
                                   ),

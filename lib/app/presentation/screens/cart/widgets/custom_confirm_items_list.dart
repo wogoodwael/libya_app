@@ -19,13 +19,27 @@ class CustomConfirmItemsList extends StatelessWidget {
               SizedBox(
                 height: .01 * MediaQuery.sizeOf(context).height,
               ),
-              Row(
+              int.parse(discount) != 0
+              ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (int.parse(discount) != 0) Positioned(
+                  Positioned(
                       left: 160,
                       bottom: 5,
-                      child: Image.asset("assets/images/sale.png",width: 50)),
+                      child: Image.asset("assets/images/sale.png",width: 50)
+                  ),
+                  Text(
+                    name,
+                    style: const TextStyle(
+                        color: green,
+                        fontFamily: 'ArabicUIDisplayBold',
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              )
+              : Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
                   Text(
                     name,
                     style: const TextStyle(

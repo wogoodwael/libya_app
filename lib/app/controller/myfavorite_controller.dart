@@ -29,6 +29,19 @@ class MyFavoriteController extends GetxController {
     update();
   }
 
+  deleteFav(favoriteId) async {
+    statusRequest = StatusRequest.loading;
+    var response = await myFavoriteData.deleteData(favoriteId);
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
+
   deleteFromFav(favoriteId) {
     data.removeWhere((element) => element.favoriteId == favoriteId);
     update();

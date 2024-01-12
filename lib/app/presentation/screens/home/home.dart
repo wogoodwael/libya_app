@@ -29,9 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeControllerImp());
-    PendingOrdersController pendingOrdersController =
-        Get.put(PendingOrdersController());
-    pendingOrdersController.getOrders();
+    PendingOrdersController pendingOrdersController = Get.put(PendingOrdersController());
     return Scaffold(
       key: scaffoldKey,
       endDrawer: const Drawer(
@@ -160,13 +158,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 statusRequest: controller.statusRequest,
                 widget: Column(
                   children: [
-                    CustomRow(
-                      ontap: () {
-                        Get.to(() => CategoriesScreen());
-                      },
-                      text: 'الاصناف ',
-                      widthOfSized: .45 * MediaQuery.sizeOf(context).width,
-                      widthOfpadding: .02 * MediaQuery.sizeOf(context).width,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: CustomRow(
+                        onTap: () {
+                          Get.to(() => CategoriesScreen());
+                        },
+                        text: 'الاصناف ',
+                      ),
                     ),
                     SizedBox(
                       height: .03 * MediaQuery.sizeOf(context).height,
@@ -188,13 +187,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: .03 * MediaQuery.sizeOf(context).height,
                     ),
-                    CustomRow(
-                      ontap: () {
-                        Get.to(() => CategoriesScreen());
-                      },
-                      text: 'العروض ',
-                      widthOfSized: .45 * MediaQuery.sizeOf(context).width,
-                      widthOfpadding: .02 * MediaQuery.sizeOf(context).width,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: CustomRow(
+                        onTap: () {
+                          Get.to(() => CategoriesScreen());
+                        },
+                        text: 'العروض ',
+                      ),
                     ),
                     SizedBox(
                       height: .03 * MediaQuery.sizeOf(context).height,
@@ -217,14 +217,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     statusRequest: controllerpending.statusRequest,
                     widget: Column(
                       children: [
-                        CustomRow(
-                          ontap: () {
-                            Get.to(() => PreviousOrdersScreen());
-                          },
-                          text: 'طلباتك ',
-                          widthOfSized: .46 * MediaQuery.sizeOf(context).width,
-                          widthOfpadding:
-                              .05 * MediaQuery.sizeOf(context).width,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: CustomRow(
+                            onTap: () {
+                              Get.to(() => PreviousOrdersScreen());
+                            },
+                            text: 'طلباتك ',
+                          ),
                         ),
                         SizedBox(
                           height: .02 * MediaQuery.sizeOf(context).height,
@@ -243,9 +243,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     MediaQuery.of(context).size.height * 0.2,
                                 child: ListView.builder(
                                     itemCount:
-                                        pendingOrdersController.data.length,
+                                        5,
                                     scrollDirection: Axis.horizontal,
-                                    reverse: true,
+                                    reverse: false,
                                     itemBuilder: (context, index) {
                                       return Padding(
                                         padding: const EdgeInsets.symmetric(

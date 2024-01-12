@@ -5,7 +5,6 @@ import '../../data/services/api.dart';
 import '../widgets/menu_row.dart';
 import 'admin/complaint.dart';
 import 'admin/control.dart';
-import 'admin/screens/bills/bills.dart';
 import 'admin/screens/categories/categories.dart';
 import 'admin/screens/clients/clients.dart';
 import 'admin/screens/orders/order_screen.dart';
@@ -144,7 +143,7 @@ class AdminMenuScreen extends StatelessWidget {
               text: 'الشكاوي',
             ),
             SizedBox(
-              height: .35 * MediaQuery.sizeOf(context).height,
+              height: .15 * MediaQuery.sizeOf(context).height,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 80, right: 10),

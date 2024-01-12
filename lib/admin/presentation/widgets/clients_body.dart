@@ -16,7 +16,7 @@ class ClientsBody extends StatelessWidget {
       children: [
         Container(
           width: .8 * MediaQuery.sizeOf(context).width,
-          height: .32 * MediaQuery.sizeOf(context).height,
+          height: .38 * MediaQuery.sizeOf(context).height,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),

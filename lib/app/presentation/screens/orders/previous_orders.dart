@@ -9,15 +9,29 @@ import '../../../core/utils/app_color.dart';
 import '../../../handling_data/handlng_data_view.dart';
 import '../cart/card_order.dart';
 
-class PreviousOrdersScreen extends StatelessWidget {
+class PreviousOrdersScreen extends StatefulWidget {
   PreviousOrdersScreen({super.key});
 
+  @override
+  State<PreviousOrdersScreen> createState() => _PreviousOrdersScreenState();
+}
+
+class _PreviousOrdersScreenState extends State<PreviousOrdersScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  PendingOrdersController pendingOrdersController = Get.put(PendingOrdersController());
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      pendingOrdersController.getOrders();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    PendingOrdersController pendingOrdersController =
-        Get.put(PendingOrdersController());
+    Get.put(PendingOrdersController());
     return Scaffold(
       key: scaffoldKey,
       endDrawer: const Drawer(
@@ -64,7 +78,7 @@ class PreviousOrdersScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: .2 * MediaQuery.sizeOf(context).width,
+                      width: .05 * MediaQuery.sizeOf(context).width,
                     ),
                     const Text(
                       "طلباتك ",

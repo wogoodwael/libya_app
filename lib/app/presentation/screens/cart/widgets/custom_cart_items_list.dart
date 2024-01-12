@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../core/utils/app_color.dart';
 
 class CustomCartItemsList extends StatelessWidget {
@@ -33,7 +34,8 @@ class CustomCartItemsList extends StatelessWidget {
                   ),
                   Text(
                     name,
-                    style: const TextStyle(
+                    style:  TextStyle(
+                      fontSize: Get.width * 0.03,
                         color: green,
                         fontFamily: 'ArabicUIDisplayBold',
                         fontWeight: FontWeight.bold),
@@ -44,6 +46,7 @@ class CustomCartItemsList extends StatelessWidget {
                 height: .01 * MediaQuery.sizeOf(context).height,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 130,
@@ -78,33 +81,34 @@ class CustomCartItemsList extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: .27 * MediaQuery.sizeOf(context).width,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 7),
-                    child: Text(
-                      " د.ل ",
-                      style: TextStyle(
-                          color: darkGreen,
-                          fontSize: 20,
-                          fontFamily: 'ArabicUIDisplay',
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      right: 1,
-                    ),
-                    child: Text(
-                      price,
-                      style: const TextStyle(
-                          color: darkGreen,
-                          fontSize: 17,
-                          fontFamily: 'ArabicUIDisplay',
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 7),
+                        child: Text(
+                          " د.ل ",
+                          style: TextStyle(
+                              color: darkGreen,
+                              fontSize: 20,
+                              fontFamily: 'ArabicUIDisplay',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          right: 1,
+                        ),
+                        child: Text(
+                          price,
+                          style: const TextStyle(
+                              color: darkGreen,
+                              fontSize: 17,
+                              fontFamily: 'ArabicUIDisplay',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
               SizedBox(

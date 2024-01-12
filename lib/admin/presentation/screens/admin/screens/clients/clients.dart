@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../../../../controller/user_controller.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/back_image.dart';
-import '../../../../../core/utils/person.dart';
 import '../../../../../handling_data/handlng_data_view.dart';
 import '../../../../widgets/clients_body.dart';
 import '../../../menu.dart';
@@ -33,7 +32,7 @@ class ClientScreen extends StatelessWidget {
                   children: [
                     Container(
                       width: MediaQuery.sizeOf(context).width,
-                      height: .20 * MediaQuery.sizeOf(context).height,
+                      height: .22 * MediaQuery.sizeOf(context).height,
                       decoration: const BoxDecoration(
                           color: darkGreen,
                           borderRadius: BorderRadius.only(
@@ -105,7 +104,6 @@ class ClientScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    // const UserTypeList(),
                     const SizedBox(
                       height: 20,
                     ),

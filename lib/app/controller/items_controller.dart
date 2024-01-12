@@ -12,7 +12,6 @@ abstract class ItemsController extends SearchMixController{
   initialData();
   changeCat(int val, int catVal);
   getItems(int categoryid);
-  goToProductDetails(ItemsModel itemsModel);
 }
 
 class ItemsControllerImp extends ItemsController{
@@ -79,9 +78,5 @@ class ItemsControllerImp extends ItemsController{
     update();
   }
 
-  @override
-  goToProductDetails(itemsModel){
-    Get.to(SubCategoryScreen(),arguments: {'itemsModel' : itemsModel});
-  }
 
 }

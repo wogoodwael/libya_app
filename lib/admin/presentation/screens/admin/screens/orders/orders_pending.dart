@@ -19,7 +19,7 @@ class OrderPendingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: offwhite,
       key: scaffoldKey,
-      endDrawer: Drawer(
+      endDrawer: const Drawer(
         width: 250,
         child: AdminMenuScreen(),
       ),
@@ -34,7 +34,7 @@ class OrderPendingScreen extends StatelessWidget {
                     children: [
                       Container(
                         width: MediaQuery.sizeOf(context).width,
-                        height: .22 * MediaQuery.sizeOf(context).height,
+                        height: .24 * MediaQuery.sizeOf(context).height,
                         decoration: const BoxDecoration(
                             color: darkGreen,
                             borderRadius: BorderRadius.only(

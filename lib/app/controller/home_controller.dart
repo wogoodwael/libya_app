@@ -59,12 +59,6 @@ class HomeControllerImp extends HomeController{
     });
   }
 
-  goToProducts(itemsModel){
-    Get.to(() => SubCategoryScreen(), arguments: {
-      'itemsModel' : itemsModel
-    });
-  }
-
 }
 
 class SearchMixController extends GetxController{

@@ -35,6 +35,7 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
        visible = true;
      });
     }
+    DateTime now = DateTime.now();
     return Scaffold(
       key: scaffoldKey,
       endDrawer: const Drawer(
@@ -209,6 +210,8 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                 Padding(
                                   padding: const EdgeInsets.all(3),
                                   child: Text(
+                                    controller.ordersModel.orderDatetime.isNull ?
+                                        '':
                                     Jiffy.parse(controller.ordersModel.orderDatetime!).format(pattern: 'MMMM do yyyy, h:mm:ss a'),
                                     style: const TextStyle(
                                         color: green,
@@ -279,8 +282,9 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                             width: .90 * MediaQuery.sizeOf(context).width,
-                            height: .17 * MediaQuery.sizeOf(context).height,
+                            height: .20 * MediaQuery.sizeOf(context).height,
                             decoration: BoxDecoration(
                                 boxShadow: const [
                                   BoxShadow(
@@ -296,45 +300,96 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
-                                  "المجموع___________________________${controller.ordersModel.orderPrice} د.ل",
-                                  textDirection: TextDirection.rtl,
-                                  style: const TextStyle(
-                                      color: green,
-                                      fontFamily: 'ArabicUIDisplayBold',
-                                      fontWeight: FontWeight.bold),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "${controller.ordersModel.orderPrice} د.ل",
+                                      textDirection: TextDirection.rtl,
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "المجموع",
+                                      textDirection: TextDirection.rtl,
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(
                                   height: .01 * MediaQuery.sizeOf(context).height,
                                 ),
-                                Text(
-                                  "اجمالي التوصيل___________________________${controller.ordersModel.orderPricedelivery} د.ل",
-                                  style: const TextStyle(
-                                      color: green,
-                                      fontFamily: 'ArabicUIDisplayBold',
-                                      fontWeight: FontWeight.bold),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "${controller.ordersModel.orderPricedelivery} د.ل",
+                                      textDirection: TextDirection.rtl,
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "اجمالي التوصيل",
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(
                                   height: .01 * MediaQuery.sizeOf(context).height,
                                 ),
-                              Text(
-                                "اجمالي الفاتورة___________________________${controller.ordersModel.orderTotalprice} د.ل",
-                                  style: const TextStyle(
-                                      color: green,
-                                      fontFamily: 'ArabicUIDisplayBold',
-                                      fontWeight: FontWeight.bold),
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "${controller.ordersModel.orderTotalprice} د.ل",
+                                     textDirection: TextDirection.rtl,
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  Text(
+                                    "اجمالي الفاتورة",
+                                    style: const TextStyle(
+                                        color: green,
+                                        fontFamily: 'ArabicUIDisplayBold',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                                 SizedBox(
                                   height: .01 * MediaQuery.sizeOf(context).height,
                                 ),
-                                Text(
-                                  controller.ordersModel.orderType == 0 ?
-                                "طريقة الدفع___________________________دفع عند المتجر"
-                                  : "طريقة الدفع___________________________دفع عند الاستلام",
-                                  style: const TextStyle(
-                                      color: green,
-                                      fontFamily: 'ArabicUIDisplayBold',
-                                      fontWeight: FontWeight.bold),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      controller.ordersModel.orderType == 0 ?
+                                    "دفع عند المتجر"
+                                      : "دفع عند الاستلام",
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "طريقة الدفع",
+                                      style: const TextStyle(
+                                          color: green,
+                                          fontFamily: 'ArabicUIDisplayBold',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ))),
@@ -371,6 +426,8 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                   Padding(
                                     padding: const EdgeInsets.all(8),
                                     child: Text(
+                                      controller.ordersModel.addressCity.isNull ?
+                                      " العنوان :  لا يوجد":
                                       " العنوان: ${controller.ordersModel.addressCity} ,  ${controller.ordersModel.addressStreet}",
                                       textDirection: TextDirection.rtl,
                                       style: const TextStyle(
@@ -439,7 +496,10 @@ class _PreviousOrderDetailsState extends State<PreviousOrderDetails> {
                                       controller.ordersModel.orderAmountPaid.toString(),
                                       controller.ordersModel.noOfInstallments.toString(),
                                   );
-                                  showErrorSnack(context, "تم اعادة الطلب بنجاح");
+                                  if (now.hour >= 0 && now.hour > 12) {
+                                    showErrorSnack(
+                                        context, "تم اعادة الطلب بنجاح");
+                                  }
                                 },
                                 child: const Text(
                                   'نعم',

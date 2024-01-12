@@ -48,7 +48,7 @@ class _CartOrdersState extends State<CartOrders> {
                   ),
                   child: Container(
                       width: .90 * MediaQuery.sizeOf(context).width,
-                      height: .21 * MediaQuery.sizeOf(context).height,
+                      height: .23 * MediaQuery.sizeOf(context).height,
                       decoration: BoxDecoration(
                           boxShadow: const [
                             BoxShadow(
@@ -172,191 +172,192 @@ class _CartOrdersState extends State<CartOrders> {
               statusRequest: controller.statusRequest,
               widget: Stack(children: [
                 const BackGroundImage(),
-                Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      height: .25 * MediaQuery.sizeOf(context).height,
-                      decoration: const BoxDecoration(
-                          color: darkGreen,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(40),
-                              bottomRight: Radius.circular(40))),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: .06 * MediaQuery.sizeOf(context).height,
-                          ),
-                          FittedBox(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                SizedBox(
-                                  width:
-                                      .055 * MediaQuery.sizeOf(context).width,
-                                ),
-                                const AppPerson(),
-                                SizedBox(
-                                  width: .08 * MediaQuery.sizeOf(context).width,
-                                ),
-                                const Text(
-                                  "سلة المشتريات",
-                                  style: TextStyle(
-                                      fontFamily: 'ArabicUIDisplayBold',
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                      color: yellow),
-                                ),
-                                SizedBox(
-                                  width: .12 * MediaQuery.sizeOf(context).width,
-                                ),
-                                //* go to menu page
-                                GestureDetector(
-                                    onTap: () {
-                                      scaffoldKey.currentState!.openEndDrawer();
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: SizedBox(
-                                        width: 30,
-                                        height: 25,
-                                        child: Image.asset(
-                                          "assets/images/icon_menu.png",
-                                          color: yellow,
-                                          fit: BoxFit.cover,
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.sizeOf(context).width,
+                        height: .25 * MediaQuery.sizeOf(context).height,
+                        decoration: const BoxDecoration(
+                            color: darkGreen,
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(40),
+                                bottomRight: Radius.circular(40))),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: .06 * MediaQuery.sizeOf(context).height,
+                            ),
+                            FittedBox(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  SizedBox(
+                                    width:
+                                        .055 * MediaQuery.sizeOf(context).width,
+                                  ),
+                                  const AppPerson(),
+                                  SizedBox(
+                                    width: .08 * MediaQuery.sizeOf(context).width,
+                                  ),
+                                  const Text(
+                                    "سلة المشتريات",
+                                    style: TextStyle(
+                                        fontFamily: 'ArabicUIDisplayBold',
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: yellow),
+                                  ),
+                                  SizedBox(
+                                    width: .12 * MediaQuery.sizeOf(context).width,
+                                  ),
+                                  //* go to menu page
+                                  GestureDetector(
+                                      onTap: () {
+                                        scaffoldKey.currentState!.openEndDrawer();
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(right: 10),
+                                        child: SizedBox(
+                                          width: 30,
+                                          height: 25,
+                                          child: Image.asset(
+                                            "assets/images/icon_menu.png",
+                                            color: yellow,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
-                                      ),
-                                    )),
-                              ],
+                                      )),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: .03 * MediaQuery.sizeOf(context).height,
-                          ),
-                          CartItemsCount(
-                              message:
-                                  ' لديك ${cartController.totalCountItems} منتجات في السلة'),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: .01 * MediaQuery.sizeOf(context).height,
-                    ),
-                    //*  order  cart
-                    Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: Container(
-                          width: .90 * MediaQuery.sizeOf(context).width,
-                          height: .50 * MediaQuery.sizeOf(context).height,
-                          decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromARGB(255, 121, 119, 119),
-                                  blurRadius: 1.0,
-                                ),
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15)),
-                          padding: const EdgeInsets.all(10),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height:
-                                      .01 * MediaQuery.sizeOf(context).height,
-                                ),
-                                const Divider(
-                                  thickness: 2,
-                                  color: yellow,
-                                  endIndent: 10,
-                                  indent: 10,
-                                ),
-                                ...List.generate(
-                                    cartController.data.length,
-                                    (index) => CustomCartItemsList(
-                                          onAdd: () async {
-                                            await cartController.addToCart(
-                                                cartController
-                                                    .data[index].itemsId,
-                                                cartController
-                                                    .data[index].itemsName);
-                                            cartController.refreshPage();
-                                          },
-                                          onRemove: () async {
-                                            await cartController.deleteFromCart(
-                                                cartController
-                                                    .data[index].itemsId,
-                                                cartController
-                                                    .data[index].itemsName);
-                                            cartController.refreshPage();
-                                          },
-                                          name:
-                                              "${cartController.data[index].itemsName}",
-                                          price: branchCode == 1 &&
-                                                  userType == 1
-                                              ? (cartController
-                                                      .data[index].itemsprice)!
-                                                  .toStringAsFixed(2)
-                                              : branchCode == 2 && userType == 1
-                                                  ? (cartController.data[index]
-                                                          .itemsprice2)!
-                                                      .toStringAsFixed(2)
-                                                  : branchCode == 3 &&
-                                                          userType == 1
-                                                      ? (cartController
-                                                              .data[index]
-                                                              .itemsprice3)!
-                                                          .toStringAsFixed(2)
-                                                      : branchCode == 4 &&
-                                                              userType == 1
-                                                          ? (cartController
-                                                                  .data[index]
-                                                                  .itemsprice4)!
-                                                              .toStringAsFixed(
-                                                                  2)
-                                                          : branchCode == 5 &&
-                                                                  userType == 1
-                                                              ? (cartController
-                                                                      .data[index]
-                                                                      .itemsprice5)!
-                                                                  .toStringAsFixed(2)
-                                                              : branchCode == 1 && userType == 2
-                                                                  ? (cartController.data[index].shopownerprice)!.toStringAsFixed(2)
-                                                                  : branchCode == 2 && userType == 2
-                                                                      ? (cartController.data[index].shopownerprice2)!.toStringAsFixed(2)
-                                                                      : branchCode == 3 && userType == 2
-                                                                          ? (cartController.data[index].shopownerprice3)!.toStringAsFixed(2)
-                                                                          : branchCode == 4 && userType == 2
-                                                                              ? (cartController.data[index].shopownerprice4)!.toStringAsFixed(2)
-                                                                              : branchCode == 5 && userType == 2
-                                                                                  ? (cartController.data[index].shopownerprice5)!.toStringAsFixed(2)
-                                                                                  : branchCode == 1 && userType == 3
-                                                                                      ? (cartController.data[index].fornownerprice)!.toStringAsFixed(2)
-                                                                                      : branchCode == 2 && userType == 3
-                                                                                          ? (cartController.data[index].fornownerprice2)!.toStringAsFixed(2)
-                                                                                          : branchCode == 3 && userType == 3
-                                                                                              ? (cartController.data[index].fornownerprice3)!.toStringAsFixed(2)
-                                                                                              : branchCode == 4 && userType == 3
-                                                                                                  ? (cartController.data[index].fornownerprice4)!.toStringAsFixed(2)
-                                                                                                  : branchCode == 5 && userType == 3
-                                                                                                      ? (cartController.data[index].fornownerprice5)!.toStringAsFixed(2)
-                                                                                                      : (cartController.data[index].itemsprice)!.toStringAsFixed(2),
-                                          count:
-                                              "${cartController.data[index].countitems}",
-                                          image:
-                                              '${cartController.data[index].itemsImage}',
-                                          discount:
-                                              '${cartController.data[index].itemsDiscount}',
-                                        )),
-                              ],
+                            SizedBox(
+                              height: .03 * MediaQuery.sizeOf(context).height,
                             ),
-                          )),
-                    ),
-                  ],
+                            CartItemsCount(
+                                message:
+                                    ' لديك ${cartController.totalCountItems} منتجات في السلة'),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: .01 * MediaQuery.sizeOf(context).height,
+                      ),
+                      Card(
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Container(
+                            width: .90 * MediaQuery.sizeOf(context).width,
+                            height: .50 * MediaQuery.sizeOf(context).height,
+                            decoration: BoxDecoration(
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color.fromARGB(255, 121, 119, 119),
+                                    blurRadius: 1.0,
+                                  ),
+                                ],
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15)),
+                            padding: const EdgeInsets.all(10),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height:
+                                        .01 * MediaQuery.sizeOf(context).height,
+                                  ),
+                                  const Divider(
+                                    thickness: 2,
+                                    color: yellow,
+                                    endIndent: 10,
+                                    indent: 10,
+                                  ),
+                                  ...List.generate(
+                                      cartController.data.length,
+                                      (index) => CustomCartItemsList(
+                                            onAdd: () async {
+                                              await cartController.addToCart(
+                                                  cartController
+                                                      .data[index].itemsId,
+                                                  cartController
+                                                      .data[index].itemsName);
+                                              cartController.refreshPage();
+                                            },
+                                            onRemove: () async {
+                                              await cartController.deleteFromCart(
+                                                  cartController
+                                                      .data[index].itemsId,
+                                                  cartController
+                                                      .data[index].itemsName);
+                                              cartController.refreshPage();
+                                            },
+                                            name:
+                                                "${cartController.data[index].itemsName}",
+                                            price: branchCode == 1 &&
+                                                    userType == 1
+                                                ? (cartController
+                                                        .data[index].itemsprice)!
+                                                    .toStringAsFixed(2)
+                                                : branchCode == 2 && userType == 1
+                                                    ? (cartController.data[index]
+                                                            .itemsprice2)!
+                                                        .toStringAsFixed(2)
+                                                    : branchCode == 3 &&
+                                                            userType == 1
+                                                        ? (cartController
+                                                                .data[index]
+                                                                .itemsprice3)!
+                                                            .toStringAsFixed(2)
+                                                        : branchCode == 4 &&
+                                                                userType == 1
+                                                            ? (cartController
+                                                                    .data[index]
+                                                                    .itemsprice4)!
+                                                                .toStringAsFixed(
+                                                                    2)
+                                                            : branchCode == 5 &&
+                                                                    userType == 1
+                                                                ? (cartController
+                                                                        .data[index]
+                                                                        .itemsprice5)!
+                                                                    .toStringAsFixed(2)
+                                                                : branchCode == 1 && userType == 2
+                                                                    ? (cartController.data[index].shopownerprice)!.toStringAsFixed(2)
+                                                                    : branchCode == 2 && userType == 2
+                                                                        ? (cartController.data[index].shopownerprice2)!.toStringAsFixed(2)
+                                                                        : branchCode == 3 && userType == 2
+                                                                            ? (cartController.data[index].shopownerprice3)!.toStringAsFixed(2)
+                                                                            : branchCode == 4 && userType == 2
+                                                                                ? (cartController.data[index].shopownerprice4)!.toStringAsFixed(2)
+                                                                                : branchCode == 5 && userType == 2
+                                                                                    ? (cartController.data[index].shopownerprice5)!.toStringAsFixed(2)
+                                                                                    : branchCode == 1 && userType == 3
+                                                                                        ? (cartController.data[index].fornownerprice)!.toStringAsFixed(2)
+                                                                                        : branchCode == 2 && userType == 3
+                                                                                            ? (cartController.data[index].fornownerprice2)!.toStringAsFixed(2)
+                                                                                            : branchCode == 3 && userType == 3
+                                                                                                ? (cartController.data[index].fornownerprice3)!.toStringAsFixed(2)
+                                                                                                : branchCode == 4 && userType == 3
+                                                                                                    ? (cartController.data[index].fornownerprice4)!.toStringAsFixed(2)
+                                                                                                    : branchCode == 5 && userType == 3
+                                                                                                        ? (cartController.data[index].fornownerprice5)!.toStringAsFixed(2)
+                                                                                                        : (cartController.data[index].itemsprice)!.toStringAsFixed(2),
+                                            count:
+                                                "${cartController.data[index].countitems}",
+                                            image:
+                                                '${cartController.data[index].itemsImage}',
+                                            discount:
+                                                '${cartController.data[index].itemsDiscount}',
+                                          )),
+                                ],
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
                 ),
               ]),
             );

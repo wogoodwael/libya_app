@@ -121,8 +121,9 @@ class OrderDetails extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             child: Container(
+                              padding: const EdgeInsets.all(10),
                                 width: .90 * MediaQuery.sizeOf(context).width,
-                                height: .32 * MediaQuery.sizeOf(context).height,
+                                height: .40 * MediaQuery.sizeOf(context).height,
                                 decoration: BoxDecoration(
                                     boxShadow: const [
                                       BoxShadow(
@@ -138,93 +139,190 @@ class OrderDetails extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    Text(
-                                      "المجموع___________________________${controller.ordersModel.orderPrice} د.ل",
-                                      textDirection: TextDirection.rtl,
-                                      style: const TextStyle(
-                                          color: green,
-                                          fontFamily: 'ArabicUIDisplayBold',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: .01 * MediaQuery.sizeOf(context).height,
-                                    ),
-                                    Text(
-                                      "اجمالي التوصيل___________________________${controller.ordersModel.orderPricedelivery} د.ل",
-                                      style: const TextStyle(
-                                          color: green,
-                                          fontFamily: 'ArabicUIDisplayBold',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: .01 * MediaQuery.sizeOf(context).height,
-                                    ),
-                                    Text(
-                                      "اجمالي الفاتورة___________________________${controller.ordersModel.orderTotalprice} د.ل",
-                                      style: const TextStyle(
-                                          color: green,
-                                          fontFamily: 'ArabicUIDisplayBold',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: .01 * MediaQuery.sizeOf(context).height,
-                                    ),
-                                    if(controller.ordersModel.noOfInstallments != null)
-                                    Text(
-                                      " عدد الدفعات___________________________${controller.ordersModel.noOfInstallments} د.ل",
-                                      style: const TextStyle(
-                                          color: green,
-                                          fontFamily: 'ArabicUIDisplayBold',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: .01 * MediaQuery.sizeOf(context).height,
-                                    ),
-                                    Text(
-                                      " المدفوع___________________________${controller.ordersModel.orderAmountPaid} د.ل",
-                                      style: const TextStyle(
-                                          color: green,
-                                          fontFamily: 'ArabicUIDisplayBold',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: .01 * MediaQuery.sizeOf(context).height,
-                                    ),
-                                    Text(
-                                      " المتبقي___________________________${controller.ordersModel.orderAmountRequired} د.ل",
-                                      style: const TextStyle(
-                                          color: green,
-                                          fontFamily: 'ArabicUIDisplayBold',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: .01 * MediaQuery.sizeOf(context).height,
-                                    ),
-                                    Text(
-                                      controller.ordersModel.orderType == 0 ?
-                                      "طريقة الدفع___________________________دفع عند المتجر"
-                                          : "طريقة الدفع___________________________دفع عند الاستلام",
-                                      style: const TextStyle(
-                                          color: green,
-                                          fontFamily: 'ArabicUIDisplayBold',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: .01 * MediaQuery.sizeOf(context).height,
-                                    ),
-                                    if(controller.ordersModel.orderType == 1)
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                          "العنوان : ${controller.ordersModel.addressStreet}, ${controller.ordersModel.addressCity}",
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${controller.ordersModel.orderPrice} د.ل",
+                                          textDirection: TextDirection.rtl,
                                           style: const TextStyle(
                                               color: green,
                                               fontFamily: 'ArabicUIDisplayBold',
                                               fontWeight: FontWeight.bold),
                                         ),
-                                      ),
+                                        const Text(
+                                          "المجموع",
+                                          textDirection: TextDirection.rtl,
+                                          style: TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${controller.ordersModel.orderPricedelivery} د.ل",
+                                          textDirection: TextDirection.rtl,
+                                          style: const TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const Text(
+                                          "اجمالي التوصيل",
+                                          style: TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${controller.ordersModel.orderTotalprice} د.ل",
+                                          textDirection: TextDirection.rtl,
+                                          style: const TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const Text(
+                                          "اجمالي الفاتورة",
+                                          style: TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    if(controller.ordersModel.noOfInstallments != null)
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${controller.ordersModel.noOfInstallments}",
+                                          style: const TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const Text(
+                                          " عدد الدفعات",
+                                          style: TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${controller.ordersModel.orderAmountPaid} د.ل",
+                                          textDirection: TextDirection.rtl,
+                                          style: const TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const Text(
+                                          " المدفوع",
+                                          style: TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          controller.ordersModel.orderAmountRequired.toString().startsWith("-") ?
+                                              "0.00":
+                                          "${controller.ordersModel.orderAmountRequired} د.ل",
+                                          textDirection: TextDirection.rtl,
+                                          style: const TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const Text(
+                                          " المتبقي",
+                                          style: TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          controller.ordersModel.orderType == 0 ?
+                                          "دفع عند المتجر"
+                                              : "دفع عند الاستلام",
+                                          style: const TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const Text(
+                                          "طريقة الدفع",
+                                          style: TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: .01 * MediaQuery.sizeOf(context).height,
+                                    ),
+                                    if(controller.ordersModel.orderType == 1)
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${controller.ordersModel.addressStreet}, ${controller.ordersModel.addressCity}",
+                                          style: const TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const Text(
+                                          " : العنوان",
+                                          style: TextStyle(
+                                              color: green,
+                                              fontFamily: 'ArabicUIDisplayBold',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 )

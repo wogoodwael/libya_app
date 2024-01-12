@@ -106,7 +106,7 @@ class _AddAddressDetailsUserState extends State<AddAddressDetailsUser> {
                                 InkWell(
                                     onTap: (){
                                       controller.addAddressUser();
-                                      showErrorSnack(context, "تمت إضافة العنوان بنجاح");
+                                      showSuccessSnack(context, "تمت إضافة العنوان بنجاح");
                                     },
                                     child: Center(child: CustomNext(width: 310, text: 'اضافة العنوان')))
                               ],

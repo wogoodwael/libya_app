@@ -120,9 +120,9 @@ class _EditAddressDetailsUserState extends State<EditAddressDetailsUser> {
                                 InkWell(
                                     onTap: (){
                                       controller.editAddressUser(addressId);
-                                      showErrorSnack(context, "تم تعديل العنوان بنجاح");
+                                      showSuccessSnack(context, "تم تعديل العنوان بنجاح");
                                     },
-                                    child: Center(child: CustomNext(width: 310, text: 'اضافة العنوان')))
+                                    child: Center(child: CustomNext(width: 310, text: 'تعديل العنوان')))
                               ],
                             ),
                           ]
