@@ -674,7 +674,7 @@ class _EditSubCategoriesScreenState extends State<EditSubCategoriesScreen> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: Get.width * 0.28),
-                          child: Text(
+                          child: const Text(
                             "هذا المنتج في أي فرع؟",
                             style: TextStyle(
                                 fontFamily: 'ArabicUIDisplayBold',

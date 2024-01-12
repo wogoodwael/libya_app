@@ -156,7 +156,7 @@ class AddCategory extends StatelessWidget {
                               isNumber: false,
                               controller: controller.name,
                               secure: false,
-                              height: 35,
+                              height: 55,
                             ),
                             Padding(
                               padding:
@@ -172,7 +172,7 @@ class AddCategory extends StatelessWidget {
                               maxLength: 25,
                               controller: controller.description,
                               secure: false,
-                              height: 50,
+                              height: 70,
                             ),
                             const SizedBox(
                               height: 10,
