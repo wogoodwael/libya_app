@@ -29,8 +29,10 @@ class ConfirmOrders extends StatefulWidget {
 class _ConfirmOrdersState extends State<ConfirmOrders> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   CartController cartController = Get.put(CartController());
-  var branchCode = int.parse(MyServicesApp.sharedPreferences.getString("branch_code").toString());
-  var userType = int.parse(MyServicesApp.sharedPreferences.getString("user_type").toString());
+  var branchCode = int.parse(
+      MyServicesApp.sharedPreferences.getString("branch_code").toString());
+  var userType = int.parse(
+      MyServicesApp.sharedPreferences.getString("user_type").toString());
   CheckoutController controller = Get.put(CheckoutController());
   bool visible = false;
   bool ta2sitVisible = false;
@@ -46,535 +48,548 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
         child: MenuScreen(),
       ),
       backgroundColor: offwhite,
-      body: GetBuilder<CheckoutController>(
-        builder: (controller) {
-          return HandlingDataView(
-            statusRequest: controller.statusRequest,
-            widget: Stack(
+      body: GetBuilder<CheckoutController>(builder: (controller) {
+        return HandlingDataView(
+          statusRequest: controller.statusRequest,
+          widget: Stack(children: [
+            const BackGroundImage(),
+            SingleChildScrollView(
+              child: Column(
                 children: [
-              const BackGroundImage(),
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      height: .2 * MediaQuery.sizeOf(context).height,
-                      decoration: const BoxDecoration(
-                          color: darkGreen,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(40),
-                              bottomRight: Radius.circular(40))),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: .06 * MediaQuery.sizeOf(context).height,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                width: .055 * MediaQuery.sizeOf(context).width,
+                  Container(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: .2 * MediaQuery.sizeOf(context).height,
+                    decoration: const BoxDecoration(
+                        color: darkGreen,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(40),
+                            bottomRight: Radius.circular(40))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: .06 * MediaQuery.sizeOf(context).height,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              width: .055 * MediaQuery.sizeOf(context).width,
+                            ),
+                            const AppPerson(),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(() => CartOrders());
+                              },
+                              child: const Icon(
+                                Icons.shopping_cart_rounded,
+                                size: 40,
+                                color: yellow,
                               ),
-                              const AppPerson(),
-                              GestureDetector(
+                            ),
+                            SizedBox(
+                              width: .08 * MediaQuery.sizeOf(context).width,
+                            ),
+                            const Text(
+                              "تاكيد الطلب ",
+                              style: TextStyle(
+                                  fontFamily: 'ArabicUIDisplayBold',
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: yellow),
+                            ),
+                            SizedBox(
+                              width: .15 * MediaQuery.sizeOf(context).width,
+                            ),
+                            //* go to menu page
+                            GestureDetector(
                                 onTap: () {
-                                  Get.to(() => CartOrders());
+                                  scaffoldKey.currentState!.openEndDrawer();
                                 },
-                                child: const Icon(
-                                  Icons.shopping_cart_rounded,
-                                  size: 40,
-                                  color: yellow,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 15),
+                                  child: SizedBox(
+                                    width: 30,
+                                    height: 25,
+                                    child: Image.asset(
+                                      "assets/images/icon_menu.png",
+                                      color: yellow,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                )),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: .02 * MediaQuery.sizeOf(context).height,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 200),
+                    child: Text(
+                      textAlign: TextAlign.end,
+                      "تفاصيل الطلب",
+                      style: TextStyle(
+                          fontFamily: 'ArabicUIDisplay',
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: darkGreen),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Card(
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: SingleChildScrollView(
+                      child: Container(
+                          width: .90 * MediaQuery.sizeOf(context).width,
+                          height: .50 * MediaQuery.sizeOf(context).height,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15)),
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              ...List.generate(
+                                  cartController.data.length,
+                                  (index) => CustomConfirmItemsList(
+                                        name:
+                                            "${cartController.data[index].itemsName}",
+                                        price: branchCode == 1 && userType == 1
+                                            ? (cartController
+                                                    .data[index].itemsprice)!
+                                                .toStringAsFixed(2)
+                                            : branchCode == 2 && userType == 1
+                                                ? (cartController.data[index]
+                                                        .itemsprice2)!
+                                                    .toStringAsFixed(2)
+                                                : branchCode == 3 &&
+                                                        userType == 1
+                                                    ? (cartController
+                                                            .data[index]
+                                                            .itemsprice3)!
+                                                        .toStringAsFixed(2)
+                                                    : branchCode == 4 &&
+                                                            userType == 1
+                                                        ? (cartController
+                                                                .data[index]
+                                                                .itemsprice4)!
+                                                            .toStringAsFixed(2)
+                                                        : branchCode == 5 &&
+                                                                userType == 1
+                                                            ? (cartController
+                                                                    .data[index]
+                                                                    .itemsprice5)!
+                                                                .toStringAsFixed(
+                                                                    2)
+                                                            : branchCode == 1 &&
+                                                                    userType ==
+                                                                        2
+                                                                ? (cartController
+                                                                        .data[index]
+                                                                        .shopownerprice)!
+                                                                    .toStringAsFixed(2)
+                                                                : branchCode == 2 && userType == 2
+                                                                    ? (cartController.data[index].shopownerprice2)!.toStringAsFixed(2)
+                                                                    : branchCode == 3 && userType == 2
+                                                                        ? (cartController.data[index].shopownerprice3)!.toStringAsFixed(2)
+                                                                        : branchCode == 4 && userType == 2
+                                                                            ? (cartController.data[index].shopownerprice4)!.toStringAsFixed(2)
+                                                                            : branchCode == 5 && userType == 2
+                                                                                ? (cartController.data[index].shopownerprice5)!.toStringAsFixed(2)
+                                                                                : branchCode == 1 && userType == 3
+                                                                                    ? (cartController.data[index].fornownerprice)!.toStringAsFixed(2)
+                                                                                    : branchCode == 2 && userType == 3
+                                                                                        ? (cartController.data[index].fornownerprice2)!.toStringAsFixed(2)
+                                                                                        : branchCode == 3 && userType == 3
+                                                                                            ? (cartController.data[index].fornownerprice3)!.toStringAsFixed(2)
+                                                                                            : branchCode == 4 && userType == 3
+                                                                                                ? (cartController.data[index].fornownerprice4)!.toStringAsFixed(2)
+                                                                                                : branchCode == 5 && userType == 3
+                                                                                                    ? (cartController.data[index].fornownerprice5)!.toStringAsFixed(2)
+                                                                                                    : (cartController.data[index].itemsprice)!.toStringAsFixed(2),
+                                        count:
+                                            "${cartController.data[index].countitems}",
+                                        image:
+                                            '${cartController.data[index].itemsImage}',
+                                        discount:
+                                            '${cartController.data[index].itemsDiscount}',
+                                      ))
+                            ],
+                          )),
+                    ),
+                  ),
+                  SizedBox(
+                    height: .03 * MediaQuery.sizeOf(context).height,
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            button1 = true;
+                            // controller.choosePaymentMethod("0");
+                            controller.chooseDeliveryType("0");
+                            setState(() {
+                              visible = false;
+                            });
+                            Get.dialog(AlertDialog(
+                              backgroundColor: Colors.white,
+                              title: const Text(
+                                'طريقة الدفع',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              content: const Text(
+                                'هل تريد دفع المبلغ كامل ام دفعات؟',
+                                textAlign: TextAlign.right,
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontFamily: 'ArabicUIDisplayBold',
                                 ),
                               ),
-                              SizedBox(
-                                width: .08 * MediaQuery.sizeOf(context).width,
-                              ),
-                              const Text(
-                                "تاكيد الطلب ",
-                                style: TextStyle(
-                                    fontFamily: 'ArabicUIDisplayBold',
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    color: yellow),
-                              ),
-                              SizedBox(
-                                width: .15 * MediaQuery.sizeOf(context).width,
-                              ),
-                              //* go to menu page
-                              GestureDetector(
-                                  onTap: () {
-                                    scaffoldKey.currentState!.openEndDrawer();
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 15),
-                                    child: SizedBox(
-                                      width: 30,
-                                      height: 25,
-                                      child: Image.asset(
-                                        "assets/images/icon_menu.png",
-                                        color: yellow,
-                                        fit: BoxFit.cover,
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        ta2sitVisible = false;
+                                        Get.back();
+                                      });
+                                      controller.choosePaymentMethod("0");
+                                    },
+                                    child: const Text(
+                                      'كامل كاش',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'ArabicUIDisplayBold',
                                       ),
-                                    ),
-                                  )),
-                            ],
-                          ),
-                        ],
-                      ),
+                                    )),
+                                TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        ta2sitVisible = true;
+                                        Get.back();
+                                      });
+                                      controller.choosePaymentMethod("1");
+                                    },
+                                    child: const Text(
+                                      'دفعات',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'ArabicUIDisplayBold',
+                                      ),
+                                    ))
+                              ],
+                            ));
+                          },
+                          child: PaymentMethodButton(
+                            text: 'دفع من المتجر',
+                            isActive:
+                                controller.deliveryType == "0" ? true : false,
+                          )),
+                      GestureDetector(
+                          onTap: () {
+                            button2 = true;
+                            // controller.choosePaymentMethod("1");
+                            controller.chooseDeliveryType("1");
+                            setState(() {
+                              visible = true;
+                            });
+                            Get.dialog(AlertDialog(
+                              backgroundColor: Colors.white,
+                              title: const Text(
+                                'طريقة الدفع',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              content: const Text(
+                                'هل تريد دفع المبلغ كامل ام دفعات؟',
+                                textAlign: TextAlign.right,
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontFamily: 'ArabicUIDisplayBold',
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        ta2sitVisible = false;
+                                        Get.back();
+                                      });
+                                      controller.choosePaymentMethod("0");
+                                    },
+                                    child: const Text(
+                                      'كامل كاش',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'ArabicUIDisplayBold',
+                                      ),
+                                    )),
+                                TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        ta2sitVisible = true;
+                                        Get.back();
+                                      });
+                                      controller.choosePaymentMethod("1");
+                                    },
+                                    child: const Text(
+                                      'دفعات',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'ArabicUIDisplayBold',
+                                      ),
+                                    ))
+                              ],
+                            ));
+                          },
+                          child: PaymentMethodButton(
+                            text: 'دفع عند الاستلام',
+                            isActive:
+                                controller.deliveryType == "1" ? true : false,
+                          )),
+                    ],
+                  ),
+                  Visibility(
+                    visible: visible,
+                    child: SizedBox(
+                      height: .03 * MediaQuery.sizeOf(context).height,
                     ),
-                    SizedBox(
-                      height: .02 * MediaQuery.sizeOf(context).height,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 200),
-                      child: Text(
-                        textAlign: TextAlign.end,
-                        "تفاصيل الطلب",
-                        style: TextStyle(
-                            fontFamily: 'ArabicUIDisplay',
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: darkGreen),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Card(
+                  ),
+                  Visibility(
+                    visible: visible,
+                    child: Card(
                       elevation: 3,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: SingleChildScrollView(
-                        child: Container(
-                            width: .90 * MediaQuery.sizeOf(context).width,
-                            height: .50 * MediaQuery.sizeOf(context).height,
-                            decoration: BoxDecoration(boxShadow: const [
+                      child: Container(
+                        width: .90 * MediaQuery.sizeOf(context).width,
+                        height: .44 * MediaQuery.sizeOf(context).height,
+                        decoration: BoxDecoration(
+                            boxShadow: const [
                               BoxShadow(
                                 color: Color.fromARGB(255, 121, 119, 119),
                                 blurRadius: 1.0,
                               ),
-                            ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              children: [
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(top: 15, right: 5),
+                                child: Text(
+                                  " : اختار عنوان للشحن اليه  ",
+                                  style: TextStyle(
+                                      color: darkGreen,
+                                      fontFamily: 'ArabicUIDisplay',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const Divider(
+                                thickness: 2,
+                                color: yellow,
+                                endIndent: 10,
+                                indent: 10,
+                              ),
+                              if (controller.data.isNotEmpty)
                                 ...List.generate(
-                                    cartController.data.length,
-                                        (index) => CustomConfirmItemsList(
-                                      name: "${cartController.data[index].itemsName}",
-                                      price:
-                                      branchCode == 1 && userType == 1
-                                          ?
-                                      (cartController.data[index].itemsprice)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 2 && userType == 1
-                                          ?
-                                      (cartController.data[index].itemsprice2)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 3 && userType == 1
-                                          ?
-                                      (cartController.data[index].itemsprice3)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 4 && userType == 1
-                                          ?
-                                      (cartController.data[index].itemsprice4)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 5 && userType == 1
-                                          ?
-                                      (cartController.data[index].itemsprice5)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 1 && userType == 2
-                                          ?
-                                      (cartController.data[index].shopownerprice)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 2 && userType == 2
-                                          ?
-                                      (cartController.data[index].shopownerprice2)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 3 && userType == 2
-                                          ?
-                                      (cartController.data[index].shopownerprice3)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 4 && userType == 2
-                                          ?
-                                      (cartController.data[index].shopownerprice4)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 5 && userType == 2
-                                          ?
-                                      (cartController.data[index].shopownerprice5)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 1 && userType == 3
-                                          ?
-                                      (cartController.data[index].fornownerprice)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 2 && userType == 3
-                                          ?
-                                      (cartController.data[index].fornownerprice2)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 3 && userType == 3
-                                          ?
-                                      (cartController.data[index].fornownerprice3)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 4 && userType == 3
-                                          ?
-                                      (cartController.data[index].fornownerprice4)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      branchCode == 5 && userType == 3
-                                          ?
-                                      (cartController.data[index].fornownerprice5)!
-                                          .toStringAsFixed(2)
-                                          :
-                                      (cartController.data[index].itemsprice)!
-                                          .toStringAsFixed(2),
-                                      count:
-                                      "${cartController.data[index].countitems}",
-                                      image:
-                                      '${cartController.data[index].itemsImage}',
-                                      discount:
-                                      '${cartController.data[index].itemsDiscount}',
-                                    ))
-                              ],
-                            )),
-                      ),
-                    ),
-                    SizedBox(
-                      height: .03 * MediaQuery.sizeOf(context).height,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                              onTap: () {
-                                button1 = true;
-                                // controller.choosePaymentMethod("0");
-                                controller.chooseDeliveryType("0");
-                                setState(() {
-                                  visible = false;
-                                });
-                                Get.dialog(AlertDialog(
-                                  backgroundColor: Colors.white,
-                                  title: const Text(
-                                    'طريقة الدفع',
-                                    textDirection: TextDirection.rtl,
-                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                  ),
-                                  content: const Text('هل تريد دفع المبلغ كامل ام دفعات؟',textAlign: TextAlign.right,textDirection: TextDirection.rtl,style: TextStyle(fontFamily: 'ArabicUIDisplayBold',),),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            ta2sitVisible = false;
-                                            Get.back();
-                                          });
-                                          controller.choosePaymentMethod("0");
-                                        },
-                                        child: const Text(
-                                          'كامل كاش',
-                                          style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
+                                    controller.data.length,
+                                    (index) => InkWell(
+                                          onTap: () {
+                                            controller.chooseShippingAddress(
+                                                controller
+                                                    .data[index].addressId!);
+                                          },
+                                          child: CustomShippingCard(
+                                              title: controller
+                                                  .data[index].addressName!,
+                                              body:
+                                                  "${controller.data[index].addressCity!}, ${controller.data[index].addressStreet!}",
+                                              isActive: controller.shippingId ==
+                                                      controller.data[index]
+                                                          .addressId!
+                                                  ? true
+                                                  : false),
                                         )),
-                                    TextButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            ta2sitVisible = true;
-                                            Get.back();
-                                          });
-                                          controller.choosePaymentMethod("1");
-                                        },
-                                        child: const Text(
-                                          'دفعات',
-                                          style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
-                                        ))
-                                  ],
-                                ));
-                              },
-                              child: PaymentMethodButton(
-                                  text: 'دفع من المتجر',
-                                isActive: controller.deliveryType == "0" ? true : false,
-                              )),
-                        ),
-                        Expanded(
-                          child: GestureDetector(
-                              onTap: () {
-                                button2 = true;
-                                // controller.choosePaymentMethod("1");
-                                controller.chooseDeliveryType("1");
-                                setState(() {
-                                  visible = true;
-                                });
-                                Get.dialog(
-                                    AlertDialog(
-                                  backgroundColor: Colors.white,
-                                  title: const Text(
-                                    'طريقة الدفع',
-                                    textDirection: TextDirection.rtl,
-                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                  ),
-                                  content: const Text('هل تريد دفع المبلغ كامل ام دفعات؟',textAlign: TextAlign.right,textDirection: TextDirection.rtl,style: TextStyle(fontFamily: 'ArabicUIDisplayBold',),),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            ta2sitVisible = false;
-                                            Get.back();
-                                          });
-                                          controller.choosePaymentMethod("0");
-                                        },
-                                        child: const Text(
-                                          'كامل كاش',
-                                          style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
-                                        )),
-                                    TextButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            ta2sitVisible = true;
-                                            Get.back();
-                                          });
-                                          controller.choosePaymentMethod("1");
-                                        },
-                                        child: const Text(
-                                          'دفعات',
-                                          style: TextStyle(color: Colors.black,fontFamily: 'ArabicUIDisplayBold',),
-                                        ))
-                                  ],
-                                ));
-                              },
-                              child: PaymentMethodButton(text: 'دفع عند الاستلام',
-                                isActive: controller.deliveryType == "1" ? true : false,)),
-                        ),
-                      ],
-                    ),
-                    Visibility(
-                      visible: visible,
-                      child: SizedBox(
-                        height: .03 * MediaQuery.sizeOf(context).height,
-                      ),
-                    ),
-                    Visibility(
-                      visible: visible,
-                      child: Card(
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Container(
-                          width: .90 * MediaQuery.sizeOf(context).width,
-                          height: .44 * MediaQuery.sizeOf(context).height,
-                          decoration: BoxDecoration(boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 121, 119, 119),
-                              blurRadius: 1.0,
-                            ),
-                          ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 15, right: 5),
-                                  child: Text(
-                                    " : اختار عنوان للشحن اليه  ",
-                                    style: TextStyle(
-                                        color: darkGreen,
-                                        fontFamily: 'ArabicUIDisplay',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const Divider(
-                                  thickness: 2,
-                                  color: yellow,
-                                  endIndent: 10,
-                                  indent: 10,
-                                ),
-                                if(controller.data.isNotEmpty)
-                                  ...List.generate(
-                                      controller.data.length,
-                                          (index) => InkWell(
-                                        onTap: (){
-                                          controller.chooseShippingAddress(controller.data[index].addressId!);
-                                        },
-                                        child: CustomShippingCard(
-                                            title: controller.data[index].addressName!,
-                                            body: "${controller.data[index].addressCity!}, ${controller.data[index].addressStreet!}",
-                                            isActive: controller.shippingId == controller.data[index].addressId! ? true : false
-                                        ),
-                                      )
-                                  ),
-                                const Divider(
-                                  thickness: 2,
-                                  color: darkGreen,
-                                  endIndent: 10,
-                                  indent: 10,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                InkWell(
-                                  onTap: (){
-                                    Get.to(() => const AddressView());
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: .2 * MediaQuery.sizeOf(context).width),
-                                    width: 200,
-                                    height: 40,
-                                    decoration: const BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
+                              const Divider(
+                                thickness: 2,
+                                color: darkGreen,
+                                endIndent: 10,
+                                indent: 10,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.to(() => const AddressView());
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: .2 *
+                                          MediaQuery.sizeOf(context).width),
+                                  width: 200,
+                                  height: 40,
+                                  decoration: const BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
                                             // offset: Offset(0, 0),
-                                              color: Color.fromARGB(255, 187, 186, 186),
-                                              blurRadius: 1,
-                                              spreadRadius: 2)
-                                        ],
-                                        color: darkGreen,
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(20),
-                                            bottomLeft: Radius.circular(20))),
-                                    child: const Center(
-                                      child: Text(
-                                        "اضف عنوان اخر",
-                                        style: TextStyle(
-                                            fontFamily: 'ArabicUIDisplay',
-                                            color: yellow,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15),
-                                      ),
+                                            color: Color.fromARGB(
+                                                255, 187, 186, 186),
+                                            blurRadius: 1,
+                                            spreadRadius: 2)
+                                      ],
+                                      color: darkGreen,
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20))),
+                                  child: const Center(
+                                    child: Text(
+                                      "اضف عنوان اخر",
+                                      style: TextStyle(
+                                          fontFamily: 'ArabicUIDisplay',
+                                          color: yellow,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
+                  ),
+                  SizedBox(
+                    height: .03 * MediaQuery.sizeOf(context).height,
+                  ),
+                  Visibility(
+                    visible: ta2sitVisible,
+                    child: SizedBox(
                       height: .03 * MediaQuery.sizeOf(context).height,
                     ),
-                    Visibility(
-                      visible: ta2sitVisible,
-                      child: SizedBox(
-                        height: .03 * MediaQuery.sizeOf(context).height,
+                  ),
+                  Visibility(
+                    visible: ta2sitVisible,
+                    child: Card(
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
                       ),
-                    ),
-                    Visibility(
-                      visible: ta2sitVisible,
-                      child: Card(
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Container(
-                          width: .90 * MediaQuery.sizeOf(context).width,
-                          height: .25 * MediaQuery.sizeOf(context).height,
-                          decoration: BoxDecoration(boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 121, 119, 119),
-                              blurRadius: 1.0,
-                            ),
-                          ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 15, right: 5),
-                                  child: Text(
-                                    " : الدفعات",
-                                    style: TextStyle(
-                                        color: darkGreen,
-                                        fontFamily: 'ArabicUIDisplay',
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                      child: Container(
+                        width: .90 * MediaQuery.sizeOf(context).width,
+                        height: .25 * MediaQuery.sizeOf(context).height,
+                        decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 121, 119, 119),
+                                blurRadius: 1.0,
+                              ),
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(top: 15, right: 5),
+                                child: Text(
+                                  " : الدفعات",
+                                  style: TextStyle(
+                                      color: darkGreen,
+                                      fontFamily: 'ArabicUIDisplay',
+                                      fontWeight: FontWeight.bold),
                                 ),
-                                const Divider(
-                                  thickness: 2,
-                                  color: yellow,
-                                  endIndent: 10,
-                                  indent: 10,
-                                ),
-                                Center(
-                                  child: SizedBox(
-                                    width: .6 * MediaQuery.sizeOf(context).width,
-                                    height: .07 * MediaQuery.sizeOf(context).height,
-                                    child: TextField(
-                                      controller: controller.ta2sitController,
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.right,
-                                      decoration: const InputDecoration(
+                              ),
+                              const Divider(
+                                thickness: 2,
+                                color: yellow,
+                                endIndent: 10,
+                                indent: 10,
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: .6 * MediaQuery.sizeOf(context).width,
+                                  height:
+                                      .07 * MediaQuery.sizeOf(context).height,
+                                  child: TextField(
+                                    controller: controller.ta2sitController,
+                                    textDirection: TextDirection.rtl,
+                                    textAlign: TextAlign.right,
+                                    decoration: const InputDecoration(
                                         hintText: "المبلغ الذي تريد دفعه",
-                                        hintTextDirection: TextDirection.rtl
-                                      ),
-                                    ),
+                                        hintTextDirection: TextDirection.rtl),
                                   ),
                                 ),
-                                Center(
-                                  child: SizedBox(
-                                    width: .6 * MediaQuery.sizeOf(context).width,
-                                    height: .07 * MediaQuery.sizeOf(context).height,
-                                    child: TextField(
-                                      controller: controller.noOfTa2sitController,
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.right,
-                                      decoration: const InputDecoration(
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: .6 * MediaQuery.sizeOf(context).width,
+                                  height:
+                                      .07 * MediaQuery.sizeOf(context).height,
+                                  child: TextField(
+                                    controller: controller.noOfTa2sitController,
+                                    textDirection: TextDirection.rtl,
+                                    textAlign: TextAlign.right,
+                                    decoration: const InputDecoration(
                                         hintText: "عدد الدفعات",
-                                          hintTextDirection: TextDirection.rtl
-                                      ),
-                                    ),
+                                        hintTextDirection: TextDirection.rtl),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: .03 * MediaQuery.sizeOf(context).height,
-                    ),
-                    GestureDetector(
-                        onTap: () {
-                          if(button1 == true || button2 == true){
-                            controller.checkout(
-                                int.parse(MyServicesApp.sharedPreferences.getString("id").toString()),
-                                controller.ta2sitController.text,
-                                controller.noOfTa2sitController.text,
-                            );
-                            userController.getData();
-                            button1 = false;
-                            button2 = false;
-                          } else {
-                            showErrorSnack(context, "من فضلك اختار طريقه الدفع");
-                          }
-                        },
-                        child: CustomNext(text: 'تاكيد')),
-                    SizedBox(
-                      height: .02 * MediaQuery.sizeOf(context).height,
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: .03 * MediaQuery.sizeOf(context).height,
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        if (button1 == true || button2 == true) {
+                          controller.checkout(
+                            int.parse(MyServicesApp.sharedPreferences
+                                .getString("id")
+                                .toString()),
+                            controller.ta2sitController.text,
+                            controller.noOfTa2sitController.text,
+                          );
+                          userController.getData();
+                          button1 = false;
+                          button2 = false;
+                        } else {
+                          showErrorSnack(context, "من فضلك اختار طريقه الدفع");
+                        }
+                      },
+                      child: CustomNext(text: 'تاكيد')),
+                  SizedBox(
+                    height: .02 * MediaQuery.sizeOf(context).height,
+                  ),
+                ],
               ),
-            ]),
-          );
-        }
-      ),
+            ),
+          ]),
+        );
+      }),
     );
   }
 }
