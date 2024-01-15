@@ -438,14 +438,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                   width: 200,
                                   height: 40,
                                   decoration: const BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                            // offset: Offset(0, 0),
-                                            color: Color.fromARGB(
-                                                255, 187, 186, 186),
-                                            blurRadius: 1,
-                                            spreadRadius: 2)
-                                      ],
+                                     
                                       color: darkGreen,
                                       borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(20),
