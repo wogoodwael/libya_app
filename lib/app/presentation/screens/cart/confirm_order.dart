@@ -375,12 +375,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                         width: .90 * MediaQuery.sizeOf(context).width,
                         height: .44 * MediaQuery.sizeOf(context).height,
                         decoration: BoxDecoration(
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(255, 121, 119, 119),
-                                blurRadius: 1.0,
-                              ),
-                            ],
+                          
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15)),
                         child: SingleChildScrollView(
@@ -496,12 +491,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                         width: .90 * MediaQuery.sizeOf(context).width,
                         height: .25 * MediaQuery.sizeOf(context).height,
                         decoration: BoxDecoration(
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(255, 121, 119, 119),
-                                blurRadius: 1.0,
-                              ),
-                            ],
+                           
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15)),
                         child: SingleChildScrollView(
