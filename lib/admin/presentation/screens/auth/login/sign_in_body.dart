@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:libya_bakery/app/presentation/screens/auth/login/admin_login.dart';
 import 'package:libya_bakery/app/presentation/screens/home/home.dart';
-import 'package:libya_bakery/app/services/MyServices.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/functions/check_internet.dart';
 import '../../../../core/helper/snack.dart';
@@ -189,7 +188,8 @@ class _SignInBodyState extends State<SignInBody> {
                   height: 30,
                   decoration: BoxDecoration(
                       color: darkGreen,
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(20)
+                  ),
                   child: const Center(
                       child: Text(
                     "نسيت كلمة السر ؟",
@@ -200,28 +200,28 @@ class _SignInBodyState extends State<SignInBody> {
                 SizedBox(
                   width: .3 * MediaQuery.sizeOf(context).width,
                 ),
-                const Text(
-                  'تذكرني',
-                  style: TextStyle(
-                      fontFamily: 'ArabicUIDisplayBold',
-                      fontWeight: FontWeight.bold),
-                ),
-                Checkbox(
-                    fillColor: MaterialStateProperty.resolveWith((states) {
-                      if (!states.contains(MaterialState.selected)) {
-                        return Colors.white;
-                      }
-                      return null;
-                    }),
-                    side: const BorderSide(color: Colors.black, width: 2),
-                    activeColor: Colors.white,
-                    checkColor: Colors.blue,
-                    value: rememberMe,
-                    onChanged: (val) {
-                      setState(() {
-                        rememberMe = val!;
-                      });
-                    }),
+                // const Text(
+                //   'تذكرني',
+                //   style: TextStyle(
+                //       fontFamily: 'ArabicUIDisplayBold',
+                //       fontWeight: FontWeight.bold),
+                // ),
+                // Checkbox(
+                //     fillColor: MaterialStateProperty.resolveWith((states) {
+                //       if (!states.contains(MaterialState.selected)) {
+                //         return Colors.white;
+                //       }
+                //       return null;
+                //     }),
+                //     side: const BorderSide(color: Colors.black, width: 2),
+                //     activeColor: Colors.white,
+                //     checkColor: Colors.blue,
+                //     value: rememberMe,
+                //     onChanged: (val) {
+                //       setState(() {
+                //         rememberMe = val!;
+                //       });
+                //     }),
               ],
             ),
           ),

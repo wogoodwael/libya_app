@@ -29,15 +29,14 @@ class ConfirmOrders extends StatefulWidget {
 class _ConfirmOrdersState extends State<ConfirmOrders> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   CartController cartController = Get.put(CartController());
-  var branchCode = int.parse(
-      MyServicesApp.sharedPreferences.getString("branch_code").toString());
-  var userType = int.parse(
-      MyServicesApp.sharedPreferences.getString("user_type").toString());
+  var branchCode = int.parse(MyServicesApp.sharedPreferences.getString("branch_code").toString());
+  var userType = int.parse(MyServicesApp.sharedPreferences.getString("user_type").toString());
   CheckoutController controller = Get.put(CheckoutController());
   bool visible = false;
   bool ta2sitVisible = false;
   bool button1 = false;
   bool button2 = false;
+
   @override
   Widget build(BuildContext context) {
     UserController userController = Get.put(UserController());
@@ -79,7 +78,7 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                             const AppPerson(),
                             GestureDetector(
                               onTap: () {
-                                Get.to(() => CartOrders());
+                                Get.to(() => const CartOrders());
                               },
                               child: const Icon(
                                 Icons.shopping_cart_rounded,
@@ -101,7 +100,6 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                             SizedBox(
                               width: .15 * MediaQuery.sizeOf(context).width,
                             ),
-                            //* go to menu page
                             GestureDetector(
                                 onTap: () {
                                   scaffoldKey.currentState!.openEndDrawer();
@@ -229,11 +227,11 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                     height: .03 * MediaQuery.sizeOf(context).height,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                           onTap: () {
                             button1 = true;
-                            // controller.choosePaymentMethod("0");
                             controller.chooseDeliveryType("0");
                             setState(() {
                               visible = false;

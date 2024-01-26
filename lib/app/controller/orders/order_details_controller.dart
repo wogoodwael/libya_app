@@ -28,6 +28,7 @@ class OrderDetailsController extends GetxController{
   }
 
   getData() async{
+    if(ordersModel.orderId.isNull) return;
     statusRequest = StatusRequest.loading;
     var response = await orderDetails.getData(ordersModel.orderId!);
     statusRequest = handlingData(response);

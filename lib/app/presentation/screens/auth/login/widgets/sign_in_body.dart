@@ -218,28 +218,28 @@ class _SignInBodyState extends State<SignInBody> {
               SizedBox(
                 width: .3 * MediaQuery.sizeOf(context).width,
               ),
-              const Text(
-                'تذكرني',
-                style: TextStyle(
-                    fontFamily: 'ArabicUIDisplayBold',
-                    fontWeight: FontWeight.bold),
-              ),
-              Checkbox(
-                  fillColor: MaterialStateProperty.resolveWith((states) {
-                    if (!states.contains(MaterialState.selected)) {
-                      return Colors.white;
-                    }
-                    return null;
-                  }),
-                  side: const BorderSide(color: Colors.black, width: 2),
-                  activeColor: Colors.white,
-                  checkColor: Colors.blue,
-                  value: rememberMe,
-                  onChanged: (val) {
-                    setState(() {
-                      rememberMe = val!;
-                    });
-                  }),
+              // const Text(
+              //   'تذكرني',
+              //   style: TextStyle(
+              //       fontFamily: 'ArabicUIDisplayBold',
+              //       fontWeight: FontWeight.bold),
+              // ),
+              // Checkbox(
+              //     fillColor: MaterialStateProperty.resolveWith((states) {
+              //       if (!states.contains(MaterialState.selected)) {
+              //         return Colors.white;
+              //       }
+              //       return null;
+              //     }),
+              //     side: const BorderSide(color: Colors.black, width: 2),
+              //     activeColor: Colors.white,
+              //     checkColor: Colors.blue,
+              //     value: rememberMe,
+              //     onChanged: (val) {
+              //       setState(() {
+              //         rememberMe = val!;
+              //       });
+              //     }),
             ],
           ),
         ),
@@ -282,7 +282,6 @@ class _SignInBodyState extends State<SignInBody> {
         const SizedBox(
           height: 30,
         ),
-        //* Go to admin login
         Center(
           child: GestureDetector(
             onTap: () {

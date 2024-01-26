@@ -72,9 +72,6 @@ class CheckoutController extends GetxController {
 
   checkout(userId, String amountPaid, String noOfInstallments) async {
     DateTime now = DateTime.now();
-    if (kDebugMode) {
-      print(now.hour);
-    }
     if (now.hour >= 0 && now.hour < 12) {
       Get.snackbar("", "",
           titleText: const Text(
@@ -104,7 +101,7 @@ class CheckoutController extends GetxController {
         "orderpricedelivery": "5",
         "order_amountPaid": amountPaid,
         "order_noofinstallments": noOfInstallments,
-        "order_amountRequired": (double.tryParse(priceorders)! - double.parse(amountPaid)).toString(),
+        "order_amountRequired": (double.tryParse(priceorders)! - (double.tryParse(amountPaid) ?? 0)).toString(),
         "orderprice": priceorders,
         "orderpaymentmethod" : paymentMethod,
         "orderbranch":
@@ -114,7 +111,7 @@ class CheckoutController extends GetxController {
       statusRequest = handlingData(response);
       try {
         if (response['status'] == 'failure') {
-          statusRequest = StatusRequest.success;
+          statusRequest = StatusRequest.failure;
           Get.snackbar("Error", "Please try Again");
         } else {
           if (StatusRequest.success == statusRequest) {

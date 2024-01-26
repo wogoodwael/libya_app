@@ -237,28 +237,28 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                     SizedBox(
                       width: .3 * MediaQuery.sizeOf(context).width,
                     ),
-                    const Text(
-                      'تذكرني',
-                      style: TextStyle(
-                          fontFamily: 'ArabicUIDisplayBold',
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Checkbox(
-                        fillColor: MaterialStateProperty.resolveWith((states) {
-                          if (!states.contains(MaterialState.selected)) {
-                            return Colors.white;
-                          }
-                          return null;
-                        }),
-                        side: const BorderSide(color: Colors.white, width: 2),
-                        activeColor: Colors.white,
-                        checkColor: Colors.blue,
-                        value: rememberMe,
-                        onChanged: (val) {
-                          setState(() {
-                            rememberMe = val!;
-                          });
-                        }),
+                    // const Text(
+                    //   'تذكرني',
+                    //   style: TextStyle(
+                    //       fontFamily: 'ArabicUIDisplayBold',
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    // Checkbox(
+                    //     fillColor: MaterialStateProperty.resolveWith((states) {
+                    //       if (!states.contains(MaterialState.selected)) {
+                    //         return Colors.white;
+                    //       }
+                    //       return null;
+                    //     }),
+                    //     side: const BorderSide(color: Colors.white, width: 2),
+                    //     activeColor: Colors.white,
+                    //     checkColor: Colors.blue,
+                    //     value: rememberMe,
+                    //     onChanged: (val) {
+                    //       setState(() {
+                    //         rememberMe = val!;
+                    //       });
+                    //     }),
                   ],
                 ),
               ),

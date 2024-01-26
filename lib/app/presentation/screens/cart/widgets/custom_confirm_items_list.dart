@@ -23,11 +23,7 @@ class CustomConfirmItemsList extends StatelessWidget {
               ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Positioned(
-                      left: 160,
-                      bottom: 5,
-                      child: Image.asset("assets/images/sale.png",width: 50)
-                  ),
+                  Image.asset("assets/images/sale.png",width: 50),
                   Text(
                     name,
                     style: const TextStyle(

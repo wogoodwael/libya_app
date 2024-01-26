@@ -293,11 +293,10 @@ class _SignUpBodyState extends State<SignUpBody> {
               height: 20,
             ),
             const CustomChooseContainer(),
-            const CustomCheckBox(),
+            // const CustomCheckBox(),
             const SizedBox(
               height: 20,
             ),
-            //!go to verify email page
             GestureDetector(
               onTap: () async {
                 if (firstName.text == '') {
