@@ -8,12 +8,6 @@
     <string>We need your location for specific feature XYZ, even when the app is in the background.</string>
     <key>NSLocationUsageDescription</key>
     <string>We need your precise location for specific feature XYZ.</string>
-    <key>UIBackgroundModes</key>
-    <array>
-      <string>location</string>
-    </array>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>We need access to the microphone for recording audio.</string>
     <key>NSCameraUsageDescription</key>
     <string>We need access to the camera for taking photos and videos.</string>
 
