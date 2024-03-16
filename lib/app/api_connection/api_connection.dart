@@ -26,6 +26,8 @@ class API {
   static const validateStoreName = '$hostConnect/auth/validate_storename.php';//done
   // updates user info
   static const updateInfo = '$hostConnect/auth/update_info.php';//done
+  //delete user
+  static const deleteUser = '$hostConnect/auth/delete.php';//done
 
   //========Home==========//
   static const home = '$hostConnect/home.php';//done
